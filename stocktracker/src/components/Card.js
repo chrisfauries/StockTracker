@@ -6,7 +6,8 @@ class Card extends Component {
   render() {
     return (
       <div className={ styles.card }>
-        This is working and connected
+        <p>This is working and connected</p>
+        <span>This is working and connected</span>
       </div>
     )
   }
