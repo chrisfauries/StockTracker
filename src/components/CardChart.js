@@ -4,15 +4,7 @@ import {Bar, Line, Pie} from 'react-chartjs-2'
 
 class CardChart extends Component {
   state = {
-    stockData:{
-      labels: ['9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '1:00', '1:30', '2:00', '2:30', '3:00', '3:30', '4:00'],
-      datasets:[
-        {
-          label:'Stock ',
-          data:[]
-        }
-      ]
-    }
+    stockData: []
   }
   
   componentWillMount(){
@@ -28,11 +20,29 @@ class CardChart extends Component {
     }
 
   render() {
-    const asdf = [123, 155]
-    console.log(this.state.stockData)
-    const post = this.state.stockData[0] ? (
+    
+    const stocks = this.state.stockData;
+    const priceArray = []
+    stocks.forEach(array => {
+      array.forEach(stock => {
+        priceArray.push(stock.price)
+      })
+    })
+     
+    var chartData = {
+      labels: ['9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '1:00', '1:30', '2:00', '2:30', '3:00', '3:30', '4:00'],
+      datasets:[
+        {
+          label:'Stock ',
+          data:[...priceArray]
+        }
+      ]
+    }
+    console.log(priceArray)
+    console.log(stocks)
+    const post = this.state.stockData ? (
       <Line
-          data={asdf}
+          data={chartData}
           width={100}
           height={50}
           options={{}}
