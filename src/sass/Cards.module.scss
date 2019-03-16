@@ -1,0 +1,30 @@
+.cards{
+    .card{
+        .symbol{
+            font-size: 40px;
+        }
+        .price{
+
+        }
+        .dayChange{
+
+        }
+        .changePct{
+            
+        }
+    }
+    p {
+        background-color: blue;
+        color: red;
+        width: 10%;
+        margin: 20px auto;
+    }
+
+    span {
+        display: block;
+        background-color: green;
+        color: yellow;
+        width: 10%;
+        margin: 20px auto;
+    }
+}
