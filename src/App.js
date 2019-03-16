@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styles from './sass/App.module.scss'
-import Card from './components/Card.js'
+import Cards from './components/Cards.js'
 
 class App extends Component {
   render() {
     return (
       <div className={ styles.app }>
-        <Card></Card>
+        <Cards></Cards>
       </div>
     );
   }
