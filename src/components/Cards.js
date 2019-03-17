@@ -1,32 +1,12 @@
 import React, { Component } from 'react'
 import styles from '../sass/Cards.module.scss'
-import axios from 'axios'
 import CardHeader from './CardHeader'
 import CardChart from './CardChart'
+import { connect } from 'react-redux'
 
 class Cards extends Component {
-  state = {
-    stockList: ['AAPL', 'FB', 'GOOG', 'TSLA', 'AMZN'],
-    stocks: []
-  }
-
-  comp
-  componentWillMount(){
-    this.state.stockList.map(stock => {
-      axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/grabStockData?stock=' + stock)
-      .then(res => {
-       return (
-        this.setState({
-          stocks: [...this.state.stocks, res.data]
-        })
-       )
-      })
-    })
-
-
-  }
   render() { 
-    const { stocks } = this.state;
+    const { stocks } = this.props;
     const stockList = stocks.length ? (
       stocks.map(stock => {
         return (
@@ -38,7 +18,7 @@ class Cards extends Component {
         )
       })
     ) : (
-          <div>Buy more stocks!!!</div>
+          <div>Please Sign In to See Stocks!</div>
         )
         
     return (
@@ -47,7 +27,12 @@ class Cards extends Component {
         </div>
     )
   }
-  
 }
 
-export default Cards
+const mapStateToProps = (state) => {
+  return {
+    stocks: state.user.liveStockData
+  }
+}
+
+export default connect(mapStateToProps)(Cards)

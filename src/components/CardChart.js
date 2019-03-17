@@ -19,7 +19,6 @@ class CardChart extends Component {
     }
 
   render() {
-    console.log(this.state.stockData);
     return (
       <div>
         <p>This is a chart for: { this.props.symbol }</p>
