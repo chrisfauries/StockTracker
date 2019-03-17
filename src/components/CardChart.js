@@ -20,26 +20,28 @@ class CardChart extends Component {
     }
 
   render() {
-    
+    const labels = []
     const stocks = this.state.stockData;
     const priceArray = []
     stocks.forEach(array => {
       array.forEach(stock => {
         priceArray.push(stock.price)
+        labels.push(stock.time)
       })
     })
-     
+    
     var chartData = {
-      labels: ['9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '1:00', '1:30', '2:00', '2:30', '3:00', '3:30', '4:00'],
+      labels: labels,
       datasets:[
         {
-          label:'Stock ',
-          data:[...priceArray]
+          label: this.props.symbol,
+          data:[...priceArray],
+          backgroundColor: ['rgba(225, 99, 132, 0.6']
         }
       ]
     }
-    console.log(priceArray)
-    console.log(stocks)
+
+    console.log(this.state.stockData)
     const post = this.state.stockData ? (
       <Line
           data={chartData}
@@ -57,6 +59,5 @@ class CardChart extends Component {
     )
   }
 }
-
+  
 export default CardChart
-
