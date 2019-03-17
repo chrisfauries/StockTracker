@@ -34,6 +34,15 @@ const rootReducer = (state=initState, action) => {
             }
         } 
     }
+    if(action.type === "ADD_STOCK") {
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                stocks: [...state.user.stocks, action.chart]
+            }
+        } 
+    }
     if(action.type === "LOGIN_USER_ERROR") {
         return state;
     }

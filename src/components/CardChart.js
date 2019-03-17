@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Bar, Line, Pie} from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 
 class CardChart extends Component {
   state = {
