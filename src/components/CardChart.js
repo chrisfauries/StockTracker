@@ -36,7 +36,7 @@ class CardChart extends Component {
         {
           label: this.props.symbol,
           data:[...priceArray],
-          backgroundColor: ['rgba(225, 99, 132, 0.6']
+          backgroundColor: ['rgba(173, 216, 230, 0.6']
         }
       ]
     }
