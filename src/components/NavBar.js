@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import styles from '../sass/NavBar.module.scss'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Auth from '../firebase/Auth'
 
 class NavBar extends Component {
   handleClick = () => {
+    Auth.signOut().then(()=>console.log('User Signed Out')).catch(err => console.log(err));
     this.props.signOut();
   }
 

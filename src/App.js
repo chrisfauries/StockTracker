@@ -3,6 +3,7 @@ import styles from './sass/App.module.scss'
 import Cards from './components/Cards'
 import NavBar from './components/NavBar'
 import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
           <NavBar />
           <Route exact path='/' component={ SignIn } />
           <Route path='/stocks' component={ Cards } />
+          <Route path='/signup' component={ SignUp } />
         </div>
       </BrowserRouter>
     );

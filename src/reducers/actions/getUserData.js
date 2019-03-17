@@ -17,5 +17,4 @@ export const getUserData = (uid) => {
             })
             .catch(err => dispatch({type: "LOGIN_USER_ERROR"}))
     }
-    
 }
