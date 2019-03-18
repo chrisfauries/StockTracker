@@ -4,7 +4,12 @@ const initState = {
         isAuth: false,
         uid: '',
         stocks: [],
-        liveStockData: []
+        liveStockData: [],
+        stocksPurchased: {
+            AAPL: [
+            {date: '1/1/2019', price: '100.00', quantity: '2'}
+            ]
+        }
     }
 }
 

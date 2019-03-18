@@ -5,6 +5,8 @@ import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
 import trashcan from '../img/trash.png'
+import Overview from './Overview'
+import { NavLink } from 'react-router-dom'
 
 class Cards extends Component {
 
@@ -22,7 +24,7 @@ class Cards extends Component {
           <div className={ styles.card } key={ stock.symbol }>
             <CardHeader stock={ stock } />
             <CardChart symbol={ stock.symbol } />
-            <span>More Details</span>
+            <span><NavLink to={"/" + stock.symbol}>More Details</NavLink></span>
             <div>
               <img src={ trashcan } />
             </div>

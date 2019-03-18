@@ -5,6 +5,7 @@ import NavBar from './components/NavBar'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import { BrowserRouter, Route } from 'react-router-dom'
+import Overview from './components/Overview'
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path='/' component={ SignIn } />
           <Route path='/stocks' component={ Cards } />
           <Route path='/signup' component={ SignUp } />
+          <Route path='/:stock_symbol' component={ Overview } />
         </div>
       </BrowserRouter>
     );
