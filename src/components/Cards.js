@@ -3,17 +3,29 @@ import styles from '../sass/Cards.module.scss'
 import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
+import AddStock from './AddStock'
+import trashcan from '../img/trash.png'
 
 class Cards extends Component {
+
+  handleChange = event => {
+    this.setState({
+      inputValue: event.target.value
+    });
+  };
+
   render() { 
     const { stocks } = this.props;
     const stockList = stocks.length ? (
       stocks.map(stock => {
         return (
           <div className={ styles.card } key={ stock.symbol }>
-          <CardHeader stock={ stock } />
-          <CardChart symbol={ stock.symbol } />
-          <span>More Details</span>
+            <CardHeader stock={ stock } />
+            <CardChart symbol={ stock.symbol } />
+            <span>More Details</span>
+            <div>
+              <img src={ trashcan } />
+            </div>
           </div>
         )
       })
@@ -24,7 +36,8 @@ class Cards extends Component {
     return (
       <div className={ styles.cards }>
         { stockList }
-        </div>
+        <AddStock />
+      </div>
     )
   }
 }
