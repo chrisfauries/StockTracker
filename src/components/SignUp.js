@@ -3,7 +3,6 @@ import Auth from '../firebase/Auth'
 import { connect } from 'react-redux'
 import { getUserData } from '../reducers/actions/getUserData'
 import { createNewUser } from '../reducers/actions/createNewUser'
-import styles from '../sass/SignUp.module.scss'
 
 class SignUp extends Component {
   state = {

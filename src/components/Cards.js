@@ -9,10 +9,6 @@ import shortid from 'shortid'
 
 class Cards extends Component {
 
-  componentWillUpdate() {
-    console.log(this.props.stocks)
-  }
-
   render() {
     const { stocks } = this.props;
     const stockList = stocks.length ? (
@@ -45,10 +41,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-      updateState: () => {dispatch({type: "UPDATE_STATE"})}
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cards)
+export default connect(mapStateToProps)(Cards)

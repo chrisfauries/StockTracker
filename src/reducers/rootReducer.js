@@ -82,13 +82,6 @@ const rootReducer = (state=initState, action) => {
         }
     }
 
-    if(action.type === 'UPDATE_STATE') {
-        return {
-            ...state
-        }
-    }
-
-
     if(action.type === 'DELETING_STOCKS'){
         return state;
     }

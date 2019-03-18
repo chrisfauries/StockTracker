@@ -8,7 +8,6 @@ class CardChart extends Component {
 
     const { symbol } = this.props
     var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
-    
     const labels = [];
     const priceArray = [];
     if(stocks !== undefined) {
@@ -40,7 +39,6 @@ class CardChart extends Component {
     ): (
       <div>Loading chart...</div>
     )
-    console.log(stocks);
     
     return (
       <div>
