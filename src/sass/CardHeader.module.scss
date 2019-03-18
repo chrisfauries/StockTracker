@@ -1,44 +1,25 @@
-
-.card{
-    position:relative;
-    display: block;
-    margin: 0;
-    box-sizing: border-box;
-    float: left;
-
-    .name{
-        font-family: Calibri, sans-serif;
-        color: #333;
-        font-size: 30px;
-        text-align: center;
-    }
-
-    .price, .dayChange, .changePct{
-        color: #333;
-        position:relative;
-        display: block;
-        width: 80px;
-        margin: 20px;
-        box-sizing: border-box;
-        float: left;
-        background-color: #eee;
-        border: 1px solid black;
-        
-    }
-
-    .price{
-        color: #333;
-        width: 100px;
-    }
-    .dayChange{
-        color: green;
-    }
-    .changePct{
-        color: green;
-    }
+.title {
+    font-weight: bold;
+    font-size: 28px;
 }
-p {
-    width: 10%;
-    margin: 20px auto;
-    border: 1px solid black;
+
+.ticker {
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.price {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.pos {
+    color:green;
+    font-weight: 600;
+}
+
+.neg {
+    color: red;
+    font-weight: 600;
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import styles from '../sass/Preview.module.scss'
 import CardHeader from './CardHeader'
 import ChartPreview from './ChartPreview'
 // import { NavLink } from 'react-router-dom'
@@ -21,7 +20,7 @@ class Preview extends Component {
     const { stocks } = this.state;
     const stockList = stocks.map(stock => {
         return (
-            <div className="col s12 m4">
+            <div className="col s12 m6 l4">
                 <div className='card medium green lighten-5 hoverable' key={ shortid.generate() }>
                     <div className='card-content black-text'>
                     <CardHeader stock={ stock } />

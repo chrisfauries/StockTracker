@@ -12,8 +12,8 @@ function DeleteStock(props) {
     }
 
     return (
-        <div onClick={ handleClick }>
-            <img src={ trashcan } alt='trashcan' />
+        <div style={{cursor:'pointer'}}onClick={ handleClick }>
+            <img className='right' src={ trashcan } alt='trashcan' />
         </div>
     )
 }
