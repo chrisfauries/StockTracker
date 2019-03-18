@@ -4,7 +4,8 @@ const initState = {
         isAuth: false,
         uid: '',
         stocks: [],
-        liveStockData: []
+        liveStockData: [],
+        liveChartData: []
     }
 }
 
@@ -73,6 +74,29 @@ const rootReducer = (state=initState, action) => {
                 stocks: [...state.user.stocks, action.chart.symbol],
                 liveStockData: [...state.user.liveStockData, action.chart]
             }
+        }
+    }
+
+    if(action.type === 'DELETING_STOCKS'){
+        return state;
+    }
+
+    if(action.type === 'USER_STOCKS_DELETED'){
+        const newStocks = state.user.liveStockData.filter(stock => stock.symbol != action.chart)
+        const newLiveData = state.user.stocks.filter(stock => stock != action.chart)
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                liveStockData: newLiveData,
+                stocks: newStocks
+            }
+        }
+    }
+
+    if(action.type === 'CHART_DATA_UPDATED'){
+        return {
+            liveChartData: [...state.user.liveChartData, {[action.stocksymbol]: action.payload}]
         }
     }
 

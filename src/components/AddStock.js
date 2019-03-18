@@ -51,11 +51,10 @@ class AddStock extends Component {
         </div>
     )
     }
-}
+}   
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // addStock: (chart) => {dispatch({type:'ADD_STOCK', chart: chart})}
         addStock: (stock) => {dispatch(addNewStockAndGetData(stock))}
     }
 }

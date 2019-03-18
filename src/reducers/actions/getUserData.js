@@ -13,6 +13,12 @@ export const getUserData = (uid) => {
                         dispatch({type: 'CARD_DATA_RECEIVED', payload: res.data});
                   })
                 })
+                res.data.stocks.map(stock => {
+                    axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/grabInterDay?stock=' + stock)
+                        .then(res => {
+                            dispatch({type: 'CHART_DATA_UPDATED', payload: res.data, stocksymbol: stock})
+                        })
+                })
                 dispatch({type: "LOGIN_USER_FULFILLED", payload: res.data, uid:uid});
             })
             .catch(err => dispatch({type: "LOGIN_USER_ERROR"}))

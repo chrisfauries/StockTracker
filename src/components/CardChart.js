@@ -1,28 +1,14 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { Line } from 'react-chartjs-2'
+import { connect } from 'react-redux'
 
 class CardChart extends Component {
-  state = {
-    stockData: []
-  }
   
-  componentWillMount(){
-      const { symbol } = this.props
-      axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/grabInterDay?stock=' + symbol)
-      .then(res => {
-       return (
-        this.setState({
-          stockData: [res.data]
-        })
-       )
-      })
-    }
-
   render() {
-    const labels = []
+    console.log(this.props.liveChartData)
+    const labels = [];
     const stocks = this.state.stockData;
-    const priceArray = []
+    const priceArray = [];
     stocks.forEach(array => {
       array.forEach(stock => {
         priceArray.push(stock.price)
@@ -53,10 +39,16 @@ class CardChart extends Component {
     )
     return (
       <div>
-        { post }
+        
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    liveChartData: state.user.liveChartData
+  }
+}
   
-export default CardChart
+export default connect(mapStateToProps)(CardChart)

@@ -4,7 +4,7 @@ import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
-import trashcan from '../img/trash.png'
+import DeleteStock from './DeleteStock'
 
 class Cards extends Component {
 
@@ -23,9 +23,7 @@ class Cards extends Component {
             <CardHeader stock={ stock } />
             <CardChart symbol={ stock.symbol } />
             <span>More Details</span>
-            <div>
-              <img src={ trashcan } />
-            </div>
+            <DeleteStock symbol={ stock.symbol } />
           </div>
         )
       })
