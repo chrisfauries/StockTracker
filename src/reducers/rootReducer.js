@@ -95,8 +95,13 @@ const rootReducer = (state=initState, action) => {
     }
 
     if(action.type === 'CHART_DATA_UPDATED'){
+        let data = {[action.stocksymbol]: action.payload}
         return {
-            liveChartData: [...state.user.liveChartData, {[action.stocksymbol]: action.payload}]
+            ...state,
+            user:{
+                ...state.user,
+                liveChartData: [...state.user.liveChartData, data]
+            }
         }
     }
 

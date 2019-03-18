@@ -7,7 +7,7 @@ class CardChart extends Component {
   render() {
     console.log(this.props.liveChartData)
     const labels = [];
-    const stocks = this.state.stockData;
+    const stocks = this.props.liveChartData.filter();
     const priceArray = [];
     stocks.forEach(array => {
       array.forEach(stock => {
@@ -39,7 +39,7 @@ class CardChart extends Component {
     )
     return (
       <div>
-        
+        { post }
       </div>
     )
   }
