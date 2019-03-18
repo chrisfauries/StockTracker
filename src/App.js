@@ -4,6 +4,7 @@ import Cards from './components/Cards'
 import NavBar from './components/NavBar'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
+import Preview from './components/Preview'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import StockPurchases from './components/StockPurchases'
 
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path='/' component={ SignIn } />
             <Route exact path='/stocks' component={ Cards } />
             <Route path='/signup' component={ SignUp } />
+            <Route path='/preview' component={ Preview } />
             <Route path='/stocks/:stock_symbol' component={ StockPurchases } />
           </Switch>
         </div>

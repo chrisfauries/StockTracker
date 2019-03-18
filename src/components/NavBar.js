@@ -2,37 +2,55 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Auth from '../firebase/Auth'
+import styles from '../sass/NavBar.module.scss'
 
 
 class NavBar extends Component {
-  handleClick = () => {
-    Auth.signOut().then(()=>console.log('User Signed Out')).catch(err => console.log(err));
-    this.props.signOut();
+  handleSignOut = () => {
+    Auth.signOut().then(()=> this.props.signOut()).catch(err => console.log(err));
+    
   }
+
+  handleActive = (e) => { 
+    var navBtns = e.target.parentElement.parentElement.querySelectorAll('li');
+    navBtns.forEach(btn => btn.classList.remove('active'));
+    if(e.target.innerHTML !== 'Sign Out') {
+      e.target.parentElement.classList.add('active');
+    }
+  }
+
+  component
 
   render() {
     const links = this.props.auth ? (
+      <div onClick={ this.handleActive }>
+      <NavLink to='/stocks' className='brand-logo'>Stock Tracker</NavLink>
       <ul className='right'>
-          <li><NavLink to="/stocks">Stocks</NavLink></li>
+          <li id='NavSignedInActive'><NavLink to="/stocks">Stocks</NavLink></li>
           <li><NavLink to="/overview">Overview</NavLink></li>
-          <li><NavLink to="/" onClick= { this.handleClick }>Sign Out</NavLink></li>
           <li><NavLink to="/settings">Settings</NavLink></li>
+          <li><NavLink to="/" onClick= { this.handleSignOut }>Sign Out</NavLink></li>
       </ul>
+      </div>
     ) : (
-      <ul className='right'>
-          <li><NavLink to="/">Sign In</NavLink></li>
+      <div onClick={ this.handleActive }>
+        <NavLink to='/' className='brand-logo'>Stock Tracker</NavLink>
+        <ul className='right'>
+          <li className='active'><NavLink to="/">Sign In</NavLink></li>
           <li><NavLink to="/signup">Sign Up</NavLink></li>
           <li><NavLink to="/preview">Preview</NavLink></li>
-      </ul>
+        </ul>
+      </div>
     )
 
     return (
-      <nav className='nav-wrapper grey lighten-1'>
-        <div className='container'>
-            <a href='/stocks' className='brand-logo'>Stock Tracker</a>
-            { links }
-        </div>
-      </nav>
+      <div className={`${styles.fixedSpacer}`} >
+        <nav className={`nav-wrapper green lighten-1 ${styles.nav}`}>
+          <div className='container'>
+              { links }
+          </div>
+        </nav>
+      </div>
     )
   }
 }
