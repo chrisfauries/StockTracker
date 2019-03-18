@@ -52,6 +52,12 @@ const rootReducer = (state=initState, action) => {
     if(action.type === "CARD_DATA_REQUESTED") {
         return state; 
     }
+    if(action.type === "CREATING_NEW_USER") {
+        return state; 
+    }
+    if(action.type === "NEW_USER_CREATED") {
+        return state; 
+    }
     if(action.type === "CARD_DATA_RECEIVED") {
         return {
             ...state,
