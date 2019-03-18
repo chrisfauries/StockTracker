@@ -28,11 +28,7 @@ class SignUp extends Component {
             email: this.state.email,
             uid: cred.user.uid,
           };
-
-          console.log(data);
           this.props.createNewUser(data);
-          
-        // this.props.login(cred.user.uid)
       }
       // Do something on the page if sign up is unsuccessful (user already exists, etc)
     }).catch(err => {console.log(err.code, err.message)});
