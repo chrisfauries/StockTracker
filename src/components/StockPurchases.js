@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class StockPurchases extends Component {
     
@@ -24,6 +25,7 @@ class StockPurchases extends Component {
             <div>You don't own any {symbol} stock yet, go buy more!!!</div>
         )
         
+        if (!this.props.auth) return <Redirect to='/' />
         return (
             <div>
                 { allStocks }
@@ -35,7 +37,8 @@ class StockPurchases extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    stocksPurchased: state.user.stocksPurchased
+    stocksPurchased: state.user.stocksPurchased,
+    auth: this.user.isAuth
   }
 }
 

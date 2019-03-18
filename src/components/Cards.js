@@ -4,7 +4,7 @@ import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import DeleteStock from './DeleteStock'
 import shortid from 'shortid'
 
@@ -25,21 +25,24 @@ class Cards extends Component {
         )
       })
     ) : (
-          <div>Please Sign In to See Stocks!</div>
+          <div>Click the Plus Sign to add your first Stock!</div>
         )
+
+    if (!this.props.auth) return <Redirect to='/' />
+    
     return (
       <div className={ styles.cards }>
         { stockList }
         <AddStock />
-      </div>
-       
+      </div>  
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    stocks: state.user.liveStockData
+    stocks: state.user.liveStockData,
+    auth: state.user.isAuth
   }
 }
 
