@@ -29,8 +29,12 @@ class Cards extends Component {
         )
     return (
       <div className={ styles.cards }>
-        { stockList }
-        <AddStock />
+        <div>
+          { stockList }
+        </div>
+        <div className={ styles.addStock}>
+          <AddStock />
+        </div>
       </div>
        
     )

@@ -1,6 +1,6 @@
 .cards{
     
-    .card{
+    .card, .addStock{
         position:relative;
         display: block;
         margin: 10px;
@@ -9,18 +9,16 @@
         background-color: #eee;
         border: 2px solid black;
     }
+
+    .addStock{
+        height: 150px;
+        width: 150px;       
+    }
     p {
         
 
     }
 
-    span {
-        display: block;
-        margin: 20px auto;
-        border: 2px solid black;
-        width: 30%;
-        color: black;
-    }
     span:hover{
         background-color: black;
         color: #eee;
