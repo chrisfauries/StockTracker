@@ -16,9 +16,9 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route exact path='/' component={ SignIn } />
-            <Route path='/stocks' component={ Cards } />
+            <Route exact path='/stocks' component={ Cards } />
             <Route path='/signup' component={ SignUp } />
-            <Route path='/:stock_symbol' component={ StockPurchases } />
+            <Route path='/stocks/:stock_symbol' component={ StockPurchases } />
           </Switch>
         </div>
       </BrowserRouter>

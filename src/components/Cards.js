@@ -20,13 +20,8 @@ class Cards extends Component {
           <div className={ styles.card } key={ shortid.generate() }>
             <CardHeader stock={ stock } />
             <CardChart symbol={ stock.symbol } />
-            <span><NavLink to={"/" + stock.symbol} symbol={ stock.symbol }>More Details</NavLink></span>
-            <div>
-              <img src={ trashcan } />
-            </div>
-            <span>More Details</span>
+            <span><NavLink to={"/stocks/" + stock.symbol} symbol={ stock.symbol }>More Details</NavLink></span>
             <DeleteStock symbol={ stock.symbol } />
-
           </div>
         )
       })

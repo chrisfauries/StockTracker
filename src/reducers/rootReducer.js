@@ -14,7 +14,7 @@ const initState = {
             {date: '2/1/2019', price: '311.85', quantity: '1', id: 1},
             {date: '3/15/2019', price: '335.15', quantity: '10', id: 2}
             ]
-        }
+        },
         liveChartData: []
     }
 }

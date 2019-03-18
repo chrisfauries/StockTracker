@@ -9,7 +9,6 @@ class StockPurchases extends Component {
 
         const purchased = this.props.stocksPurchased
         const symbol = this.props.match.params.stock_symbol
-        console.log(purchased[symbol])
         const allStocks =  purchased[symbol] ? (
             purchased[symbol].map(stock => {
                 return (
