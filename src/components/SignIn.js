@@ -19,7 +19,6 @@ class SignIn extends Component {
     e.preventDefault();
     Auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
       if (cred.user) {
-        console.log(cred)
         this.props.login(cred.user.uid);
       }
       // Do something on the page with login/password is incorrect

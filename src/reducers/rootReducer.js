@@ -15,6 +15,7 @@ const initState = {
             {date: '3/15/2019', price: '335.15', quantity: '10', id: 2}
             ]
         }
+        liveChartData: []
     }
 }
 
@@ -81,13 +82,42 @@ const rootReducer = (state=initState, action) => {
         return state;
     }
 
-    if(action.type === 'USER_STOCKS_UPDATED'){
+    if(action.type === 'USER_STOCKS_ADDED'){
         return {
             ...state,
             user: {
                 ...state.user,
-                stocks: [...state.user.stocks, action.chart.symbol],
-                liveStockData: [...state.user.liveStockData, action.chart]
+                stocks: [...state.user.stocks, action.stock]
+            }
+        }
+    }
+
+    if(action.type === 'DELETING_STOCKS'){
+        return state;
+    }
+
+    if(action.type === 'USER_STOCKS_DELETED'){
+        const newStocks = state.user.stocks.filter(stock => stock !== action.stock)
+        const newLiveData = state.user.liveStockData.filter(stock => stock.symbol !== action.stock)
+        const liveChartData = state.user.liveChartData.filter(stock => stock[action.stock] === undefined)
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                liveStockData: newLiveData,
+                stocks: newStocks,
+                liveChartData: liveChartData
+            }
+        }
+    }
+
+    if(action.type === 'CHART_DATA_UPDATED'){
+        let data = {[action.stocksymbol]: action.payload}
+        return {
+            ...state,
+            user:{
+                ...state.user,
+                liveChartData: [...state.user.liveChartData, data]
             }
         }
     }
