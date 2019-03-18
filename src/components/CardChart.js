@@ -5,29 +5,29 @@ import { connect } from 'react-redux'
 class CardChart extends Component {
   
   render() {
-    console.log(this.props.liveChartData)
+
+    const { symbol } = this.props
+    var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
     const labels = [];
-    const stocks = this.props.liveChartData.filter();
+    
     const priceArray = [];
-    stocks.forEach(array => {
-      array.forEach(stock => {
+    if(stocks !== undefined) {
+    stocks[symbol].forEach(stock => {
         priceArray.push(stock.price)
         labels.push(stock.time)
-      })
     })
-    
     var chartData = {
       labels: labels,
       datasets:[
         {
-          label: this.props.symbol,
+          label: symbol,
           data:[...priceArray],
           backgroundColor: ['rgba(173, 216, 230, 0.6']
         }
       ]
     }
-
-    const post = this.state.stockData ? (
+  }
+    const post = this.props.liveChartData ? (
       <Line
           data={chartData}
           width={100}
@@ -37,6 +37,7 @@ class CardChart extends Component {
     ): (
       <div>Loading chart...</div>
     )
+  
     return (
       <div>
         { post }

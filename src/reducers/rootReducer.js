@@ -84,12 +84,14 @@ const rootReducer = (state=initState, action) => {
     if(action.type === 'USER_STOCKS_DELETED'){
         const newStocks = state.user.liveStockData.filter(stock => stock.symbol != action.chart)
         const newLiveData = state.user.stocks.filter(stock => stock != action.chart)
+        const liveChartData = state.user.liveChartData.filter(stock => stock != action.chart)
         return {
             ...state,
             user: {
                 ...state.user,
                 liveStockData: newLiveData,
-                stocks: newStocks
+                stocks: newStocks,
+                liveChartData: liveChartData
             }
         }
     }
