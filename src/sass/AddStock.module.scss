@@ -1,0 +1,19 @@
+.addStock{
+    position:relative;
+    display: block;
+    margin: 10px;
+    box-sizing: border-box;
+    float: left;
+    background-color: #eee;
+    border: 2px solid black;
+    height: 150px;
+    width: 150px;   
+    background-image: url(../img/plus.png);
+    background-size: 100%;
+
+    .inputForm{
+        border: 2px black solid;
+        position:relative;
+        top: 150px;
+    }
+}
