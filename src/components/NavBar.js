@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import styles from '../sass/NavBar.module.scss'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Auth from '../firebase/Auth'
+
 
 class NavBar extends Component {
   handleClick = () => {
@@ -12,14 +12,14 @@ class NavBar extends Component {
 
   render() {
     const links = this.props.auth ? (
-      <ul>
+      <ul className='right'>
           <li><NavLink to="/stocks">Stocks</NavLink></li>
           <li><NavLink to="/overview">Overview</NavLink></li>
           <li><NavLink to="/" onClick= { this.handleClick }>Sign Out</NavLink></li>
           <li><NavLink to="/settings">Settings</NavLink></li>
       </ul>
     ) : (
-      <ul>
+      <ul className='right'>
           <li><NavLink to="/">Sign In</NavLink></li>
           <li><NavLink to="/signup">Sign Up</NavLink></li>
           <li><NavLink to="/preview">Preview</NavLink></li>
@@ -27,12 +27,12 @@ class NavBar extends Component {
     )
 
     return (
-      <div className= { styles.navWrap }>
-        <div className= { styles.container }>
-            <h1 className= { styles.header }>Stock Tracker</h1>
+      <nav className='nav-wrapper grey lighten-1'>
+        <div className='container'>
+            <a href='/stocks' className='brand-logo'>Stock Tracker</a>
             { links }
         </div>
-      </div>
+      </nav>
     )
   }
 }
