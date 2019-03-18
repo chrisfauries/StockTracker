@@ -1,0 +1,22 @@
+.cards{
+    
+    .card, .addStock{
+        position:relative;
+        display: block;
+        margin: 10px;
+        box-sizing: border-box;
+        float: left;
+        background-color: #eee;
+        border: 2px solid black;
+    }
+
+    p {
+        
+
+    }
+
+    span:hover{
+        background-color: black;
+        color: #eee;
+    }
+}

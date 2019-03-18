@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addNewStockAndGetData } from '../reducers/actions/addNewStockAndGetData'
+import styles from '../sass/AddStock.module.scss'
 
 class AddStock extends Component {
 
@@ -33,7 +34,7 @@ class AddStock extends Component {
 
     render(){
         const inputForm = this.state.isClicked ? (
-            <form onSubmit={ this.handleSubmit }>
+            <form className={ styles.inputForm }onSubmit={ this.handleSubmit }>
                 <label htmlFor="newStock">Stock Symbol</label>
                 <input type="text" id="newStock" maxLength="5" onChange={ this.handleChange } />
                 <button>Add Stock</button>
@@ -44,8 +45,7 @@ class AddStock extends Component {
 
     
     return (
-        <div>
-            <span onClick={ this.handleClick }>+</span>
+        <div className={ styles.addStock } onClick={ this.handleClick }>
             { inputForm }
         </div>
     )
