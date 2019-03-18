@@ -36,7 +36,7 @@ class NavBar extends Component {
       <div onClick={ this.handleActive }>
         <NavLink to='/' className='brand-logo'>Stock Tracker</NavLink>
         <ul className='right'>
-          <li classList='active'><NavLink to="/">Sign In</NavLink></li>
+          <li className='active'><NavLink to="/">Sign In</NavLink></li>
           <li><NavLink to="/signup">Sign Up</NavLink></li>
           <li><NavLink to="/preview">Preview</NavLink></li>
         </ul>
@@ -45,7 +45,7 @@ class NavBar extends Component {
 
     return (
       <div className={`${styles.fixedSpacer}`} >
-        <nav className={`nav-wrapper grey lighten-1 ${styles.nav}`}>
+        <nav className={`nav-wrapper green lighten-1 ${styles.nav}`}>
           <div className='container'>
               { links }
           </div>

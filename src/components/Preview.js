@@ -19,16 +19,23 @@ class Preview extends Component {
     const { stocks } = this.state;
     const stockList = stocks.map(stock => {
         return (
-          <div className={ styles.card } key={ shortid.generate() }>
-            <CardHeader stock={ stock } />
-            <ChartPreview symbol={ stock.symbol } />
-            {/* <span><NavLink to={"/stocks/" + stock.symbol} symbol={ stock.symbol }>More Details</NavLink></span> */}
-          </div>
+            <div className="col s12 m4">
+                <div className='card medium green lighten-5 hoverable' key={ shortid.generate() }>
+                    <div className='card-content black-text'>
+                    <CardHeader stock={ stock } />
+                    <ChartPreview symbol={ stock.symbol } />
+                    {/* <span><NavLink to={"/stocks/" + stock.symbol} symbol={ stock.symbol }>More Details</NavLink></span> */}
+                    </div>
+                </div>
+            </div>
         )
       })
     return (
-      <div className={ styles.cards }>
-        { stockList }
+      <div className='row'>
+          
+            { stockList }
+          
+        
       </div>   
     )
   }
