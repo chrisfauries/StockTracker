@@ -13,7 +13,6 @@ class CardPreview extends Component {
 
     const { symbol } = this.props
     var stocks = this.state.data.find(stock =>  stock[symbol])
-    console.log(stocks);
     const labels = [];
     const priceArray = [];
     if(stocks !== undefined) {
