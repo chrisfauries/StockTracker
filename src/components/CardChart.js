@@ -8,14 +8,15 @@ class CardChart extends Component {
 
     const { symbol } = this.props
     var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
-    const labels = [];
     
+    const labels = [];
     const priceArray = [];
     if(stocks !== undefined) {
     stocks[symbol].forEach(stock => {
         priceArray.push(stock.price)
         labels.push(stock.time)
     })
+
     var chartData = {
       labels: labels,
       datasets:[
@@ -27,8 +28,10 @@ class CardChart extends Component {
       ]
     }
   }
-    const post = this.props.liveChartData ? (
+
+    const post = stocks !== undefined ? (
       <Line
+          key= { symbol }
           data={chartData}
           width={100}
           height={50}
@@ -37,7 +40,8 @@ class CardChart extends Component {
     ): (
       <div>Loading chart...</div>
     )
-  
+    console.log(stocks);
+    
     return (
       <div>
         { post }

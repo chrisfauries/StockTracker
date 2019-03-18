@@ -13,6 +13,7 @@ export const getUserData = (uid) => {
                         dispatch({type: 'CARD_DATA_RECEIVED', payload: res.data});
                   })
                 })
+                // eslint-disable-next-line
                 res.data.stocks.map(stock => {
                     axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/grabInterDay?stock=' + stock)
                         .then(res => {

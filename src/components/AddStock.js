@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import axios from 'axios'
 import { addNewStockAndGetData } from '../reducers/actions/addNewStockAndGetData'
 
 class AddStock extends Component {
@@ -25,7 +24,7 @@ class AddStock extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.addStock(this.state.newStock)
+        this.props.addStock(this.state.newStock, 'add')
         this.setState({
             ...this.state,
             isClicked:false
@@ -51,11 +50,11 @@ class AddStock extends Component {
         </div>
     )
     }
-}   
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addStock: (stock) => {dispatch(addNewStockAndGetData(stock))}
+        addStock: (stock, type) => {dispatch(addNewStockAndGetData(stock, type))}
     }
 }
 

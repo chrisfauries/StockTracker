@@ -3,6 +3,7 @@ import styles from '../sass/CardHeader.module.scss'
 
 function CardHeader(props) {
     const stock = props.stock
+    console.log(stock);
     return (
         <div className={ styles.card } key={ stock.symbol }>
             <h3 className={ styles.name }>{ stock.name }</h3>

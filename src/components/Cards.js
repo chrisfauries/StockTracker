@@ -5,21 +5,20 @@ import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
 import DeleteStock from './DeleteStock'
+import shortid from 'shortid'
 
 class Cards extends Component {
 
-  handleChange = event => {
-    this.setState({
-      inputValue: event.target.value
-    });
-  };
+  componentWillUpdate() {
+    console.log(this.props.stocks)
+  }
 
-  render() { 
+  render() {
     const { stocks } = this.props;
     const stockList = stocks.length ? (
       stocks.map(stock => {
         return (
-          <div className={ styles.card } key={ stock.symbol }>
+          <div className={ styles.card } key={ shortid.generate() }>
             <CardHeader stock={ stock } />
             <CardChart symbol={ stock.symbol } />
             <span>More Details</span>
@@ -30,12 +29,12 @@ class Cards extends Component {
     ) : (
           <div>Please Sign In to See Stocks!</div>
         )
-        
     return (
       <div className={ styles.cards }>
         { stockList }
         <AddStock />
       </div>
+       
     )
   }
 }
@@ -46,4 +45,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Cards)
+const mapDispatchToProps = (dispatch) => {
+  return {
+      updateState: () => {dispatch({type: "UPDATE_STATE"})}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cards)

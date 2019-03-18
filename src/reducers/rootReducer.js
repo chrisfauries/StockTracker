@@ -66,25 +66,31 @@ const rootReducer = (state=initState, action) => {
         return state;
     }
 
-    if(action.type === 'USER_STOCKS_UPDATED'){
+    if(action.type === 'USER_STOCKS_ADDED'){
         return {
             ...state,
             user: {
                 ...state.user,
-                stocks: [...state.user.stocks, action.chart.symbol],
-                liveStockData: [...state.user.liveStockData, action.chart]
+                stocks: [...state.user.stocks, action.stock]
             }
         }
     }
+
+    if(action.type === 'UPDATE_STATE') {
+        return {
+            ...state
+        }
+    }
+
 
     if(action.type === 'DELETING_STOCKS'){
         return state;
     }
 
     if(action.type === 'USER_STOCKS_DELETED'){
-        const newStocks = state.user.liveStockData.filter(stock => stock.symbol != action.chart)
-        const newLiveData = state.user.stocks.filter(stock => stock != action.chart)
-        const liveChartData = state.user.liveChartData.filter(stock => stock != action.chart)
+        const newStocks = state.user.liveStockData.filter(stock => stock.symbol !== action.stock)
+        const newLiveData = state.user.stocks.filter(stock => stock !== action.stock)
+        const liveChartData = state.user.liveChartData.filter(stock => stock[action.stock] === undefined)
         return {
             ...state,
             user: {
