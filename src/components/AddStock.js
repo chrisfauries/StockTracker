@@ -1,22 +1,61 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import axios from 'axios'
 
+class AddStock extends Component {
 
-function AddStock(props) {
-    const stock = props.stock
-    this.props.addStock(this.state.stock);
+    state={
+        isClicked: false,
+        newStock: ''
+    }
 
+    handleClick = () => {
+        this.setState({
+            ...this.state,
+            isClicked:true
+        })
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.addStock(this.state.newStock)
+        this.setState({
+            ...this.state,
+            isClicked:false
+        })
+    }
+
+    render(){
+        const inputForm = this.state.isClicked ? (
+            <form onSubmit={ this.handleSubmit }>
+                <label htmlFor="newStock">Stock Symbol</label>
+                <input type="text" id="newStock" maxLength="5" onChange={ this.handleChange } />
+                <button>Add Stock</button>
+            </form>
+        ) : (
+            <div></div>
+        )
+
+    
     return (
         <div>
-
+            <span onClick={ this.handleClick }>Click to Add New Stock</span>
+            { inputForm }
         </div>
     )
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addStock: (chart) => {dispatch({type:'CONSOLE_LOG', chart: chart})}
-}
+        addStock: (chart) => {dispatch({type:'ADD_STOCK', chart: chart})}
+    }
 }
 
 export default connect(null, mapDispatchToProps)(AddStock)

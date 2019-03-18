@@ -41,7 +41,6 @@ class CardChart extends Component {
       ]
     }
 
-    console.log(this.state.stockData)
     const post = this.state.stockData ? (
       <Line
           data={chartData}

@@ -4,12 +4,15 @@ import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
-import Popup from 'reactjs-popup';
 
 class Cards extends Component {
-  state = {
-    addStock: ''
-  }
+
+  handleChange = event => {
+    this.setState({
+      inputValue: event.target.value
+    });
+  };
+
   render() { 
     const { stocks } = this.props;
     const stockList = stocks.length ? (
@@ -29,10 +32,7 @@ class Cards extends Component {
     return (
       <div className={ styles.cards }>
         { stockList }
-        <Popup trigger={<button> Trigger</button>} position="right center">
-            <div>Enter Stock Symbol Here</div>
-            <input type="text" placeholder='Stock Symbol' className={ styles.stockSymbol } maxLength='5' onChange={this.handleChange} onSubmit={ AddStock } />
-        </Popup>
+        <AddStock />
       </div>
     )
   }
