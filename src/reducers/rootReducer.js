@@ -5,6 +5,16 @@ const initState = {
         uid: '',
         stocks: [],
         liveStockData: [],
+        stocksPurchased: {
+            AAPL: [
+            {date: '1/1/2019', price: '101.85', quantity: '2', id: 1},
+            {date: '1/15/2019', price: '105.15', quantity: '1', id: 2}
+            ],
+            TSLA: [
+            {date: '2/1/2019', price: '311.85', quantity: '1', id: 1},
+            {date: '3/15/2019', price: '335.15', quantity: '10', id: 2}
+            ]
+        }
         liveChartData: []
     }
 }

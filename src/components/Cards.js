@@ -4,8 +4,11 @@ import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
+import trashcan from '../img/trash.png'
+import { NavLink } from 'react-router-dom'
 import DeleteStock from './DeleteStock'
 import shortid from 'shortid'
+
 
 class Cards extends Component {
 
@@ -17,8 +20,13 @@ class Cards extends Component {
           <div className={ styles.card } key={ shortid.generate() }>
             <CardHeader stock={ stock } />
             <CardChart symbol={ stock.symbol } />
+            <span><NavLink to={"/" + stock.symbol} symbol={ stock.symbol }>More Details</NavLink></span>
+            <div>
+              <img src={ trashcan } />
+            </div>
             <span>More Details</span>
             <DeleteStock symbol={ stock.symbol } />
+
           </div>
         )
       })
