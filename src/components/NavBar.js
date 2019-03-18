@@ -12,24 +12,29 @@ class NavBar extends Component {
 
   render() {
     const links = this.props.auth ? (
+      <div>
+      <NavLink to='/stocks' className='brand-logo'>Stock Tracker</NavLink>
       <ul className='right'>
           <li><NavLink to="/stocks">Stocks</NavLink></li>
           <li><NavLink to="/overview">Overview</NavLink></li>
           <li><NavLink to="/" onClick= { this.handleClick }>Sign Out</NavLink></li>
           <li><NavLink to="/settings">Settings</NavLink></li>
       </ul>
+      </div>
     ) : (
-      <ul className='right'>
+      <div>
+        <NavLink to='/' className='brand-logo'>Stock Tracker</NavLink>
+        <ul className='right'>
           <li><NavLink to="/">Sign In</NavLink></li>
           <li><NavLink to="/signup">Sign Up</NavLink></li>
           <li><NavLink to="/preview">Preview</NavLink></li>
-      </ul>
+        </ul>
+      </div>
     )
 
     return (
       <nav className='nav-wrapper grey lighten-1'>
         <div className='container'>
-            <a href='/stocks' className='brand-logo'>Stock Tracker</a>
             { links }
         </div>
       </nav>

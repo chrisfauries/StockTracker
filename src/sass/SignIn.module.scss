@@ -1,3 +1,36 @@
 .signIn {
-    background-color: lightgray;
+    height:1000px;
+    background: url('/assests/bg.jpeg') no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+    
+
+    .container {
+        padding-top: 200px;
+        width: 600px;
+        -webkit-animation-name: fadein;
+        -webkit-animation-duration: 1.5s; 
+        animation-name: fadein;
+        animation-duration: 1.5s;
+
+        .form {
+            padding: 10px 20px 50px 20px;
+        }
+        
+        .btnDiv {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }    
+            button {
+                font-size: 18px;
+                margin: 4px;
+            }
+    }
+}
+
+@keyframes fadein{
+    0% { opacity:0; }
+    100% { opacity:1; }
 }

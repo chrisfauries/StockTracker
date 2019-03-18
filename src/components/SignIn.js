@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Auth from '../firebase/Auth'
 import { connect } from 'react-redux'
 import { getUserData } from '../reducers/actions/getUserData'
+import styles from '../sass/SignIn.module.scss'
 
 class SignIn extends Component {
   state = {
@@ -31,23 +32,24 @@ class SignIn extends Component {
     })
   }
   render() {
-
     return (
-      <div className='container'>
-        <form className='white' onSubmit={ this.handleSubmit }>
-          <h5 className='grey-text text-darken-3'>Sign In</h5>
-          <div className='input-field'>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={ this.handleChange }/>
-          </div>
-          <div className='input-field'>
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={ this.handleChange }/>
-          </div>
-          <div>
-            <button className='btn red lighten-1'>Login</button>
-          </div>
-        </form>
+      <div className={styles.signIn}>
+        <div className={`container ${styles.container}`}>
+          <form className={`white ${styles.form}`} onSubmit={ this.handleSubmit }>
+            <h3 className='grey-text text-darken-3 center'>Sign In</h3>
+            <div className='input-field container'>
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" onChange={ this.handleChange }/>
+            </div>
+            <div className='input-field container'>
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" onChange={ this.handleChange }/>
+            </div>
+            <div className={styles.btnDiv}>
+              <button className='btn red lighten-1 center-align'>Login</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

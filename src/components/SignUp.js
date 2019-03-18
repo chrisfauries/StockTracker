@@ -3,6 +3,7 @@ import Auth from '../firebase/Auth'
 import { connect } from 'react-redux'
 import { getUserData } from '../reducers/actions/getUserData'
 import { createNewUser } from '../reducers/actions/createNewUser'
+import styles from '../sass/SignUp.module.scss'
 
 class SignUp extends Component {
   state = {
@@ -41,29 +42,31 @@ class SignUp extends Component {
   }
   render() {
     return (
-      <div className='container'>
-        <form className= 'white' onSubmit={ this.handleSubmit }>
-          <h5 className='grey-text text-darken-3'>Sign Up</h5>
-          <div className='input-field'>
+      <div className={styles.signUp}>
+      <div className={`container ${styles.container}`}>
+        <form className= {`white ${styles.form}`} onSubmit={ this.handleSubmit }>
+          <h3 className='grey-text text-darken-3 center'>Sign Up</h3>
+          <div className='input-field container'>
             <label htmlFor="firstName">First Name</label>
             <input type="text" id="firstName" onChange={ this.handleChange } required />
           </div>
-          <div className='input-field'>
+          <div className='input-field container'>
             <label htmlFor="lastName">Last Name</label>
             <input type="text" id="lastName" onChange={ this.handleChange } />
           </div>
-          <div className='input-field'>
+          <div className='input-field container'>
             <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={ this.handleChange }/>
           </div>
-          <div className='input-field'>
+          <div className='input-field container'>
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={ this.handleChange }/>
           </div>
-          <div>
-            <button className='btn red lighten-1'>Login</button>
+          <div className={ styles.btnDiv}>
+            <button className='btn red lighten-1'>Create</button>
           </div>
         </form>
+      </div>
       </div>
     )
   }
