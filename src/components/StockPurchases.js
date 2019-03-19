@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Row, Input, Button, Modal } from 'react-materialize'
+import { deletePurchase } from '../reducers/actions/deletePurchase'
 
 class StockPurchases extends Component {
 
-    state = {
-        id: null
-    }
-
     handleSubmit = (id, symbol) => {
-        console.log(id, symbol)
+        this.props.deletePurchase(id, symbol, 'DELETE_PURCHASE')
     }
     
     render() {
@@ -60,5 +57,11 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+        return {
+            deletePurchase: (id, symbol, type) => {dispatch(deletePurchase(id, symbol, type))}
+        }
+    }
 
-export default connect(mapStateToProps)(StockPurchases)
+
+export default connect(mapStateToProps, mapDispatchToProps)(StockPurchases)
