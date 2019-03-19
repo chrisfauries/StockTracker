@@ -20,8 +20,8 @@ class Preview extends Component {
     const { stocks } = this.state;
     const stockList = stocks.map(stock => {
         return (
-            <div className="col s12 m6 l4">
-                <div className='card medium green lighten-5 hoverable' key={ shortid.generate() }>
+            <div className="col s12 m6 l4" key= { shortid.generate() }>
+                <div className='card medium green lighten-5 hoverable'>
                     <div className='card-content black-text'>
                     <CardHeader stock={ stock } />
                     <ChartPreview symbol={ stock.symbol } />

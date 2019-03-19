@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import styles from '../sass/Cards.module.scss'
+// import styles from '../sass/Cards.module.scss'
 import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
+// eslint-disable-next-line
 import { NavLink, Redirect } from 'react-router-dom'
 import DeleteStock from './DeleteStock'
 import StockPurchases from './StockPurchases'
