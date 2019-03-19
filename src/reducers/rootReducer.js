@@ -146,6 +146,20 @@ const rootReducer = (state=initState, action) => {
         }
     }
 
+    // if(action.type==='DELETE_PURCHASE'){
+    //     let stockId = action.deleteStock
+    //     return{
+    //         user:{
+    //             ...state.user,
+    //             stocksPurchased:{
+    //                 ...state.user.stocksPurchased,
+    //                     [purchase.symbol]: [...state.user.stocksPurchased[purchase.symbol], {date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:shortid.generate()}]
+                    
+    //             }
+    //         }
+    //     }
+    // }
+
 
     return state;
 }

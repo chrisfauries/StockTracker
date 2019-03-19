@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import trashcan from '../img/trash.png'
+import { Row, Input, Button, Modal } from 'react-materialize'
 
 class StockPurchases extends Component {
+
+    state = {
+        id: null
+    }
+
+    handleSubmit = (id, symbol) => {
+        console.log(id, symbol)
+    }
     
     render() {
 
@@ -15,12 +23,19 @@ class StockPurchases extends Component {
                     <div key={ stock.id } className=" row grey-text text-darken-4">
                         <div className="col s12"></div>
                         <div className="col s4">Date:</div>
-                        <div className="col s4">Price:</div>
+                        <div className="col s3">Price:</div>
                         <div className="col s3">Quantity:</div>
                         <div className="col s4">{ stock.date }</div>
-                        <div className="col s4">{ stock.price }</div>
+                        <div className="col s3">{ stock.price }</div>
                         <div className="col s2">{ stock.quantity }</div>
-                        <div className="col s1"><img className='right' src={ trashcan } alt='trashcan' /></div>
+                        <div className="col s1">
+                            <Modal
+                                trigger={<Button  >Delete</Button>}>
+                                <Row>
+                                    <p>Are you sure you want to delete this stock?</p>
+                                    <Button waves='light' id={ stock.id } onClick={ ()=>{this.handleSubmit(stock.id, symbol)} } >Submit</Button>
+                                </Row>
+                            </Modal></div>
                     </div>
                 )
             })
