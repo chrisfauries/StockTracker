@@ -14,7 +14,7 @@ class StockPurchases extends Component {
             purchased[symbol].map(stock => {
                 return (
                     <div key={ stock.id }>
-                        <span className="card-title">{ stock.symbol }</span>
+                        <span className="grey-text text-darken-4">{ stock.symbol }</span>
                         <p>{ stock.date }</p>
                         <p>{ stock.price }</p>
                         <p>{ stock.quantity }</p>
@@ -28,10 +28,9 @@ class StockPurchases extends Component {
         
         if (!this.props.auth) return <Redirect to='/' />
         return (
-            <div className='card-reveal'>
+            <div>
                 { allStocks }
             </div>
-
         )
     }
 }
