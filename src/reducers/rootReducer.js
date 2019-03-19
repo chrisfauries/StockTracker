@@ -34,7 +34,8 @@ const rootReducer = (state=initState, action) => {
                 status: 'logged In',
                 isAuth: true,
                 uid: action.uid,
-                stocks: action.payload.stocks
+                stocks: action.payload.stocks,
+                stocksPurchased: action.payload.PurchasedStock
             }
         } 
     }
@@ -124,7 +125,6 @@ const rootReducer = (state=initState, action) => {
                 ...state.user,
                 stocksPurchased:{
                     ...state.user.stocksPurchased,
-                    
                         [purchase.symbol]: [...state.user.stocksPurchased[purchase.symbol], {date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:shortid.generate()}]
                     
                 }
@@ -145,6 +145,7 @@ const rootReducer = (state=initState, action) => {
         }
         }
     }
+
 
     return state;
 }
