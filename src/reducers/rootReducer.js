@@ -125,6 +125,20 @@ const rootReducer = (state=initState, action) => {
         }
     }
 
+    if(action.type==='ADD_PURCHASE'){
+        let purchase = action.purchase
+        return {
+            ...state,
+            user:{
+                ...state.user,
+                stocksPurchased:{
+                    ...state.user.stocksPurchased,
+                    [purchase.symbol]: [...state.user.stocksPurchased[purchase.symbol], {date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:purchase.id}]
+                }
+            }
+        }
+    }
+
     return state;
 }
 

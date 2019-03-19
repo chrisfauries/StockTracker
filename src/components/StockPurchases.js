@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import trashcan from '../img/trash.png'
 
 class StockPurchases extends Component {
     
-
-
     render() {
 
         const purchased = this.props.stocksPurchased
@@ -20,7 +19,8 @@ class StockPurchases extends Component {
                         <div className="col s3">Quantity:</div>
                         <div className="col s4">{ stock.date }</div>
                         <div className="col s4">{ stock.price }</div>
-                        <div className="col s3">{ stock.quantity }</div>
+                        <div className="col s2">{ stock.quantity }</div>
+                        <div className="col s1"><img className='right' src={ trashcan } alt='trashcan' /></div>
                     </div>
                 )
             })
