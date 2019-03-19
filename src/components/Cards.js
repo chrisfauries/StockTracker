@@ -18,7 +18,7 @@ class Cards extends Component {
     const stockList = stocks.length ? (
       stocks.map(stock => {
         return (
-          <div className="card col s12 m6 l4 waves-effect waves-block waves-light" key={ shortid.generate() }>
+          <div className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0" key={ shortid.generate() }>
             <div className='card medium green lighten-5 hoverable activator'>
               <div className='card-content black-text'>
                 <CardHeader stock={ stock } />
