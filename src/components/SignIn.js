@@ -21,7 +21,6 @@ class SignIn extends Component {
     Auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
       if (cred.user) {
         this.props.login(cred.user.uid);
-        document.getElementById('NavSignedInActive').classList.add('active');
       }
       // Do something on the page with login/password is incorrect
     }).catch(err => {console.log(err.code, err.message)});
