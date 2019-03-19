@@ -10,8 +10,7 @@ class PurchaseNewStock extends Component {
         symbol: '',
         date: '',
         quantity: null,
-        price: null,
-        id: shortid.generate()  
+        price: null
     }
 
     handleChange = (e) => {
@@ -46,7 +45,7 @@ class PurchaseNewStock extends Component {
     }
     const mapDispatchToProps = (dispatch) => {
         return {
-            newPurchase: (purchase, type) => {dispatch({purchase:purchase, type:type})}
+            newPurchase: (purchase, type) => {dispatch(newPurchaseStock(purchase, type))}
         }
     }
 

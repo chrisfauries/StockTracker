@@ -1,3 +1,5 @@
+import shortid from 'shortid'
+
 const initState = {
     user: {
         status: 'logged Out',
@@ -5,19 +7,7 @@ const initState = {
         uid: '',
         stocks: [],
         liveStockData: [],
-        stocksPurchased: {
-            AAPL: [
-            {date: '1/1/2015', price: '91.85', quantity: '2', id: 1},
-            {date: '11/15/2016', price: '105.15', quantity: '1', id: 2},
-            {date: '8/15/2018', price: '125.15', quantity: '10', id: 3},
-            {date: '4/25/2018', price: '145.15', quantity: '2', id: 4},
-            {date: '2/15/2019', price: '165.15', quantity: '1', id: 5}
-            ],
-            TSLA: [
-            {date: '2/1/2019', price: '311.85', quantity: '1', id: 1},
-            {date: '3/15/2019', price: '335.15', quantity: '10', id: 2}
-            ]
-        },
+        stocksPurchased: {},
         liveChartData: []
     }
 }
@@ -127,15 +117,32 @@ const rootReducer = (state=initState, action) => {
 
     if(action.type==='ADD_PURCHASE'){
         let purchase = action.purchase
+        if (state.user.stocksPurchased[purchase.symbol]){
         return {
             ...state,
             user:{
                 ...state.user,
                 stocksPurchased:{
                     ...state.user.stocksPurchased,
-                    [purchase.symbol]: [...state.user.stocksPurchased[purchase.symbol], {date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:purchase.id}]
+                    
+                        [purchase.symbol]: [...state.user.stocksPurchased[purchase.symbol], {date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:shortid.generate()}]
+                    
                 }
             }
+        }
+    }
+        else{
+            return {
+            ...state,
+            user:{
+                ...state.user,
+                stocksPurchased:{
+                    ...state.user.stocksPurchased,
+                        [purchase.symbol]: [{date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:shortid.generate()}]
+                    
+                }
+            }
+        }
         }
     }
 
