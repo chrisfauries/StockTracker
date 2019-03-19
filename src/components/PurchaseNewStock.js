@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Row, Input, Button, Modal } from 'react-materialize'
 import { newPurchaseStock } from '../reducers/actions/newPurchaseStock'
-import shortid from 'shortid'
 
 class PurchaseNewStock extends Component {
 

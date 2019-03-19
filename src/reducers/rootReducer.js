@@ -146,6 +146,23 @@ const rootReducer = (state=initState, action) => {
         }
     }
 
+    if(action.type==='DELETE_PURCHASE'){
+        let { symbol } = action
+        let { id } = action
+        const updateStocksPurchased = state.user.stocksPurchased[symbol].filter(item => item.id !== id)
+        console.log(updateStocksPurchased);
+        return{
+            user:{
+                ...state.user,
+                stocksPurchased:{
+                    ...state.user.stocksPurchased,
+                        [symbol]: updateStocksPurchased
+                    
+                }
+            }
+        }
+    }
+
 
     return state;
 }
