@@ -2,7 +2,7 @@ let currentCost = 0;
 let currentValue = 0;
 
 
-export const sumCost = (props) => {
+export const sumCostTotal = (props) => {
     var total = 0;
     for(var key in props.stocksPurchased) {
         // eslint-disable-next-line
@@ -12,7 +12,7 @@ export const sumCost = (props) => {
     return '$'+ currentCost;
 }
 
-export const sumValue = (props) => {
+export const sumValueTotal = (props) => {
     var currentStockData = props.liveStockData.reduce((obj, stock) =>{
         obj[stock.symbol] = stock.price;
         return obj
@@ -28,11 +28,11 @@ export const sumValue = (props) => {
 }
 
 
-export const getGainLoss = () => {
+export const getGainLossTotal = () => {
     return '$'+ Number(currentValue - currentCost).toFixed(2);
 }
 
-export const getPct = () => {
+export const getPctTotal = () => {
     if(currentValue / currentCost) {
         return Number((currentValue / currentCost) * 100).toFixed(2) + '%';
     } else {
@@ -40,6 +40,3 @@ export const getPct = () => {
     }
 }
 
-export const purchaseStats = () => {
-    return '$'+ Number(currentValue - currentCost).toFixed(2);
-}

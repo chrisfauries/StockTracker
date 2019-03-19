@@ -11,8 +11,8 @@ function OverviewItem(props) {
     const stockItems = stocksPurchased[stock] ?
     (
         stocksPurchased[stock].map(purchase =>{
-            let cost = purchase.price * purchase.quantity;
-            let value = currentPrice * purchase.quantity;
+            let cost = (purchase.price * purchase.quantity).toFixed(2);
+            let value = (currentPrice * purchase.quantity).toFixed(2);
             let gainLossDollar = (value - cost) > 0 ? (`+$${(value - cost).toFixed(2)}`) : (`-$${(value - cost).toFixed(2)}`)
             let gainLossPct = (value - cost) > 0 ? (`+${((value / cost) * 100).toFixed(2)}%`) : (`-${((value / cost) * 100).toFixed(2)}%`)
 
