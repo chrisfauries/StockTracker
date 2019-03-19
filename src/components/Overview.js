@@ -1,26 +1,24 @@
 import React, { Component } from 'react'
 import OverviewPie from './OverviewPie'
+import OverviewList from './OverviewList'
 import { connect } from 'react-redux'
 import { sumCost, sumValue, getGainLoss, getPct } from '../logic/calc.js'
 
 
 class Overview extends Component {
-    state = {
-
-    }
 
   render() {
     return (
        <div className="row container">
             <div className="col grey lighten-5 s6">
-                <p>Overview Stats</p>
-                <p>Portfolio Cost: { sumCost(this.props) }</p>
-                <p>Portfolio Value: { sumValue(this.props) }</p>
-                <p>Gain/Loss: { getGainLoss() }</p>
-                <p>Pct: { getPct() }</p>
+                <h2 className='center-align'>Overview Stats</h2>
+                <h5 className='center-align'>Portfolio Cost: { sumCost(this.props) }</h5>
+                <h5 className='center-align'>Portfolio Value: { sumValue(this.props) }</h5>
+                <h5 className='center-align'>Gain/Loss: { getGainLoss() }</h5>
+                <h5 className='center-align'>Pct: { getPct() }</h5>
             </div>
             <OverviewPie data={this.props} />
-            <div className="col green s12"><p>List all Purchases and Run Gains and Loses</p></div>
+            <OverviewList data={this.props} />
         </div>    
     )
   }

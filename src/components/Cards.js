@@ -27,7 +27,7 @@ class Cards extends Component {
                 <DeleteStock symbol={ stock.symbol } />
               </div>
               <div className='card-reveal'>
-                <span className='card-title grey-text text-darken-4'><i class="material-icons right">close</i><StockPurchases symbol={ stock.symbol }/></span>
+                <span className='card-title grey-text text-darken-4'><i className="material-icons right">close</i><StockPurchases symbol={ stock.symbol }/></span>
               </div>
             </div>
             

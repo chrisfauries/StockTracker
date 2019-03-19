@@ -4,7 +4,7 @@ import { Pie } from 'react-chartjs-2'
 
 
 function OverviewPie(props) {
-    console.log(props.data)
+
     const data = {
         labels: [
             'Facebook',

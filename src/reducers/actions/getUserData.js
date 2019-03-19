@@ -5,7 +5,6 @@ export const getUserData = (uid) => {
         dispatch({type: "LOGIN_USER_SENT"});
         axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/grabUserData?uid=' + uid)
             .then(res => {
-                    console.log(res.data)
                 dispatch({type: "CARD_DATA_REQUESTED"});
                 dispatch({type: "LOGIN_USER_FULFILLED", payload: res.data, uid:uid});
                 // eslint-disable-next-line
