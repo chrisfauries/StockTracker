@@ -2,19 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addNewStockAndGetData } from '../reducers/actions/addNewStockAndGetData'
 import styles from '../sass/AddStock.module.scss'
+import { Input, Button, Modal } from 'react-materialize'
 
 class AddStock extends Component {
 
     state={
-        isClicked: false,
         newStock: ''
-    }
-
-    handleClick = () => {
-        this.setState({
-            ...this.state,
-            isClicked:true
-        })
     }
 
     handleChange = (e) => {
@@ -26,27 +19,19 @@ class AddStock extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.addStock(this.state.newStock, 'add')
-        this.setState({
-            ...this.state,
-            isClicked:false
-        })
     }
 
     render(){
-        const inputForm = this.state.isClicked ? (
-            <form className={ styles.inputForm }onSubmit={ this.handleSubmit }>
-                <label htmlFor="newStock">Stock Symbol</label>
-                <input type="text" id="newStock" maxLength="5" onChange={ this.handleChange } />
-                <button>Add Stock</button>
-            </form>
-        ) : (
-            <div></div>
-        )
-
+        
     
     return (
-        <div className={ styles.addStock } onClick={ this.handleClick }>
-            { inputForm }
+        <div>
+                <Modal
+                    header='Add Stock for Tracking'
+                    trigger={<Button>Add Stock for Tracking</Button>}>
+                        <Input type="text" id="newStock" placeholder="stock symbol" maxLength="5" onChange={ this.handleChange } />
+                        <Button waves='light' onClick={ this.handleSubmit }>Submit</Button>
+                </Modal>
         </div>
     )
     }

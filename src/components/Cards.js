@@ -4,11 +4,11 @@ import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
-// eslint-disable-next-line
 import { NavLink, Redirect } from 'react-router-dom'
 import DeleteStock from './DeleteStock'
 import StockPurchases from './StockPurchases'
 import shortid from 'shortid'
+import PurchaseNewStock from './PurchaseNewStock'
 
 
 class Cards extends Component {
@@ -27,7 +27,7 @@ class Cards extends Component {
                 <DeleteStock symbol={ stock.symbol } />
               </div>
               <div className='card-reveal'>
-                <span className='card-title grey-text text-darken-4'><i class="material-icons right">close</i><StockPurchases symbol={ stock.symbol }/></span>
+                <span className='card-title grey-text text-darken-4'><i className="material-icons right">close</i><StockPurchases symbol={ stock.symbol }/></span>
               </div>
             </div>
             
@@ -45,7 +45,7 @@ class Cards extends Component {
       <div className='row'>
         { stockList }
         <AddStock />
-        
+        <PurchaseNewStock />
       </div>  
     )
   }

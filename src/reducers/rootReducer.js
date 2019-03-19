@@ -1,3 +1,5 @@
+import shortid from 'shortid'
+
 const initState = {
     user: {
         status: 'logged Out',
@@ -113,6 +115,37 @@ const rootReducer = (state=initState, action) => {
             }
         }
     }
+
+    if(action.type==='ADD_PURCHASE'){
+        let purchase = action.purchase
+        if (state.user.stocksPurchased[purchase.symbol]){
+        return {
+            ...state,
+            user:{
+                ...state.user,
+                stocksPurchased:{
+                    ...state.user.stocksPurchased,
+                        [purchase.symbol]: [...state.user.stocksPurchased[purchase.symbol], {date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:shortid.generate()}]
+                    
+                }
+            }
+        }
+    }
+        else{
+            return {
+            ...state,
+            user:{
+                ...state.user,
+                stocksPurchased:{
+                    ...state.user.stocksPurchased,
+                        [purchase.symbol]: [{date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:shortid.generate()}]
+                    
+                }
+            }
+        }
+        }
+    }
+
 
     return state;
 }
