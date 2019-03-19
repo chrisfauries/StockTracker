@@ -28,13 +28,29 @@ class CardChart extends Component {
     }
   }
 
+  const options = {
+    maintainAspectRatio: false,
+    legend:{
+      display: false
+    }, 
+    tooltips:{ 
+      displayColors: false,
+      enabled:true, 
+      bodyFontSize: 24, 
+      callbacks:{ 
+        title: function(tooltipItems) { return ''; },
+        label: function(tooltipItems) { return  '$' + tooltipItems.value; }
+      }
+    }
+  }
+
     const post = stocks !== undefined ? (
       <Line
           key= { symbol }
           data={chartData}
           width={100}
-          height={50}
-          options={{}}
+          height={275}
+          options={ options }
         />
     ): (
       <div>Loading chart...</div>
