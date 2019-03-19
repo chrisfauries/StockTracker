@@ -22,7 +22,6 @@ function CardHeader(props) {
         isPctChangePos = false;
     }
 
-    console.log(dayChange)
     return (
         <div className='row' key={ stock.symbol }>
             <div className="col m8 l8">

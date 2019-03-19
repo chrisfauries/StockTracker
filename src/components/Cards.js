@@ -17,17 +17,21 @@ class Cards extends Component {
     const stockList = stocks.length ? (
       stocks.map(stock => {
         return (
-          <div className="col s12 m6 l4" key={ shortid.generate() }>
-            <div className='card medium green lighten-5 hoverable'>
+          <div className="card col s12 m6 l4 waves-effect waves-block waves-light" key={ shortid.generate() }>
+            <div className='card medium green lighten-5 hoverable activator'>
               <div className='card-content black-text'>
                 <CardHeader stock={ stock } />
                 <CardChart symbol={ stock.symbol } />
                 {/* <span><NavLink to={"/stocks/" + stock.symbol} symbol={ stock.symbol }>More Details</NavLink></span> */}
                 <DeleteStock symbol={ stock.symbol } />
-                <StockPurchases symbol={ stock.symbol } />
+              </div>
+              <div className='card-reveal'>
+                <span className='card-title grey-text text-darken-4'><i class="material-icons right">close</i><StockPurchases symbol={ stock.symbol }/></span>
               </div>
             </div>
+            
           </div>
+          
         )
       })
     ) : (
@@ -40,6 +44,7 @@ class Cards extends Component {
       <div className='row'>
         { stockList }
         <AddStock />
+        
       </div>  
     )
   }
