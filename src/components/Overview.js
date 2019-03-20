@@ -8,8 +8,8 @@ class Overview extends Component {
 
   render() {
     return (
-       <div className="row container">
-            <div className="col grey lighten-5 s6">
+       <div className="row container grey lighten-5 z-depth-1">
+            <div className="col s6">
                 <h2 className='center-align'>Overview Stats</h2>
                 <h5 className='center-align'>Portfolio Cost: { sumCostTotal(this.props) }</h5>
                 <h5 className='center-align'>Portfolio Value: { sumValueTotal(this.props) }</h5>

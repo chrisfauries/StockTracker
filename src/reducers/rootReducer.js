@@ -1,4 +1,5 @@
 import shortid from 'shortid'
+import { settings } from '../config/settings.js'
 
 const initState = {
     user: {
@@ -8,9 +9,14 @@ const initState = {
         stocks: [],
         liveStockData: [],
         stocksPurchased: {},
-        liveChartData: []
+        liveChartData: [],
+        general: settings.general,
+        chart: settings.chart,
+        layout: settings.layout,
+        other: settings.other
     }, 
     availableStocks: ['AMZN', 'MSFT', 'GOOG', 'TWLO', 'NFLX', 'FB', 'ADBE', 'SQ', 'SRPT', 'BABA', 'TSLA', 'SRPT', 'XLK', 'TNAV', 'APPS', 'AAPL', 'NXPI', 'SSCO', 'MCD', 'HD', 'XOM', 'BA', 'VZ', 'MRK', 'KO', 'V', 'DIS', 'NKE', 'WMT', 'JPM', 'TWTR', 'NBL', 'HES', 'GS', 'UNH', 'AXP', 'WBA', 'BAM', 'TXN', 'SBUX', 'DFS', 'CERN', 'CRM', 'CSX', 'ATVI', 'EXPE']
+
 }
 
 const rootReducer = (state=initState, action) => {
@@ -35,8 +41,12 @@ const rootReducer = (state=initState, action) => {
                 status: 'logged In',
                 isAuth: true,
                 uid: action.uid,
-                stocks: action.payload.stocks,
-                stocksPurchased: action.payload.PurchasedStock
+                stocks: action.data.stocks,
+                stocksPurchased: action.data.PurchasedStock,
+                general: action.data.general,
+                chart: action.data.chart,
+                layout: action.data.layout,
+                other: action.data.other                
             }
         } 
     }
@@ -126,7 +136,14 @@ const rootReducer = (state=initState, action) => {
                 ...state.user,
                 stocksPurchased:{
                     ...state.user.stocksPurchased,
-                        [purchase.symbol]: [...state.user.stocksPurchased[purchase.symbol], {date:purchase.date, price: purchase.price, quantity:purchase.quantity, id:shortid.generate()}]
+                        [purchase.symbol]: [...state.user.stocksPurchased[purchase.symbol], 
+                                                { 
+                                                    date:purchase.date, 
+                                                    price: purchase.price, 
+                                                    quantity:purchase.quantity, 
+                                                    id:shortid.generate()
+                                                }
+                                            ]
                     
                 }
             }
@@ -160,6 +177,17 @@ const rootReducer = (state=initState, action) => {
                         [symbol]: updateStocksPurchased
                     
                 }
+            }
+        }
+    }
+
+    if(action.type === 'UPDATE_GENERAL_SETTINGS'){
+        let general = action.data
+        return {
+            ...state,
+            user:{
+                ...state.user,
+                general: general
             }
         }
     }
