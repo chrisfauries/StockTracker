@@ -20,14 +20,16 @@ class StockPurchases extends Component {
                 return (
                     <div  key={ stock.id }>
                         <Col s={4}>{ stock.date }</Col>
-                        <Col s={2}>{ stock.price }</Col>
+                        <Col s={2}>{`$${Number(stock.price).toFixed(2)}`}</Col>
                         <Col className="center align-center" s={3}>{ stock.quantity }</Col>
                         <Col s={3}>
                             <Modal
-                                trigger={<Button className='red'>Delete</Button>}>
+                                trigger={<Button className='red'>Delete</Button>}
+                                actions={ <div><Button waves='light' className='modal-close'>Close</Button><Button className='red modal-close' waves='light' id={ stock.id } onClick={ ()=>{this.handleSubmit(stock.id, symbol)} } >Delete</Button></div> }
+                            >
                                 <Row>
-                                    <p>Are you sure you want to delete this stock?</p>
-                                    <Button waves='light' id={ stock.id } onClick={ ()=>{this.handleSubmit(stock.id, symbol)} } >Submit</Button>
+                                    <div style={{marginTop:'30px'}}><p className='center-align'>Are you sure you want to delete this stock?</p></div>
+                                    <div style={{marginTop:'30px'}}><p className='center-align'>{`${stock.quantity} shares of ${symbol} stock for $${Number(stock.price).toFixed(2)} on ${stock.date}`}</p></div>
                                 </Row>
                             </Modal>
                         </Col>
@@ -50,7 +52,7 @@ class StockPurchases extends Component {
                         <Col s={3}> </Col>
                         { allStocks }
                     </Row>
-                <PurchaseNewStock symbol={ symbol } />
+                <PurchaseNewStock name={ this.props.name } symbol={ symbol } />
             </div>
         )
     }

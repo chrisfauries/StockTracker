@@ -31,10 +31,19 @@ class PurchaseNewStock extends Component {
         return(
             <div>
                 <Modal
-                    header='Purchase New Stocks'
-                    trigger={<div className='center-align'><Button>Add New</Button></div>} actions={<Button className="modal-close" waves='light' onClick={ this.handleSubmit }>Submit</Button>}>
-                    <Row>
-                        <p id={ this.props.symbol }>Stock being purchased: { this.props.symbol }</p>
+                    trigger={
+                        <div className='center-align'>
+                            <Button>Add New</Button>
+                        </div>
+                    } 
+                    actions={
+                        <Button className="modal-close" waves='light' onClick={ this.handleSubmit }>Submit</Button>
+                    }
+                >
+                    <i style={{cursor: 'pointer'}} class="material-icons right modal-close">close</i>
+                    <h4 className='green-text center-align'>Add Stock</h4>
+                    <Row className='container center-align'>
+                        <h5 id={ this.props.symbol }>{ this.props.name }</h5>
                         <Input s={5} id='date' label="Date Purchased" placeholder="mm/dd/yyyy" onChange={ this.handleChange } />
                         <Input s={3} id='price' label="price" placeholder="$price" onChange={ this.handleChange } />
                         <Input s={2} id='quantity' label="Quantity" onChange={ this.handleChange } />

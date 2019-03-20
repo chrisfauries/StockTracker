@@ -35,6 +35,7 @@ class AddStock extends Component {
                     actions={
                         <Button waves='light modal-close' onClick={ this.handleSubmit }>Submit</Button>
                     }>
+                    <i style={{cursor: 'pointer'}} class="material-icons right modal-close">close</i>
                     <div className='container center-align'>
                         <h4 className='green-text'>Add Stock</h4>
                         <Input style={{width: '200px', paddingTop: '20px'}} type="text" id="newStock" placeholder="stock symbol" maxLength="5" onChange={ this.handleChange } />

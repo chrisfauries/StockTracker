@@ -57,7 +57,7 @@ class CardChart extends Component {
     )
     
     return (
-      <div>
+      <div className='activator'>
         { post }
       </div>
     )
