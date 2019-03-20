@@ -39,7 +39,7 @@ class AddStock extends Component {
                         </div>
                             }
                     actions={
-                        <Button waves='light modal-close' onClick={ this.handleSubmit }>Submit</Button>
+                        <Button className='modal-close' waves='light modal-close' onClick={ this.handleSubmit }>Submit</Button>
                     }>
                     <i class={`material-icons right modal-close ${styles.cross}`}>close</i>
                     <div className='container center-align'>
