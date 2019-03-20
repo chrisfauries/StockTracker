@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Row, Input, Button, Modal } from 'react-materialize'
 import { deletePurchase } from '../reducers/actions/deletePurchase'
+import PurchaseNewStock from './PurchaseNewStock'
 
 class StockPurchases extends Component {
 
@@ -44,8 +45,9 @@ class StockPurchases extends Component {
         if (!this.props.auth) return <Redirect to='/' />
         return (
             <div>
-            <div className="title">{ symbol }</div>
-                { allStocks }
+                 <div className="title">{ symbol }</div>
+                 { allStocks }
+                 <PurchaseNewStock symbol={ symbol } />
             </div>
         )
     }

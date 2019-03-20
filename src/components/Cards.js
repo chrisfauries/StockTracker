@@ -8,7 +8,7 @@ import { NavLink, Redirect } from 'react-router-dom'
 import DeleteStock from './DeleteStock'
 import StockPurchases from './StockPurchases'
 import shortid from 'shortid'
-import PurchaseNewStock from './PurchaseNewStock'
+
 
 
 class Cards extends Component {
@@ -42,10 +42,9 @@ class Cards extends Component {
     if (!this.props.auth) return <Redirect to='/' />
     
     return (
-      <div className='row'>
+      <div className='row' >
         { stockList }
         <AddStock />
-        <PurchaseNewStock />
       </div>  
     )
   }
