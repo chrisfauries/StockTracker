@@ -26,19 +26,19 @@ class AddStock extends Component {
     
     return (
         <div  className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0">
-                <Modal
+                <Modal className={styles.popUp}
                     trigger={
                         <div className="card medium green lighten-5 hoverable center-align">
-                            <i style={{paddingTop: '160px'}} className='black-text large material-icons center-align'>add</i>
+                            <i className={`black-text large material-icons center-align ${styles.icon}`}>add</i>
                         </div>
                             }
                     actions={
                         <Button waves='light modal-close' onClick={ this.handleSubmit }>Submit</Button>
                     }>
-                    <i style={{cursor: 'pointer'}} class="material-icons right modal-close">close</i>
+                    <i class={`material-icons right modal-close ${styles.cross}`}>close</i>
                     <div className='container center-align'>
                         <h4 className='green-text'>Add Stock</h4>
-                        <Input style={{width: '200px', paddingTop: '20px'}} type="text" id="newStock" placeholder="stock symbol" maxLength="5" onChange={ this.handleChange } />
+                        <Input className={styles.input} type="text" id="newStock" placeholder="stock symbol" maxLength="5" onChange={ this.handleChange } />
                     </div>
                 </Modal>
             
