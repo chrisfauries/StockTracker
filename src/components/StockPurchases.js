@@ -18,8 +18,15 @@ class StockPurchases extends Component {
         const allStocks =  purchased[symbol] ? (
             purchased[symbol].map(stock => {
                 return (
-                    <div key={ stock.id } className=" row grey-text text-darken-4">
-                        
+                    <div key={ stock.id } className="">
+                        <tr>
+                            <td>{ stock.date }</td>
+                            <td>{ stock.price }</td>
+                            <td>{ stock.quantity }</td>
+                         </tr>
+
+
+
                         <div className="col s4">Date:</div>
                         <div className="col s3">Price:</div>
                         <div className="col s3">Quantity:</div>
@@ -46,6 +53,11 @@ class StockPurchases extends Component {
         return (
             <div>
                  <div className="title">{ symbol }</div>
+                 <tr>
+                    <td>Date:</td>
+                    <td>Price:</td>
+                    <td>Quantity:</td>
+                </tr>
                  { allStocks }
                  <PurchaseNewStock symbol={ symbol } />
             </div>
