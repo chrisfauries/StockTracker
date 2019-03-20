@@ -5,6 +5,8 @@ import { newPurchaseStock } from '../reducers/actions/newPurchaseStock'
 
 class PurchaseNewStock extends Component {
 
+    
+
     state = {
         symbol: '',
         date: '',
@@ -14,7 +16,8 @@ class PurchaseNewStock extends Component {
 
     handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value,
+            symbol: this.props.symbol
         })
     }
 
@@ -31,7 +34,7 @@ class PurchaseNewStock extends Component {
                     header='Purchase New Stocks'
                     trigger={<Button>Click to purchase new Stocks!!!</Button>}>
                     <Row>
-                        <Input id='symbol' placeholder="Stock Symbol" s={4} label="Stock Symbol" onChange={ this.handleChange } />
+                        <p id={ this.props.symbol }>Stock being purchased: { this.props.symbol }</p>
                         <Input s={5} id='date' label="Date Purchased" placeholder="mm/dd/yyyy" onChange={ this.handleChange } />
                         <Input s={3} id='price' label="price" placeholder="$price" onChange={ this.handleChange } />
                         <Input s={2} id='quantity' label="Quantity" onChange={ this.handleChange } />
