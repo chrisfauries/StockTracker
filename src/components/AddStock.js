@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addNewStockAndGetData } from '../reducers/actions/addNewStockAndGetData'
-import styles from '../sass/AddStock.module.scss'
+// import styles from '../sass/AddStock.module.scss'
 import { Input, Button, Modal } from 'react-materialize'
 
 class AddStock extends Component {

@@ -9,7 +9,6 @@ import Overview from './components/Overview'
 import Settings from './components/settings/Settings'
 import SubMenu from './components/settings/SubMenu'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import StockPurchases from './components/StockPurchases'
 
 class App extends Component {
 

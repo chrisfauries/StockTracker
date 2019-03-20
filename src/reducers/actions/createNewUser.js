@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getUserData } from './getUserData'
 
 export const createNewUser = (data) => {
     return (dispatch, getState) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Row, Input, Button, Modal } from 'react-materialize'
+import { Row, Button, Modal } from 'react-materialize'
 import { deletePurchase } from '../reducers/actions/deletePurchase'
 
 class StockPurchases extends Component {

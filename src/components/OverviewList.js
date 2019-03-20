@@ -15,9 +15,11 @@ function OverviewList(props) {
     })
 
   return (
-    <Collapsible  key={ shortid.generate() }>
-       { stockList }
-    </Collapsible>
+    <div>
+      <Collapsible  key={ shortid.generate() }>
+        { stockList }
+      </Collapsible>
+    </div>
   )
 }
 
