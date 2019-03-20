@@ -32,7 +32,7 @@ class PurchaseNewStock extends Component {
             <div>
                 <Modal
                     header='Purchase New Stocks'
-                    trigger={<Button>Click to purchase new Stocks!!!</Button>} actions={<Button className="modal-close" waves='light' onClick={ this.handleSubmit }>Submit</Button>}>
+                    trigger={<div className='center-align'><Button>Add New</Button></div>} actions={<Button className="modal-close" waves='light' onClick={ this.handleSubmit }>Submit</Button>}>
                     <Row>
                         <p id={ this.props.symbol }>Stock being purchased: { this.props.symbol }</p>
                         <Input s={5} id='date' label="Date Purchased" placeholder="mm/dd/yyyy" onChange={ this.handleChange } />

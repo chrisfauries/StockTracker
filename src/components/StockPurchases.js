@@ -24,7 +24,7 @@ class StockPurchases extends Component {
                         <Col className="center align-center" s={3}>{ stock.quantity }</Col>
                         <Col s={3}>
                             <Modal
-                                trigger={<Button  >Delete</Button>}>
+                                trigger={<Button className='red'>Delete</Button>}>
                                 <Row>
                                     <p>Are you sure you want to delete this stock?</p>
                                     <Button waves='light' id={ stock.id } onClick={ ()=>{this.handleSubmit(stock.id, symbol)} } >Submit</Button>
@@ -36,13 +36,13 @@ class StockPurchases extends Component {
             })
         ) :
         (
-            <Col s={12}>You don't own any {symbol} stock</Col>
+            <div className='center-align'><Col s={12}>You don't own any {symbol} stock. Click below to add!</Col></div>
         )
         
         if (!this.props.auth) return <Redirect to='/' />
         return (
             <div>
-                 <div className="title blue-text">{ symbol }</div>
+                 <div className="title blue-text center-align">{ this.props.name }</div>
                     <Row>
                         <Col s={4}>Date:</Col>
                         <Col s={2}>Price:</Col>

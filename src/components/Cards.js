@@ -23,11 +23,13 @@ class Cards extends Component {
               <div className='card-content black-text'>
                 <CardHeader stock={ stock } />
                 <CardChart symbol={ stock.symbol } />
-                {/* <span><NavLink to={"/stocks/" + stock.symbol} symbol={ stock.symbol }>More Details</NavLink></span> */}
                 <DeleteStock symbol={ stock.symbol } />
               </div>
-              <div className='card-reveal'>
-                <span className='card-title grey-text text-darken-4'><i className="material-icons right">close</i><StockPurchases symbol={ stock.symbol }/></span>
+              <div className='card-reveal green lighten-5'>
+                <span className='card-title grey-text text-darken-4'>
+                  <i className="material-icons right">close</i>
+                  <StockPurchases name = { stock.name } symbol={ stock.symbol }/>
+                </span>
               </div>
             </div>
             
