@@ -6,7 +6,7 @@ export const getUserData = (uid) => {
         axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/grabUserData?uid=' + uid)
             .then(res => {
                 dispatch({type: "CARD_DATA_REQUESTED"});
-                dispatch({type: "LOGIN_USER_FULFILLED", payload: res.data, uid:uid});
+                dispatch({type: "LOGIN_USER_FULFILLED", data: res.data, uid:uid});
                 // eslint-disable-next-line
                 res.data.stocks.map(stock => {
                     axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/grabStockData?stock=' + stock)

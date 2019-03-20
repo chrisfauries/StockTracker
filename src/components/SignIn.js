@@ -18,6 +18,7 @@ class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     Auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
       if (cred.user) {
         this.props.login(cred.user.uid);

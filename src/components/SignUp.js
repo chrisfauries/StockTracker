@@ -10,7 +10,8 @@ class SignUp extends Component {
     email: '',
     password: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
+    userName: ''
   }
 
   componentDidUpdate() {
@@ -26,6 +27,7 @@ class SignUp extends Component {
           var data = { 
             firstName: this.state.firstName,
             lastName: this.state.lastName,
+            userName: this.state.userName,
             email: this.state.email,
             uid: cred.user.uid,
           };
@@ -53,6 +55,10 @@ class SignUp extends Component {
           <div className='input-field container'>
             <label htmlFor="lastName">Last Name</label>
             <input type="text" id="lastName" onChange={ this.handleChange } />
+          </div>
+          <div className='input-field container'>
+            <label htmlFor="userName">User Name</label>
+            <input type="text" id="userName" onChange={ this.handleChange } />
           </div>
           <div className='input-field container'>
             <label htmlFor="email">Email</label>
