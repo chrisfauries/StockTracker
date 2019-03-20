@@ -43,7 +43,7 @@ class NavBar extends Component {
 
     return (
       <div className={`${styles.fixedSpacer}`} >
-        <nav className={`nav-wrapper green lighten-1 ${styles.nav}`}>
+        <nav className={`nav-wrapper blue darken-1 ${styles.nav}`}>
           <div className='container'>
               { links }
           </div>

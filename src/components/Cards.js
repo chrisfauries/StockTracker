@@ -18,14 +18,14 @@ class Cards extends Component {
     const stockList = stocks.length ? (
       stocks.map(stock => {
         return (
-          <div className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0 activator" key={ shortid.generate() }>
-            <div className='card medium green lighten-5 hoverable activator'>
+          <div className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0 activator blue darken-4" key={ shortid.generate() }>
+            <div className='card medium blue lighten-5 hoverable activator'>
               <div className='card-content black-text activator'>
                 <CardHeader stock={ stock } />
                 <CardChart symbol={ stock.symbol } />
                 <DeleteStock symbol={ stock.symbol } />
               </div>
-              <div className='card-reveal green lighten-5'>
+              <div className='card-reveal blue lighten-5'>
                 <span className='card-title grey-text text-darken-4'>
                   <i className="material-icons right">close</i>
                   <StockPurchases name = { stock.name } symbol={ stock.symbol }/>
@@ -45,9 +45,9 @@ class Cards extends Component {
     if (!this.props.auth) return <Redirect to='/' />
     
     return (
-      <div className='row' >
+      <div className='row blue darken-4' >
         { stockList }
-        <AddStock />
+        <AddStock className='blue darken-4' />
       </div>  
     )
   }

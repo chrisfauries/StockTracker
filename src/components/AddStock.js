@@ -31,10 +31,10 @@ class AddStock extends Component {
 
     
     return (
-        <div  className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0">
+        <div  className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0 blue darken-4">
                 <Modal className={styles.popUp}
                     trigger={
-                        <div className="card medium green lighten-5 hoverable center-align">
+                        <div className="card medium blue lighten-5 hoverable center-align">
                             <i className={`black-text large material-icons center-align ${styles.icon}`}>add</i>
                         </div>
                             }

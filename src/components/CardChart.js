@@ -22,7 +22,7 @@ class CardChart extends Component {
         {
           label: symbol,
           data:[...priceArray],
-          backgroundColor: ['rgba(173, 216, 230, 0.6']
+          backgroundColor: ['rgba(0, 50, 50, 0.6']
         }
       ]
     }
