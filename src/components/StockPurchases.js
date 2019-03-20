@@ -36,7 +36,7 @@ class StockPurchases extends Component {
             })
         ) :
         (
-            <div>You don't own any {symbol} stock yet, go buy more!!!</div>
+            <Col s={12}>You don't own any {symbol} stock</Col>
         )
         
         if (!this.props.auth) return <Redirect to='/' />
@@ -47,11 +47,10 @@ class StockPurchases extends Component {
                         <Col s={4}>Date:</Col>
                         <Col s={2}>Price:</Col>
                         <Col s={3}>Quantity:</Col>
-
-                    { allStocks }
-                    <PurchaseNewStock symbol={ symbol } />
+                        <Col s={3}> </Col>
+                        { allStocks }
                     </Row>
-                    
+                <PurchaseNewStock symbol={ symbol } />
             </div>
         )
     }
