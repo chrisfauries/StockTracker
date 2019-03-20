@@ -19,8 +19,6 @@ class NavBar extends Component {
     }
   }
 
-  component
-
   render() {
     const links = this.props.auth ? (
       <div onClick={ this.handleActive }>

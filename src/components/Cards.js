@@ -31,6 +31,7 @@ class Cards extends Component {
                   <StockPurchases name = { stock.name } symbol={ stock.symbol }/>
                 </span>
               </div>
+              
             </div>
             
           </div>
