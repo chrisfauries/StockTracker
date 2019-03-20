@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { deleteStockAndData } from '../reducers/actions/deleteStockAndData'
 import trashcan from '../img/trash.png'
+import { Row, Input, Button, Modal, Col } from 'react-materialize'
 
 function DeleteStock(props) {
 
@@ -13,7 +14,7 @@ function DeleteStock(props) {
 
     return (
         <div style={{cursor:'pointer'}}onClick={ handleClick }>
-            <img className='right' src={ trashcan } alt='trashcan' />
+             <Button waves='light' className='right'>Delete Card</Button>
         </div>
     )
 }
