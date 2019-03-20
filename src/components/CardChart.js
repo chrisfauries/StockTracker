@@ -49,7 +49,7 @@ class CardChart extends Component {
           key= { symbol }
           data={chartData}
           width={100}
-          height={275}
+          height={225}
           options={ options }
         />
     ): (
@@ -57,7 +57,7 @@ class CardChart extends Component {
     )
     
     return (
-      <div>
+      <div className='activator'>
         { post }
       </div>
     )

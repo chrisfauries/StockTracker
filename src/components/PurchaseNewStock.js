@@ -5,6 +5,8 @@ import { newPurchaseStock } from '../reducers/actions/newPurchaseStock'
 
 class PurchaseNewStock extends Component {
 
+    
+
     state = {
         symbol: '',
         date: '',
@@ -14,7 +16,8 @@ class PurchaseNewStock extends Component {
 
     handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value,
+            symbol: this.props.symbol
         })
     }
 
@@ -28,14 +31,22 @@ class PurchaseNewStock extends Component {
         return(
             <div>
                 <Modal
-                    header='Purchase New Stocks'
-                    trigger={<Button>Click to purchase new Stocks!!!</Button>}>
-                    <Row>
-                        <Input id='symbol' placeholder="Stock Symbol" s={4} label="Stock Symbol" onChange={ this.handleChange } />
+                    trigger={
+                        <div className='center-align'>
+                            <Button>Add New</Button>
+                        </div>
+                    } 
+                    actions={
+                        <Button className="modal-close" waves='light' onClick={ this.handleSubmit }>Submit</Button>
+                    }
+                >
+                    <i style={{cursor: 'pointer'}} class="material-icons right modal-close">close</i>
+                    <h4 className='green-text center-align'>Add Stock</h4>
+                    <Row className='container center-align'>
+                        <h5 id={ this.props.symbol }>{ this.props.name }</h5>
                         <Input s={5} id='date' label="Date Purchased" placeholder="mm/dd/yyyy" onChange={ this.handleChange } />
                         <Input s={3} id='price' label="price" placeholder="$price" onChange={ this.handleChange } />
                         <Input s={2} id='quantity' label="Quantity" onChange={ this.handleChange } />
-                        <Button waves='light' onClick={ this.handleSubmit }>Submit</Button>
                     </Row>
                 </Modal>
             </div>

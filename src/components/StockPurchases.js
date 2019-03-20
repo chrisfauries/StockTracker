@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Row, Button, Modal } from 'react-materialize'
+import { Row, Input, Button, Modal, Col } from 'react-materialize'
 import { deletePurchase } from '../reducers/actions/deletePurchase'
+import PurchaseNewStock from './PurchaseNewStock'
+import styles from '../sass/StockPurchases.module.scss'
 
 class StockPurchases extends Component {
 
@@ -14,38 +16,52 @@ class StockPurchases extends Component {
 
         const purchased = this.props.stocksPurchased
         const symbol = this.props.symbol
-        const allStocks =  purchased[symbol] ? (
+        const allStocks =  (purchased[symbol] && purchased[symbol].length !== 0) ? (
             purchased[symbol].map(stock => {
                 return (
-                    <div key={ stock.id } className=" row grey-text text-darken-4">
-                        
-                        <div className="col s4">Date:</div>
-                        <div className="col s3">Price:</div>
-                        <div className="col s3">Quantity:</div>
-                        <div className="col s4">{ stock.date }</div>
-                        <div className="col s3">{ stock.price }</div>
-                        <div className="col s2">{ stock.quantity }</div>
-                        <div className="col s1">
-                            <Modal
-                                trigger={<Button  >Delete</Button>}>
+                    <div  key={ stock.id }>
+                        <Col s={4}>{ stock.date }</Col>
+                        <Col s={2}>{`$${Number(stock.price).toFixed(2)}`}</Col>
+                        <Col className="center align-center" s={3}>{ stock.quantity }</Col>
+                        <Col s={3}>
+                            <Modal className={styles.popUp}
+                                trigger={<Button className='red'>Delete</Button>}
+                                actions={ <div><Button waves='light' className='modal-close'>Close</Button><Button className='red modal-close' waves='light' id={ stock.id } onClick={ ()=>{this.handleSubmit(stock.id, symbol)} } >Delete</Button></div> }
+                            >
                                 <Row>
-                                    <p>Are you sure you want to delete this stock?</p>
-                                    <Button waves='light' id={ stock.id } onClick={ ()=>{this.handleSubmit(stock.id, symbol)} } >Submit</Button>
+                                    <div className={styles.modalContent}><p className='center-align'>Are you sure you want to delete this stock?</p></div>
+                                    <div className={styles.modalContent}><p className='center-align'>{`${stock.quantity} ${stock.quantity === '1' ? 'share' : 'shares'} of ${symbol} stock at $${Number(stock.price).toFixed(2)} on ${stock.date}`}</p></div>
                                 </Row>
-                            </Modal></div>
+                            </Modal>
+                        </Col>
                     </div>
                 )
             })
         ) :
         (
-            <div>You don't own any {symbol} stock yet, go buy more!!!</div>
+            <div className='center-align'><Col s={12}>You don't own any {symbol} stock. Click below to add!</Col></div>
         )
+
+        const descriptions = (purchased[symbol] && purchased[symbol].length !== 0) ? (
+            <div>
+                <Col s={4}>Date:</Col>
+                <Col s={2}>Price:</Col>
+                <Col s={3}>Quantity:</Col>
+                <Col s={3}> </Col>
+                </div> 
+                ) : ( 
+                <div></div> 
+                )
         
         if (!this.props.auth) return <Redirect to='/' />
         return (
             <div>
-            <div className="title">{ symbol }</div>
-                { allStocks }
+                 <div className="title blue-text center-align">{ this.props.name }</div>
+                    <Row>
+                        { descriptions }
+                        { allStocks }
+                    </Row>
+                <PurchaseNewStock name={ this.props.name } symbol={ symbol } />
             </div>
         )
     }

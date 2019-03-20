@@ -4,7 +4,6 @@ import OverviewList from './OverviewList'
 import { connect } from 'react-redux'
 import { sumCostTotal, sumValueTotal, getGainLossTotal, getPctTotal } from '../logic/calc.js'
 
-
 class Overview extends Component {
 
   render() {
