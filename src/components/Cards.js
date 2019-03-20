@@ -23,7 +23,7 @@ class Cards extends Component {
               <div className='card-content black-text activator'>
                 <CardHeader stock={ stock } />
                 <CardChart symbol={ stock.symbol } />
-                <DeleteStock symbol={ stock.symbol } />
+                
               </div>
               <div className='card-reveal green lighten-5'>
                 <span className='card-title grey-text text-darken-4'>
@@ -31,6 +31,7 @@ class Cards extends Component {
                   <StockPurchases name = { stock.name } symbol={ stock.symbol }/>
                 </span>
               </div>
+              <DeleteStock symbol={ stock.symbol } />
             </div>
             
           </div>

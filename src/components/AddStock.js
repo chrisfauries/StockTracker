@@ -12,17 +12,23 @@ class AddStock extends Component {
 
     handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value.toUpperCase()
         })
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.addStock(this.state.newStock, 'add')
+        if (this.props.availableStocks.includes(this.state.newStock)){
+            return this.props.addStock(this.state.newStock, 'add')
+            }
+        else{
+            alert("Sorry, " + this.state.newStock + " is not available at this time.")
+        }
     }
 
     render(){
         
+
     
     return (
         <div  className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0">
@@ -41,10 +47,15 @@ class AddStock extends Component {
                         <Input className={styles.input} type="text" id="newStock" placeholder="stock symbol" maxLength="5" onChange={ this.handleChange } />
                     </div>
                 </Modal>
-            
         </div>
     )
     }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    availableStocks: state.availableStocks,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -53,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddStock)
+export default connect(mapStateToProps, mapDispatchToProps)(AddStock)
