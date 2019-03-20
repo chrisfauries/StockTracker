@@ -16,7 +16,7 @@ class StockPurchases extends Component {
 
         const purchased = this.props.stocksPurchased
         const symbol = this.props.symbol
-        const allStocks =  purchased[symbol] ? (
+        const allStocks =  (purchased[symbol] && purchased[symbol].length !== 0) ? (
             purchased[symbol].map(stock => {
                 return (
                     <div  key={ stock.id }>
@@ -42,7 +42,7 @@ class StockPurchases extends Component {
             <div className='center-align'><Col s={12}>You don't own any {symbol} stock. Click below to add!</Col></div>
         )
 
-        const descriptions = purchased[symbol] ? (
+        const descriptions = (purchased[symbol] && purchased[symbol].length !== 0) ? (
             <div>
                 <Col s={4}>Date:</Col>
                 <Col s={2}>Price:</Col>
