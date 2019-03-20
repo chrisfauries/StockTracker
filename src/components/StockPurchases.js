@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Row, Input, Button, Modal } from 'react-materialize'
+import { Row, Input, Button, Modal, Col } from 'react-materialize'
 import { deletePurchase } from '../reducers/actions/deletePurchase'
 import PurchaseNewStock from './PurchaseNewStock'
 
@@ -18,29 +18,19 @@ class StockPurchases extends Component {
         const allStocks =  purchased[symbol] ? (
             purchased[symbol].map(stock => {
                 return (
-                    <div key={ stock.id } className="">
-                        <tr>
-                            <td>{ stock.date }</td>
-                            <td>{ stock.price }</td>
-                            <td>{ stock.quantity }</td>
-                         </tr>
-
-
-
-                        <div className="col s4">Date:</div>
-                        <div className="col s3">Price:</div>
-                        <div className="col s3">Quantity:</div>
-                        <div className="col s4">{ stock.date }</div>
-                        <div className="col s3">{ stock.price }</div>
-                        <div className="col s2">{ stock.quantity }</div>
-                        <div className="col s1">
+                    <div  key={ stock.id }>
+                        <Col s={4}>{ stock.date }</Col>
+                        <Col s={2}>{ stock.price }</Col>
+                        <Col className="center align-center" s={3}>{ stock.quantity }</Col>
+                        <Col s={3}>
                             <Modal
                                 trigger={<Button  >Delete</Button>}>
                                 <Row>
                                     <p>Are you sure you want to delete this stock?</p>
                                     <Button waves='light' id={ stock.id } onClick={ ()=>{this.handleSubmit(stock.id, symbol)} } >Submit</Button>
                                 </Row>
-                            </Modal></div>
+                            </Modal>
+                        </Col>
                     </div>
                 )
             })
@@ -52,14 +42,16 @@ class StockPurchases extends Component {
         if (!this.props.auth) return <Redirect to='/' />
         return (
             <div>
-                 <div className="title">{ symbol }</div>
-                 <tr>
-                    <td>Date:</td>
-                    <td>Price:</td>
-                    <td>Quantity:</td>
-                </tr>
-                 { allStocks }
-                 <PurchaseNewStock symbol={ symbol } />
+                 <div className="title blue-text">{ symbol }</div>
+                    <Row>
+                        <Col s={4}>Date:</Col>
+                        <Col s={2}>Price:</Col>
+                        <Col s={3}>Quantity:</Col>
+
+                    { allStocks }
+                    <PurchaseNewStock symbol={ symbol } />
+                    </Row>
+                    
             </div>
         )
     }
