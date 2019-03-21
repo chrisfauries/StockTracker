@@ -63,7 +63,7 @@ class General extends Component {
 
 const mapStateToProps = (state) => {
     return{
-        general: state.user.general
+        general: state.settings.general
     }
 }
 

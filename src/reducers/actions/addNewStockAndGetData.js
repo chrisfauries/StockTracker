@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const addNewStockAndGetData = (stock, type) => {
     return (dispatch, getState) => {
-        const uid = getState().user.uid;
+        const uid = getState().auth.uid;
         dispatch({type: 'UPDATING_USER_STOCKLIST'})
         axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/changeUserStockList?uid=' + uid + '&stock=' + stock + '&type=' + type)
             .then(res => {

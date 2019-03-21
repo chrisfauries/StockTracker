@@ -70,7 +70,7 @@ class StockPurchases extends Component {
 const mapStateToProps = (state) => {
   return {
     stocksPurchased: state.user.stocksPurchased,
-    auth: state.user.isAuth
+    auth: state.auth.isAuth
   }
 }
 

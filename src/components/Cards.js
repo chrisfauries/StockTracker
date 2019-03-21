@@ -55,8 +55,8 @@ class Cards extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    stocks: state.user.liveStockData,
-    auth: state.user.isAuth
+    stocks: state.data.liveStockData,
+    auth: state.auth.isAuth
   }
 }
 

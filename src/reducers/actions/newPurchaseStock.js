@@ -3,7 +3,7 @@ import axios from 'axios'
 export const newPurchaseStock = (purchase, type) => {
     return (dispatch, getState) => {
         dispatch({purchase: purchase, type: type});
-        const uid = getState().user.uid;
+        const uid = getState().auth.uid;
         const stocksPurchased = getState().user.stocksPurchased
         axios.post('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/updateUserPurchases', {
             purchase: stocksPurchased,

@@ -26,7 +26,7 @@ class Overview extends Component {
 const mapStateToProps = (state) => {
     return {
         stocks: state.user.stocks,
-        liveStockData: state.user.liveStockData,
+        liveStockData: state.data.liveStockData,
         stocksPurchased: state.user.stocksPurchased
     }
 }

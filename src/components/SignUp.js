@@ -81,7 +81,7 @@ class SignUp extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.user
+    auth: state.auth
   }
 }
 

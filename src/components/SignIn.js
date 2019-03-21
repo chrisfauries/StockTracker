@@ -33,6 +33,7 @@ class SignIn extends Component {
     })
   }
   render() {
+    console.log(this.props.state)
     return (
       <div className={styles.signIn}>
         <div className={`container ${styles.container}`}>
@@ -59,7 +60,8 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.user
+    state: state,
+    auth: state.auth
   }
 }
 

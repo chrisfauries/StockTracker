@@ -4,8 +4,8 @@ export const updateUserSettings = (type, data) => {
     return (dispatch, getState) => {
         dispatch({data: data, type: type});
         console.log(data)
-        const uid = getState().user.uid;
-        const newData = getState().user
+        const uid = getState().auth.uid;
+        const newData = getState().settings
         axios.post('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/updateUserSettings', {
             data: newData,
             uid: uid

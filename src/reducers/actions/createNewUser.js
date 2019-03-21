@@ -3,7 +3,7 @@ import axios from 'axios'
 export const createNewUser = (data) => {
     return (dispatch, getState) => {
         dispatch({type: "CREATING_NEW_USER"});
-        const settingsData = getState().user
+        const settingsData = getState().settings
         axios.post('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/createNewUser', {
             firstName: data.firstName,
             lastName: data.lastName,

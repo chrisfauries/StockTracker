@@ -54,7 +54,7 @@ class AddStock extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    availableStocks: state.admin.availableStocks,
+    availableStocks: state.data.availableStocks,
   }
 }
 
