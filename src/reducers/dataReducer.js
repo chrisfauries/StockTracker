@@ -6,7 +6,7 @@ const initState = {
 }
 
 const dataReducer = (state = initState, action) => {
-    if(action.type === "LOGOUT_USER") {
+    if(action.type === "SIGNOUT_USER") {
         return initState;
     }
     if(action.type === "CARD_DATA_REQUESTED") {

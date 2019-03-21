@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export const getUserData = (uid) => {
-    return (dispatch, getState) => {
-        dispatch({type: "LOGIN_USER_SENT"});
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        dispatch({type: "LOGIN_USER_SUCCESS"});
         axios.get('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/grabUserData?uid=' + uid)
             .then(res => {
                 dispatch({type: "CARD_DATA_REQUESTED"});

@@ -8,7 +8,10 @@ const initState = {
 }
 
 const settingsReducer = (state = initState, action) => {
-    if(action.type === "LOGIN_USER_FULFILLED") {
+    if(action.type === "SIGNOUT_USER") {
+        return initState;
+    }
+    if(action.type === "USER_DATA_RECEIVED") {
         return {
             ...state,
             general: action.data.general,

@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Auth from '../firebase/Auth'
 import styles from '../sass/NavBar.module.scss'
+import { signOut } from '../reducers/actions/authActions'
 
 
 class NavBar extends Component {
   handleSignOut = () => {
-    Auth.signOut().then(()=> this.props.signOut()).catch(err => console.log(err));
-    
+    this.props.signOut();    
   }
 
   handleActive = (e) => { 
@@ -20,7 +19,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const links = this.props.auth ? (
+    const links = !this.props.auth.isEmpty ? (
       <div onClick={ this.handleActive }>
       <NavLink to='/stocks' className='brand-logo'>Stock Tracker</NavLink>
       <ul className='right'>
@@ -55,13 +54,14 @@ class NavBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth.isAuth
+    auth: state.auth.isAuth,
+    authFB: state.firebase.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signOut: () => { dispatch({ type:'LOGOUT_USER'})}
+    signOut: () => { dispatch(signOut({ type:'SIGNOUT_USER'}))}
   }
 }
 

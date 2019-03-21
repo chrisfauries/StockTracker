@@ -42,7 +42,7 @@ class Cards extends Component {
           <div>Click the Plus Sign to add your first Stock!</div>
         )
 
-    if (!this.props.auth) return <Redirect to='/' />
+    // if (!this.props.auth) return <Redirect to='/' />
     
     return (
       <div className='row' >

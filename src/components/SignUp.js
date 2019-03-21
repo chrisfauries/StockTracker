@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Auth from '../firebase/Auth'
 import { connect } from 'react-redux'
 import { getUserData } from '../reducers/actions/getUserData'
 import { createNewUser } from '../reducers/actions/createNewUser'
@@ -22,19 +21,19 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    Auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
-      if (cred.user) {
-          var data = { 
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            userName: this.state.userName,
-            email: this.state.email,
-            uid: cred.user.uid,
-          };
-          this.props.createNewUser(data);
-      }
+    // Auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
+    //   if (cred.user) {
+    //       var data = { 
+    //         firstName: this.state.firstName,
+    //         lastName: this.state.lastName,
+    //         userName: this.state.userName,
+    //         email: this.state.email,
+    //         uid: cred.user.uid,
+    //       };
+    //       this.props.createNewUser(data);
+    //   }
       // Do something on the page if sign up is unsuccessful (user already exists, etc)
-    }).catch(err => {console.log(err.code, err.message)});
+    // }).catch(err => {console.log(err.code, err.message)});
   }
 
   handleChange = (e) => {

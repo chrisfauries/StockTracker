@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Auth from '../firebase/Auth'
 import { connect } from 'react-redux'
 import { getUserData } from '../reducers/actions/getUserData'
 import styles from '../sass/SignIn.module.scss'
+import { signIn } from '../reducers/actions/authActions'
 
 class SignIn extends Component {
   state = {
@@ -11,21 +11,24 @@ class SignIn extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.auth.isAuth) {
+    console.log(this.props)
+    if(!this.props.authFB.isEmpty) {
+      // this.props.signIn(this.props.authFB.uid); <== need to do something differently if sign in is persistant.
       this.props.history.push('/stocks');
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    Auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
-      if (cred.user) {
-        this.props.login(cred.user.uid);
-      }
-      // Do something on the page with login/password is incorrect
-    }).catch(err => {console.log(err.code, err.message)});
+    this.props.signIn({ email: this.state.email, password: this.state.password })
   }
+    // Auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
+    //   if (cred.user) {
+    //     this.props.login(cred.user.uid);
+  //     }
+  //     // Do something on the page with login/password is incorrect
+  //   }).catch(err => {console.log(err.code, err.message)});
+  // }
 
   handleChange = (e) => {
     this.setState({
@@ -61,13 +64,14 @@ class SignIn extends Component {
 const mapStateToProps = (state) => {
   return {
     state: state,
-    auth: state.auth
+    auth: state.auth,
+    authFB: state.firebase.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (uid) => { dispatch(getUserData(uid)) }
+    signIn: (cred) => { dispatch(signIn(cred)) }
   }
 }
 

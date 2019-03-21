@@ -11,7 +11,7 @@ const authReducer = (state = initState, action) => {
             status: 'pending'
         }
     }
-    if(action.type === "LOGIN_USER_FULFILLED") {
+    if(action.type === "USER_DATA_RECEIVED") {
         return {
             ...state,
             status: 'logged In',
@@ -28,7 +28,7 @@ const authReducer = (state = initState, action) => {
     if(action.type === "LOGIN_USER_ERROR") {
         return state;
     }
-    if(action.type === "LOGOUT_USER") {
+    if(action.type === "SIGNOUT_USER") {
         return initState;
     }
     return state

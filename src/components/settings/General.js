@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Input, Button, Row, Modal } from 'react-materialize'
 import { connect } from 'react-redux'
-import Auth from '../../firebase/Auth'
 import { updateUserSettings } from '../../reducers/actions/updateUserSettings'
 
 class General extends Component {
@@ -26,11 +25,11 @@ class General extends Component {
       }
 
     changePassword = () => {
-        Auth.sendPasswordResetEmail(Auth.currentUser.email).then(function() {
-            console.log('email sent!')
-          }).catch(function(error) {
-            console.log(error)
-          });
+        // Auth.sendPasswordResetEmail(Auth.currentUser.email).then(function() {
+        //     console.log('email sent!')
+        //   }).catch(function(error) {
+        //     console.log(error)
+        //   });
     }
 
      updateData = () => {
