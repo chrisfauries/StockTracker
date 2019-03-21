@@ -11,13 +11,27 @@ class CardChart extends Component {
     const labels = [];
     const priceArray = [];
     if(stocks !== undefined) {
-    stocks[symbol].forEach(stock => {
-        priceArray.push(stock.price)
-        labels.push(stock.time)
+      stocks[symbol].forEach(stock => {
+          priceArray.push(stock.price)
+          labels.push(stock.time)
+    })
+    
+    var times = [];
+
+    labels.map(label => {
+      var splitString = label.split(":")
+      if (splitString[0] > 12){
+        times.push((splitString[0]-12) + ":" + splitString[1])
+      }
+      else{
+        times.push(label)
+      }
     })
 
+    console.log(labels[50] - 12)
+
     var chartData = {
-      labels: labels,
+      labels: times,
       datasets:[
         {
           label: symbol,
