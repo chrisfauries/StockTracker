@@ -2,12 +2,19 @@ import shortid from 'shortid'
 
 const initState = {
     stocks: [],
-    stocksPurchased: {}
+    stocksPurchased: {},
+    requested: false,
 }
 
 const userReducer = (state = initState, action) => {
     if(action.type === "SIGNOUT_USER") {
         return initState;
+    }
+    if(action.type === 'REQUESTING_USER_DATA'){
+        return {
+            ...state,
+            requested: true
+        }
     }
     if(action.type === "USER_DATA_RECEIVED") {
         return {

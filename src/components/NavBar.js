@@ -7,7 +7,14 @@ import { signOut } from '../reducers/actions/authActions'
 
 class NavBar extends Component {
   handleSignOut = () => {
-    this.props.signOut();    
+    this.props.signOut();
+    setTimeout(
+      function() {
+        this.props.history.push('/')
+      }
+      .bind(this),
+      200
+    );  
   }
 
   handleActive = (e) => { 

@@ -53,7 +53,7 @@ class StockPurchases extends Component {
                 <div></div> 
                 )
         
-        if (!this.props.auth) return <Redirect to='/' />
+        // if (!this.props.auth) return <Redirect to='/' />
         return (
             <div>
                  <div className="title blue-text center-align">{ this.props.name }</div>

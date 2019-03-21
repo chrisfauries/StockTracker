@@ -4,17 +4,34 @@ import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
-import { NavLink, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import DeleteStock from './DeleteStock'
 import StockPurchases from './StockPurchases'
 import shortid from 'shortid'
+import { getUserData } from '../reducers/actions/userActions'
 
 
 
 class Cards extends Component {
 
+  componentDidUpdate() {
+    console.log('update')
+    if(this.props.authFB.uid && !this.props.status.requested) {
+      this.props.getUserData(this.props.authFB.uid)
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(
+      function() {
+        if (this.props.authFB.isEmpty) this.props.history.push('/')
+      }
+      .bind(this),
+      1000
+    );
+  }
+
   render() {
-    if (this.props.authFB.isEmpty) return <Redirect to='/' />
     const { stocks } = this.props;
     const stockList = stocks.length ? (
       stocks.map(stock => {
@@ -51,10 +68,17 @@ class Cards extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    status: state.user,
     stocks: state.data.liveStockData,
     auth: state.auth.isAuth,
     authFB: state.firebase.auth
   }
 }
 
-export default connect(mapStateToProps)(Cards)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUserData: (uid) => {dispatch(getUserData(uid))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cards)

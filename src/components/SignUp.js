@@ -33,7 +33,7 @@ class SignUp extends Component {
   }
   render() {
 
-    if (this.props.authFB.uid) return ( <Redirect to='/stocks' /> )
+    // if (this.props.authFB.uid) return ( <Redirect to='/stocks' /> )
     return (
       <div className={styles.signUp}>
       <div className={`container ${styles.container}`}>
