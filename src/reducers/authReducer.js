@@ -5,13 +5,14 @@ const initState = {
 }
 
 const authReducer = (state = initState, action) => {
-    if(action.type === 'LOGIN_USER_SENT') {
+    if(action.type === 'SIGNIN_USER_PENDING') {
         return {
             ...state,
+            isAuth: true,
             status: 'pending'
         }
     }
-    if(action.type === "USER_DATA_RECEIVED") {
+    if(action.type === "SIGNIN_USER_SUCCESS") {
         return {
             ...state,
             status: 'logged In',

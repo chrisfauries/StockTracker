@@ -3,6 +3,7 @@ import { getUserData } from './userActions'
 export const signIn = (cred) => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
+        dispatch({type: "SIGNIN_USER_PENDING"});
         firebase.auth().signInWithEmailAndPassword(cred.email,cred.password).then(cred => {
             dispatch({type: "SIGNIN_USER_SUCCESS"});
             console.log(cred)
@@ -15,6 +16,7 @@ export const signIn = (cred) => {
 export const signOut = () => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
+        dispatch({ type: 'SIGNOUT_USER_PENDING'})
         firebase.auth().signOut().then(() => {
             dispatch({ type: 'SIGNOUT_USER'})
         })

@@ -19,7 +19,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const links = !this.props.auth.isEmpty ? (
+    const links = !this.props.authFB.isEmpty ? (
       <div onClick={ this.handleActive }>
       <NavLink to='/stocks' className='brand-logo'>Stock Tracker</NavLink>
       <ul className='right'>

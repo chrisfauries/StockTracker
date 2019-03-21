@@ -13,11 +13,11 @@ class SignUp extends Component {
     userName: ''
   }
 
-  componentDidUpdate() {
-    if(this.props.auth.isAuth) {
-      this.props.history.push('/stocks');
-    }
-  }
+  // componentDidUpdate() {
+  //   if(!this.props.authFB.isEmpty) {
+  //     this.props.history.push('/stocks');
+  //   }
+  // }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -80,7 +80,8 @@ class SignUp extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    authFB: state.firebase.auth
   }
 }
 

@@ -14,6 +14,7 @@ import shortid from 'shortid'
 class Cards extends Component {
 
   render() {
+    if (this.props.authFB.isEmpty) return <Redirect to='/' />
     const { stocks } = this.props;
     const stockList = stocks.length ? (
       stocks.map(stock => {
@@ -30,22 +31,17 @@ class Cards extends Component {
                   <i className="material-icons right">close</i>
                   <StockPurchases name = { stock.name } symbol={ stock.symbol }/>
                 </span>
-              </div>
-              
-            </div>
-            
-          </div>
-          
+              </div> 
+            </div>  
+          </div>   
         )
       })
     ) : (
           <div>Click the Plus Sign to add your first Stock!</div>
         )
-
-    // if (!this.props.auth) return <Redirect to='/' />
     
     return (
-      <div className='row' >
+      <div className='row'>
         { stockList }
         <AddStock />
       </div>  
@@ -56,7 +52,8 @@ class Cards extends Component {
 const mapStateToProps = (state) => {
   return {
     stocks: state.data.liveStockData,
-    auth: state.auth.isAuth
+    auth: state.auth.isAuth,
+    authFB: state.firebase.auth
   }
 }
 

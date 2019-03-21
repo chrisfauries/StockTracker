@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getUserData } from '../reducers/actions/getUserData'
 import styles from '../sass/SignIn.module.scss'
 import { signIn } from '../reducers/actions/authActions'
+import { NavLink, Redirect } from 'react-router-dom'
+import { getUserData } from '../reducers/actions/userActions'
 
 class SignIn extends Component {
   state = {
@@ -10,25 +11,11 @@ class SignIn extends Component {
     password: ''
   }
 
-  componentDidUpdate() {
-    console.log(this.props)
-    if(!this.props.authFB.isEmpty) {
-      // this.props.signIn(this.props.authFB.uid); <== need to do something differently if sign in is persistant.
-      this.props.history.push('/stocks');
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.signIn({ email: this.state.email, password: this.state.password })
+    this.props.signIn({ email: this.state.email, password: this.state.password });
+    this.props.history.push('/stocks');
   }
-    // Auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
-    //   if (cred.user) {
-    //     this.props.login(cred.user.uid);
-  //     }
-  //     // Do something on the page with login/password is incorrect
-  //   }).catch(err => {console.log(err.code, err.message)});
-  // }
 
   handleChange = (e) => {
     this.setState({
@@ -36,7 +23,8 @@ class SignIn extends Component {
     })
   }
   render() {
-    console.log(this.props.state)
+    if (this.props.authFB.uid) return ( <Redirect to='/stocks' /> )
+    
     return (
       <div className={styles.signIn}>
         <div className={`container ${styles.container}`}>
@@ -71,7 +59,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: (cred) => { dispatch(signIn(cred)) }
+    signIn: (cred) => { dispatch(signIn(cred)) },
+    getUserData: (uid) => { dispatch(getUserData(uid)) } 
+
   }
 }
 
