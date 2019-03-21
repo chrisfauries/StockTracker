@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { deleteStockAndData } from '../reducers/actions/deleteStockAndData'
+import { deleteStock } from '../reducers/actions/userActions'
 import trashcan from '../img/trash.png'
 import styles from '../sass/Cards.module.scss'
 
 function DeleteStock(props) {
 
     const handleClick = () => {
-        props.deleteStock(props.symbol, 'delete')
+        props.deleteStock(props.symbol, props.uid)
     }
 
     return (
@@ -17,10 +17,16 @@ function DeleteStock(props) {
     )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    uid: state.firebase.auth.uid
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteStock: (stock, type) => {dispatch(deleteStockAndData(stock, type))}
+        deleteStock: (stock, uid) => {dispatch(deleteStock(stock, uid))}
     }
 }
 
-export default connect(null, mapDispatchToProps)(DeleteStock)
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteStock)

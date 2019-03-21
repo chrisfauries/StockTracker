@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getUserData } from '../reducers/actions/getUserData'
 import { signUp } from '../reducers/actions/authActions'
 import styles from '../sass/SignUp.module.scss'
 import { Redirect } from 'react-router-dom'
@@ -80,7 +79,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signUp: (data) => { dispatch(signUp(data)) },
-    login: (uid) => { dispatch(getUserData(uid)) }
   }
 }
 

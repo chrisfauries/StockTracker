@@ -15,7 +15,6 @@ import { getUserData } from '../reducers/actions/userActions'
 class Cards extends Component {
 
   componentDidUpdate() {
-    console.log('update')
     if(this.props.authFB.uid && !this.props.status.requested) {
       this.props.getUserData(this.props.authFB.uid)
     }

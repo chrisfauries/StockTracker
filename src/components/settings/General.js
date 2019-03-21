@@ -33,7 +33,6 @@ class General extends Component {
     }
 
      updateData = () => {
-        console.log(this.state);
         this.props.updateData('UPDATE_GENERAL_SETTINGS', this.state)
     }
 

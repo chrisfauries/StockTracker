@@ -26,7 +26,6 @@ class Overview extends Component {
 
 
   render() {
-    console.log(this.props)
     const loaded = this.props.received === true ? (
        <div className="row container grey lighten-5 z-depth-1">
             <div className="col s6">

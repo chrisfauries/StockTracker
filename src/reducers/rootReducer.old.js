@@ -178,7 +178,6 @@ const rootReducer = (state=initState, action) => {
         let { symbol } = action
         let { id } = action
         const updateStocksPurchased = state.user.stocksPurchased[symbol].filter(item => item.id !== id)
-        console.log(updateStocksPurchased);
         return{
             user:{
                 ...state.user,

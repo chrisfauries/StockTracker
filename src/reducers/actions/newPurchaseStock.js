@@ -13,11 +13,9 @@ export const newPurchaseStock = (purchase, type) => {
             if(res.data === "Successfully Added") {
                 dispatch({type: 'USER_PURCHASES_UPDATED'})
             } else {
-                console.log(res);
             }
           })
           .catch(function (err) {
-            console.log(err);
           }); 
     }  
 }

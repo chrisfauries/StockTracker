@@ -4,7 +4,6 @@ export const getLiveStockData = (stocks) => {
         stocks.map(stock => { 
             fs.collection('Data').doc(stock).get()
             .then(res =>  {
-                console.log(res)
                 dispatch({type: 'CARD_DATA_RECEIVED', payload: res.data()});
                 dispatch({type: 'UPDATE_DATA_STATUS', length: stocks.length})
             })
@@ -20,7 +19,6 @@ export const getInterdayStockData = (stocks) => {
         stocks.map(stock => { 
             fs.collection('InterDay').doc(stock).get()
             .then(res =>  {
-                console.log(res.data())
                 var arr = []
                 Object.keys(res.data()).map(key => arr.push(res.data()[key]));
                 dispatch({type: 'CHART_DATA_UPDATED', payload: arr, stocksymbol: stock})

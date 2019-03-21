@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { addNewStockAndGetData } from '../reducers/actions/addNewStockAndGetData'
+import { addNewStock } from '../reducers/actions/userActions'
 import styles from '../sass/AddStock.module.scss'
 import { Input, Button, Modal, Icon } from 'react-materialize'
 
@@ -19,7 +19,7 @@ class AddStock extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         if (this.props.availableStocks.includes(this.state.newStock)){
-            return this.props.addStock(this.state.newStock, 'add')
+            return this.props.addStock(this.state.newStock, this.props.uid)
             }
         else{
             alert("Sorry, " + this.state.newStock + " is not available at this time.")
@@ -55,12 +55,13 @@ class AddStock extends Component {
 const mapStateToProps = (state) => {
   return {
     availableStocks: state.data.availableStocks,
+    uid: state.firebase.auth.uid
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addStock: (stock, type) => {dispatch(addNewStockAndGetData(stock, type))}
+        addStock: (stock, uid) => {dispatch(addNewStock(stock, uid))}
     }
 }
 

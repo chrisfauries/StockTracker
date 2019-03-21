@@ -29,7 +29,7 @@ const dataReducer = (state = initState, action) => {
             liveStockData: [...state.liveStockData, action.payload]
         }
     }
-    if(action.type === 'USER_STOCKS_DELETED'){
+    if(action.type === 'DELETED_STOCK_FROM_USER_STOCKLIST'){
         const newLiveData = state.liveStockData.filter(stock => stock.symbol !== action.stock)
         const liveChartData = state.liveChartData.filter(stock => stock[action.stock] === undefined)
         return {
