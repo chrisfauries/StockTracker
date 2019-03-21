@@ -7,10 +7,10 @@ function OverviewPie(props) {
     const { stocks } = props.data
     const { stocksPurchased } = props.data
     const { liveStockData } = props.data
-
     const dataPoints = stocks.map(stock => {
         var sum = 0;
         if(stocksPurchased[stock]) {
+            console.log(props.data)
             stocksPurchased[stock].map(item => { return sum += (liveStockData.find(item => item.symbol === stock).price * item.quantity) });
             return Number(sum.toFixed(2));
         } else { 

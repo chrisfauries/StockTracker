@@ -6,8 +6,10 @@ export const getLiveStockData = (stocks) => {
             .then(res =>  {
                 console.log(res)
                 dispatch({type: 'CARD_DATA_RECEIVED', payload: res.data()});
+                dispatch({type: 'UPDATE_DATA_STATUS', length: stocks.length})
             })
             .catch(err => dispatch({type: "ERROR_RECEIVING_LIVE_DATA", err: err}));
+
         })
     }
 }
