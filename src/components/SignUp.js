@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getUserData } from '../reducers/actions/getUserData'
-import { createNewUser } from '../reducers/actions/createNewUser'
+import { signUp } from '../reducers/actions/authActions'
 import styles from '../sass/SignUp.module.scss'
+import { Redirect } from 'react-router-dom'
 
 class SignUp extends Component {
   state = {
@@ -13,27 +14,16 @@ class SignUp extends Component {
     userName: ''
   }
 
-  // componentDidUpdate() {
-  //   if(!this.props.authFB.isEmpty) {
-  //     this.props.history.push('/stocks');
-  //   }
-  // }
-
   handleSubmit = (e) => {
     e.preventDefault();
-    // Auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
-    //   if (cred.user) {
-    //       var data = { 
-    //         firstName: this.state.firstName,
-    //         lastName: this.state.lastName,
-    //         userName: this.state.userName,
-    //         email: this.state.email,
-    //         uid: cred.user.uid,
-    //       };
-    //       this.props.createNewUser(data);
-    //   }
-      // Do something on the page if sign up is unsuccessful (user already exists, etc)
-    // }).catch(err => {console.log(err.code, err.message)});
+    var data = { 
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      userName: this.state.userName,
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.props.signUp(data);
   }
 
   handleChange = (e) => {
@@ -42,6 +32,8 @@ class SignUp extends Component {
     })
   }
   render() {
+
+    if (this.props.authFB.uid) return ( <Redirect to='/stocks' /> )
     return (
       <div className={styles.signUp}>
       <div className={`container ${styles.container}`}>
@@ -87,7 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createNewUser: (data) => { dispatch(createNewUser(data)) },
+    signUp: (data) => { dispatch(signUp(data)) },
     login: (uid) => { dispatch(getUserData(uid)) }
   }
 }

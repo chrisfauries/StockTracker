@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styles from '../sass/SignIn.module.scss'
 import { signIn } from '../reducers/actions/authActions'
-import { NavLink, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { getUserData } from '../reducers/actions/userActions'
 
 class SignIn extends Component {
