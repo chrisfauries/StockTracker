@@ -14,8 +14,10 @@ const initState = {
         chart: settings.chart,
         layout: settings.layout,
         other: settings.other
-    }, 
-    availableStocks: ['AMZN', 'MSFT', 'GOOG', 'TWLO', 'NFLX', 'FB', 'ADBE', 'SQ', 'SRPT', 'BABA', 'TSLA', 'SRPT', 'XLK', 'TNAV', 'APPS', 'AAPL', 'NXPI', 'SSCO', 'MCD', 'HD', 'XOM', 'BA', 'VZ', 'MRK', 'KO', 'V', 'DIS', 'NKE', 'WMT', 'JPM', 'TWTR', 'NBL', 'HES', 'GS', 'UNH', 'AXP', 'WBA', 'BAM', 'TXN', 'SBUX', 'DFS', 'CERN', 'CRM', 'CSX', 'ATVI', 'EXPE']
+    },
+    admin: {
+        availableStocks: ['AMZN', 'MSFT', 'GOOG', 'TWLO', 'NFLX', 'FB', 'ADBE', 'SQ', 'SRPT', 'BABA', 'TSLA', 'SRPT', 'XLK', 'TNAV', 'APPS', 'AAPL', 'NXPI', 'SSCO', 'MCD', 'HD', 'XOM', 'BA', 'VZ', 'MRK', 'KO', 'V', 'DIS', 'NKE', 'WMT', 'JPM', 'TWTR', 'NBL', 'HES', 'GS', 'UNH', 'AXP', 'WBA', 'BAM', 'TXN', 'SBUX', 'DFS', 'CERN', 'CRM', 'CSX', 'ATVI', 'EXPE']
+    }
 
 }
 

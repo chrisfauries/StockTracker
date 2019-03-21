@@ -39,9 +39,9 @@ class AddStock extends Component {
                         </div>
                             }
                     actions={
-                        <Button className='modal-close' waves='light modal-close' onClick={ this.handleSubmit }>Submit</Button>
+                        <Button className='modal-close' waves='light' onClick={ this.handleSubmit }>Submit</Button>
                     }>
-                    <i class={`material-icons right modal-close ${styles.cross}`}>close</i>
+                    <i className={`material-icons right modal-close ${styles.cross}`}>close</i>
                     <div className='container center-align'>
                         <h4 className='green-text'>Add Stock</h4>
                         <Input className={styles.input} type="text" id="newStock" placeholder="stock symbol" maxLength="5" onChange={ this.handleChange } />
@@ -54,7 +54,7 @@ class AddStock extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    availableStocks: state.availableStocks,
+    availableStocks: state.admin.availableStocks,
   }
 }
 
