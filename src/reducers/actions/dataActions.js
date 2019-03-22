@@ -10,7 +10,7 @@ export const getLiveStockData = (stocks) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const fs = getFirestore();
         stocks.map(stock => { 
-            fs.collection('Data').doc(stock).get()
+            fs.collection('Live').doc(stock).get()
             .then(res =>  {
                 dispatch({type: 'CARD_DATA_RECEIVED', payload: res.data()});
                 if(stocks.length > 1) {dispatch({type: 'UPDATE_DATA_STATUS_STOCK', length: stocks.length})}
