@@ -3,7 +3,7 @@ import OverviewPie from './OverviewPie'
 import OverviewList from './OverviewList'
 import { connect } from 'react-redux'
 import { getUserData } from '../reducers/actions/userActions'
-import { sumCostTotal, sumValueTotal, getGainLossTotal, getPctTotal } from '../logic/calc.js'
+import { sumCostTotal, sumValueTotal, getGainLossTotal, getPctTotal, getGainLossYTD, getPctYTD } from '../logic/calc.js'
 
 class Overview extends Component {
 
@@ -31,8 +31,10 @@ class Overview extends Component {
                 <h2 className='center-align'>Overview Stats</h2>
                 <h5 className='center-align'>Portfolio Cost: { sumCostTotal(this.props) }</h5>
                 <h5 className='center-align'>Portfolio Value: { sumValueTotal(this.props) }</h5>
-                <h5 className='center-align'>Gain/Loss: { getGainLossTotal() }</h5>
-                <h5 className='center-align'>Pct: { getPctTotal() }</h5>
+                <h5 className='center-align'>Overall Gain/Loss: { getGainLossTotal() }</h5>
+                <h5 className='center-align'>Overall % change: { getPctTotal() }</h5>
+                <h5 className='center-align'>Gain/Loss YTD: { getGainLossYTD(this.props) }</h5>
+                <h5 className='center-align'>% change YTD: { getPctYTD() }</h5>
             </div>
             <OverviewPie data={this.props} />
             <OverviewList data={this.props} />
@@ -56,7 +58,9 @@ const mapStateToProps = (state) => {
         status: state.user.requested,
         received: state.data.isAllStockDataReceived,
         liveStockData: state.data.liveStockData,
-        stocksPurchased: state.user.stocksPurchased
+        stocksPurchased: state.user.stocksPurchased,
+        historical: state.data.historicalData,
+        live: state.data.liveStockData
     }
 }
 

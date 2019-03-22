@@ -1,5 +1,7 @@
 let currentCost = 0;
 let currentValue = 0;
+let gainlossYTD = 0;
+let valueAtYTD = 0;
 
 
 export const sumCostTotal = (props) => {
@@ -40,3 +42,27 @@ export const getPctTotal = () => {
     }
 }
 
+export const getGainLossYTD = (props) => {
+    var year = new Date().getFullYear();
+    var overallChange = 0;
+    for(var key in props.stocksPurchased) {
+        if(props.historical.find(stock => stock[key])) {
+        var quantity= props.stocksPurchased[key].reduce(((sum, purchase) => {return sum + Number(purchase.quantity)}), 0);
+        var currentStockPrice = props.live.find(stock => stock.symbol === key).price;
+        var priceAtYearStart = props.historical.find(stock => stock[key] !== undefined)[key].find(day => day.date === `01-01-${year}` || day.date === `01-02-${year}` || day.date === `01-03-${year}`).price;
+        overallChange += ((currentStockPrice - priceAtYearStart) * quantity);
+        valueAtYTD += priceAtYearStart * quantity;
+            console.log(valueAtYTD, currentValue)
+        }
+    }
+    gainlossYTD = `$${overallChange.toFixed(2)}`
+    return gainlossYTD;
+}
+
+export const getPctYTD = () => {
+    if(currentValue / currentCost) {
+        return Number((currentValue / valueAtYTD) * 100).toFixed(2) + '%';
+    } else {
+        return '0%';
+    } 
+}
