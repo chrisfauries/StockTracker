@@ -8,6 +8,7 @@ import Preview from './components/Preview'
 import Overview from './components/Overview'
 import Settings from './components/settings/Settings'
 import SubMenu from './components/settings/SubMenu'
+import { loadAvailableStocks } from './reducers/actions/dataActions'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { RingLoader } from 'react-spinners'
 import { connect } from 'react-redux'
@@ -19,7 +20,11 @@ class App extends Component {
   componentDidUpdate() {
     (status) ? (this.refs.Overlay.style.display = 'block') : (this.refs.Overlay.style.display = 'none');
     (status) ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'visible');
+    if(!this.props.data.availableStocks.length) {
+      this.props.loadAvailableStocks();
+    }
   }
+
 
   render() {
     const { data } = this.props
@@ -58,4 +63,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadAvailableStocks: () => {dispatch(loadAvailableStocks())}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

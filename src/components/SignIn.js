@@ -25,6 +25,7 @@ class SignIn extends Component {
     let message = this.props.auth.error ? (this.props.auth.status) : ('')
     const { data } = this.props
     if (data.isAllStockDataReceived && data.isAllChartDataReceived && data.isAllHistoricalDataReceived) return ( <Redirect to='/stocks' /> )
+    if (this.props.authFB.uid && !this.props.status.requested) return ( <Redirect to='/stocks' /> )
     return (
       <div className={styles.signIn}>
         <div className={`container ${styles.container}`}>
@@ -55,7 +56,8 @@ const mapStateToProps = (state) => {
     state: state,
     auth: state.auth,
     authFB: state.firebase.auth,
-    data: state.data
+    data: state.data,
+    status: state.user
   }
 }
 

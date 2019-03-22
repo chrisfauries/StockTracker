@@ -1,3 +1,11 @@
+export const loadAvailableStocks = () => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const fs = getFirestore();
+        fs.collection('Admin').doc('StockList').get()
+        .then(res => dispatch({type: "LOAD_AVAILABLE_STOCK_LIST", list: res.data().stocks}))
+    }
+}
+
 export const getLiveStockData = (stocks) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const fs = getFirestore();
