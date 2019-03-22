@@ -17,6 +17,13 @@
             padding: 10px 20px 50px 20px;
         }
 
+        .error {
+            text-align: center;
+            color: red;
+            font-size: 16px;
+            padding-bottom: 10px;
+        }
+
         .btnDiv {
             width: 100%;
             display: flex;
@@ -34,3 +41,4 @@
     0% { opacity:0; }
     100% { opacity:1; }
 }
+

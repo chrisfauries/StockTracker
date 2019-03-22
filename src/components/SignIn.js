@@ -4,13 +4,11 @@ import styles from '../sass/SignIn.module.scss'
 import { signIn } from '../reducers/actions/authActions'
 import { Redirect } from 'react-router-dom'
 import { getUserData } from '../reducers/actions/userActions'
-import { RingLoader } from 'react-spinners'
 
 class SignIn extends Component {
   state = {
     email: '',
-    password: '',
-    loading: false
+    password: ''
   }
 
   handleSubmit = (e) => {
@@ -24,6 +22,7 @@ class SignIn extends Component {
     })
   }
   render() {
+    let message = this.props.auth.error ? (this.props.auth.status) : ('')
     const { data } = this.props
     if (data.isAllStockDataReceived && data.isAllChartDataReceived && data.isAllHistoricalDataReceived) return ( <Redirect to='/stocks' /> )
     return (
@@ -39,6 +38,7 @@ class SignIn extends Component {
               <label htmlFor="password">Password</label>
               <input type="password" id="password" onChange={ this.handleChange }/>
             </div>
+            <div className={ styles.error }>{ message }</div>
             <div className={styles.btnDiv}>
               <button className='btn red lighten-1 center-align'>Login</button>
             </div>

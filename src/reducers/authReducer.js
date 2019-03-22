@@ -1,5 +1,6 @@
 const initState = {
     status: 'logged Out',
+    error: false,
     isAuth: false,
     uid: ''
 }
@@ -9,6 +10,7 @@ const authReducer = (state = initState, action) => {
         return {
             ...state,
             isAuth: true,
+            error: false,
             status: 'pending'
         }
     }
@@ -26,8 +28,15 @@ const authReducer = (state = initState, action) => {
     if(action.type === "NEW_USER_CREATED") {
         return state; 
     }
-    if(action.type === "LOGIN_USER_ERROR") {
-        return state;
+    if(action.type === "ERROR_SIGNING_IN_USER") {
+        var message = (action.err.code === 'auth/user-not-found') ? 'Account does not exist. Please try a different email address or Sign up.' :
+                      (action.err.code === 'auth/wrong-password') ? 'Incorrect Password. Please try again.' : 
+                      (action.err.code === 'auth/too-many-requests') ? 'Too many Attempts. Please try again later.' : 'Unknown Error. Please try again.'
+        return {
+            ...state,
+            error: true,
+            status: message
+        }
     }
     if(action.type === "SIGNOUT_USER") {
         return initState;
