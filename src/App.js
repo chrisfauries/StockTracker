@@ -11,7 +11,6 @@ import SubMenu from './components/settings/SubMenu'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 class App extends Component {
-
   render() {
     return (
       <BrowserRouter>
@@ -32,4 +31,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

@@ -1,9 +1,9 @@
 export const settings = {
 
     general: {
-        firstName: 'Chris',
-        lastName: 'Fauries',
-        userName: 'CJFizzle',
+        firstName: '',
+        lastName: '',
+        userName: '',
     },
 
     chart: {  

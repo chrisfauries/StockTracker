@@ -80,7 +80,7 @@ class CardChart extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    liveChartData: state.user.liveChartData
+    liveChartData: state.data.liveChartData
   }
 }
   

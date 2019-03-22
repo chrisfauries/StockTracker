@@ -4,14 +4,31 @@ import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
-import { NavLink, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import DeleteStock from './DeleteStock'
 import StockPurchases from './StockPurchases'
 import shortid from 'shortid'
+import { getUserData } from '../reducers/actions/userActions'
 
 
 
 class Cards extends Component {
+
+  componentDidUpdate() {
+    if(this.props.authFB.uid && !this.props.status.requested) {
+      this.props.getUserData(this.props.authFB.uid)
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(
+      function() {
+        if (this.props.authFB.isEmpty) this.props.history.push('/')
+      }
+      .bind(this),
+      1000
+    );
+  }
 
   render() {
     const { stocks } = this.props;
@@ -30,22 +47,17 @@ class Cards extends Component {
                   <i className="material-icons right">close</i>
                   <StockPurchases name = { stock.name } symbol={ stock.symbol }/>
                 </span>
-              </div>
-              
-            </div>
-            
-          </div>
-          
+              </div> 
+            </div>  
+          </div>   
         )
       })
     ) : (
           <div>Click the Plus Sign to add your first Stock!</div>
         )
-
-    if (!this.props.auth) return <Redirect to='/' />
     
     return (
-      <div className='row' >
+      <div className='row'>
         { stockList }
         <AddStock />
       </div>  
@@ -55,9 +67,17 @@ class Cards extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    stocks: state.user.liveStockData,
-    auth: state.user.isAuth
+    status: state.user,
+    stocks: state.data.liveStockData,
+    auth: state.auth.isAuth,
+    authFB: state.firebase.auth
   }
 }
 
-export default connect(mapStateToProps)(Cards)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUserData: (uid) => {dispatch(getUserData(uid))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cards)

@@ -40,7 +40,7 @@ class PurchaseNewStock extends Component {
                         <Button className="modal-close" waves='light' onClick={ this.handleSubmit }>Submit</Button>
                     }
                 >
-                    <i style={{cursor: 'pointer'}} class="material-icons right modal-close">close</i>
+                    <i style={{cursor: 'pointer'}} className="material-icons right modal-close">close</i>
                     <h4 className='green-text center-align'>Add Stock</h4>
                     <Row className='container center-align'>
                         <h5 id={ this.props.symbol }>{ this.props.name }</h5>

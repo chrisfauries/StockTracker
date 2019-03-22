@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import Auth from '../firebase/Auth'
 import { connect } from 'react-redux'
-import { getUserData } from '../reducers/actions/getUserData'
 import styles from '../sass/SignIn.module.scss'
+import { signIn } from '../reducers/actions/authActions'
+import { Redirect } from 'react-router-dom'
+import { getUserData } from '../reducers/actions/userActions'
 
 class SignIn extends Component {
   state = {
@@ -10,21 +11,10 @@ class SignIn extends Component {
     password: ''
   }
 
-  componentDidUpdate() {
-    if(this.props.auth.isAuth) {
-      this.props.history.push('/stocks');
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
-
-    Auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(cred => {
-      if (cred.user) {
-        this.props.login(cred.user.uid);
-      }
-      // Do something on the page with login/password is incorrect
-    }).catch(err => {console.log(err.code, err.message)});
+    this.props.signIn({ email: this.state.email, password: this.state.password });
+    this.props.history.push('/stocks');
   }
 
   handleChange = (e) => {
@@ -33,6 +23,8 @@ class SignIn extends Component {
     })
   }
   render() {
+    if (this.props.authFB.uid) return ( <Redirect to='/stocks' /> )
+    
     return (
       <div className={styles.signIn}>
         <div className={`container ${styles.container}`}>
@@ -59,13 +51,17 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.user
+    state: state,
+    auth: state.auth,
+    authFB: state.firebase.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (uid) => { dispatch(getUserData(uid)) }
+    signIn: (cred) => { dispatch(signIn(cred)) },
+    getUserData: (uid) => { dispatch(getUserData(uid)) } 
+
   }
 }
 

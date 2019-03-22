@@ -2,12 +2,31 @@ import React, { Component } from 'react'
 import OverviewPie from './OverviewPie'
 import OverviewList from './OverviewList'
 import { connect } from 'react-redux'
+import { getUserData } from '../reducers/actions/userActions'
 import { sumCostTotal, sumValueTotal, getGainLossTotal, getPctTotal } from '../logic/calc.js'
 
 class Overview extends Component {
 
+  componentDidUpdate() {
+    
+    if(this.props.authFB.uid && !this.props.status) {
+      this.props.getUserData(this.props.authFB.uid)
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(
+      function() {
+        if (this.props.authFB.isEmpty) this.props.history.push('/')
+      }
+      .bind(this),
+      1000
+    );
+  }
+
+
   render() {
-    return (
+    const loaded = this.props.received === true ? (
        <div className="row container grey lighten-5 z-depth-1">
             <div className="col s6">
                 <h2 className='center-align'>Overview Stats</h2>
@@ -18,18 +37,34 @@ class Overview extends Component {
             </div>
             <OverviewPie data={this.props} />
             <OverviewList data={this.props} />
-        </div>    
+        </div> 
+    ) : (
+        <div>Loading...</div>      
     )
+       return (
+         <div>
+         { loaded }
+         </div>
+        
+       )
   }
 }
 
 const mapStateToProps = (state) => {
     return {
+        authFB: state.firebase.auth,
         stocks: state.user.stocks,
-        liveStockData: state.user.liveStockData,
+        status: state.user.requested,
+        received: state.data.isAllStockDataReceived,
+        liveStockData: state.data.liveStockData,
         stocksPurchased: state.user.stocksPurchased
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUserData: (uid) => {dispatch(getUserData(uid))}
+    }
+}
 
-export default connect(mapStateToProps)(Overview)
+export default connect(mapStateToProps, mapDispatchToProps)(Overview)
