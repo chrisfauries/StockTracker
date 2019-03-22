@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addNewStock } from '../reducers/actions/userActions'
 import styles from '../sass/AddStock.module.scss'
-import { Input, Button, Modal, Icon } from 'react-materialize'
+import { Input, Button, Modal } from 'react-materialize'
 
 class AddStock extends Component {
 
@@ -19,8 +19,12 @@ class AddStock extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         if (this.props.availableStocks.includes(this.state.newStock)){
-            return this.props.addStock(this.state.newStock, this.props.uid)
+            if(this.props.stocks.includes(this.state.newStock)){
+                alert("you already have this card listed")
             }
+            else{
+                return this.props.addStock(this.state.newStock, this.props.uid)
+            }}
         else{
             alert("Sorry, " + this.state.newStock + " is not available at this time.")
         }
@@ -55,7 +59,8 @@ class AddStock extends Component {
 const mapStateToProps = (state) => {
   return {
     availableStocks: state.data.availableStocks,
-    uid: state.firebase.auth.uid
+    uid: state.firebase.auth.uid,
+    stocks: state.user.stocks
   }
 }
 

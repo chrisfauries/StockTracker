@@ -23,10 +23,10 @@ const userReducer = (state = initState, action) => {
             stocksPurchased: action.data.PurchasedStock,
         } 
     }
-    if(action.type === "ADD_STOCK") {
+    if(action.type === "ADDING_STOCK_TO_USER_STOCKLIST") {
         return {
             ...state,
-            stocks: [...state.stocks, action.chart]
+            stocks: [...state.stocks, action.stock]
         } 
     }
     if(action.type === 'USER_STOCKS_ADDED'){
