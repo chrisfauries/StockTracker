@@ -28,7 +28,7 @@ class CardChart extends Component {
       }
     })
 
-    console.log(labels[50] - 12)
+    // console.log(labels[50] - 12)
 
     var chartData = {
       labels: times,

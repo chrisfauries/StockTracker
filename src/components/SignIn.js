@@ -4,17 +4,18 @@ import styles from '../sass/SignIn.module.scss'
 import { signIn } from '../reducers/actions/authActions'
 import { Redirect } from 'react-router-dom'
 import { getUserData } from '../reducers/actions/userActions'
+import { RingLoader } from 'react-spinners'
 
 class SignIn extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    loading: false
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.signIn({ email: this.state.email, password: this.state.password });
-    this.props.history.push('/stocks');
   }
 
   handleChange = (e) => {
@@ -23,8 +24,8 @@ class SignIn extends Component {
     })
   }
   render() {
-    if (this.props.authFB.uid) return ( <Redirect to='/stocks' /> )
-    
+    const { data } = this.props
+    if (data.isAllStockDataReceived && data.isAllChartDataReceived && data.isAllHistoricalDataReceived) return ( <Redirect to='/stocks' /> )
     return (
       <div className={styles.signIn}>
         <div className={`container ${styles.container}`}>
@@ -53,7 +54,8 @@ const mapStateToProps = (state) => {
   return {
     state: state,
     auth: state.auth,
-    authFB: state.firebase.auth
+    authFB: state.firebase.auth,
+    data: state.data
   }
 }
 

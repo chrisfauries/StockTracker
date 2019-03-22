@@ -9,9 +9,25 @@ import Overview from './components/Overview'
 import Settings from './components/settings/Settings'
 import SubMenu from './components/settings/SubMenu'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { RingLoader } from 'react-spinners'
+import { connect } from 'react-redux'
+
+let status = false;
 
 class App extends Component {
+
+  componentDidUpdate() {
+    (status) ? (this.refs.Overlay.style.display = 'block') : (this.refs.Overlay.style.display = 'none');
+    (status) ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'visible');
+  }
+
+
   render() {
+    const { data } = this.props
+    status = (!data.isAllStockDataReceived || 
+                 !data.isAllChartDataReceived || 
+                 !data.isAllHistoricalDataReceived) &&
+                 this.props.user.requested
     return (
       <BrowserRouter>
         <div className={ styles.app }>
@@ -25,10 +41,22 @@ class App extends Component {
             <Route exact path="/settings" component={ Settings } />
             <Route path='/settings/:sub_menu' component={ SubMenu } />
           </Switch>
+          <div className= {styles.loadingOverlay} ref='Overlay'> 
+            <div className= {styles.loading}>
+              <RingLoader sizeUnit={"px"} size={150} color={'#FFFFFF'} loading={ status }/>
+            </div>
+          </div>
         </div>
       </BrowserRouter>
     );
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    data: state.data,
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(App)

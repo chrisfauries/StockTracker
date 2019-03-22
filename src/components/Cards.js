@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import styles from '../sass/Cards.module.scss'
+import styles from '../sass/Cards.module.scss'
 import CardHeader from './CardHeader'
 import CardChart from './CardChart'
 import { connect } from 'react-redux'
@@ -9,6 +9,7 @@ import DeleteStock from './DeleteStock'
 import StockPurchases from './StockPurchases'
 import shortid from 'shortid'
 import { getUserData } from '../reducers/actions/userActions'
+
 
 
 
@@ -26,7 +27,7 @@ class Cards extends Component {
         if (this.props.authFB.isEmpty) this.props.history.push('/')
       }
       .bind(this),
-      1000
+      500
     );
   }
 
@@ -53,14 +54,16 @@ class Cards extends Component {
         )
       })
     ) : (
-          <div>Click the Plus Sign to add your first Stock!</div>
+          <div></div>
         )
     
-    return (
+      return this.props.received ? (
       <div className='row'>
         { stockList }
         <AddStock />
       </div>  
+    ) : (
+      <div></div>
     )
   }
 }
@@ -70,7 +73,8 @@ const mapStateToProps = (state) => {
     status: state.user,
     stocks: state.data.liveStockData,
     auth: state.auth.isAuth,
-    authFB: state.firebase.auth
+    authFB: state.firebase.auth,
+    received: state.data.isAllStockDataReceived
   }
 }
 

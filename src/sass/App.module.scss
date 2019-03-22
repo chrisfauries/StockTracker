@@ -3,3 +3,27 @@
     height: 100%;
     font-family: Garamond;
 }
+
+.loadingOverlay {
+    background-color: rgb(31, 24, 24);
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    overflow: auto;
+    width:100%;
+    text-align: center;
+    z-index: 1000;
+    opacity: .5;
+}
+
+.loading div {
+    position: absolute;
+    top: 175px;
+    text-align: center;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}

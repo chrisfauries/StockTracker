@@ -23,8 +23,7 @@ class Overview extends Component {
       1000
     );
   }
-
-
+  
   render() {
     const loaded = this.props.received === true ? (
        <div className="row container grey lighten-5 z-depth-1">
@@ -39,7 +38,7 @@ class Overview extends Component {
             <OverviewList data={this.props} />
         </div> 
     ) : (
-        <div>Loading...</div>      
+        <div></div>      
     )
        return (
          <div>

@@ -17,7 +17,7 @@ export const signOut = () => {
         const firebase = getFirebase();
         dispatch({ type: 'SIGNOUT_USER_PENDING'})
         firebase.auth().signOut().then(() => {
-            dispatch({ type: 'SIGNOUT_USER'})
+            setTimeout(() => {dispatch({ type: 'SIGNOUT_USER'})},300)
         })
         .catch(err => dispatch({type: "ERROR_SIGNING_OUT_USER", err: err}));
     }

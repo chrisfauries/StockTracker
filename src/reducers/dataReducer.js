@@ -9,14 +9,45 @@ const initState = {
 }
 
 const dataReducer = (state = initState, action) => {
-    if(action.type === "UPDATE_DATA_STATUS") {
+    if(action.type === "UPDATE_DATA_STATUS_CHART") {
+        if(action.length === state.liveChartData.length) {
+            return {
+                ...state,
+                isAllChartDataReceived: true
+            }
+        } else {
+            return {
+                ...state,
+                isAllChartDataReceived: false
+            }
+        }
+    }
+    if(action.type === "UPDATE_DATA_STATUS_STOCK") {
         if(action.length === state.liveStockData.length) {
             return {
                 ...state,
                 isAllStockDataReceived: true
             }
+        } else {
+            return {
+                ...state,
+                isAllStockDataReceived: false
+            }
         }
     }
+    if(action.type === "UPDATE_DATA_STATUS_HISTORICAL") {
+        if(action.length === state.historicalData.length) {
+            return {
+                ...state,
+                isAllHistoricalDataReceived: true
+            }
+        } else {
+            return {
+                ...state,
+                isAllHistoricalDataReceived: false
+            }
+        }
+    }    
     if(action.type === "SIGNOUT_USER") {
         return initState;
     }

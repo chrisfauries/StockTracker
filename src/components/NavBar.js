@@ -13,7 +13,7 @@ class NavBar extends Component {
         this.props.history.push('/')
       }
       .bind(this),
-      200
+      300
     );  
   }
 
