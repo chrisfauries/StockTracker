@@ -31,6 +31,7 @@ export const addNewStock = (stock, uid) => {
             dispatch({type: "ADDED_STOCK_TO_USER_STOCKLIST"})
             dispatch(getLiveStockData([stock]));
             dispatch(getInterdayStockData([stock]));
+            dispatch(getHistoricalStockData([stock]));
         })
       .catch(err => dispatch({type: "ERROR_ADD_STOCK_TO_USER", err: err}));
       }

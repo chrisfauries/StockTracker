@@ -84,14 +84,23 @@ const userReducer = (state = initState, action) => {
         let { symbol } = action
         let { id } = action
         const updateStocksPurchased = state.stocksPurchased[symbol].filter(item => item.id !== id)
-        return{
-            ...state,
-            stocksPurchased:{
-                ...state.stocksPurchased,
-                [symbol]: updateStocksPurchased
-                    
+        if(updateStocksPurchased.length) {
+            return{
+                ...state,
+                stocksPurchased:{
+                    ...state.stocksPurchased,
+                    [symbol]: updateStocksPurchased
+                        
+                }
             }
-        }
+        } else {
+           var removeAllPurchases =  state.stocksPurchased
+           delete removeAllPurchases[symbol]
+           return {
+                ...state,
+                stocksPurchased: removeAllPurchases
+           }
+        }  
     }
     return state
 }
