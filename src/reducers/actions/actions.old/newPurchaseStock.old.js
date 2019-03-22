@@ -1,8 +1,8 @@
 // import axios from 'axios'
 
-// export const deletePurchase = (id, symbol, type) => {
+// export const newPurchaseStock = (purchase, type) => {
 //     return (dispatch, getState) => {
-//         dispatch({id:id, symbol:symbol, type: type});
+//         dispatch({purchase: purchase, type: type});
 //         const uid = getState().auth.uid;
 //         const stocksPurchased = getState().user.stocksPurchased
 //         axios.post('https://us-central1-stock-tracker-d5b73.cloudfunctions.net/updateUserPurchases', {
@@ -19,3 +19,8 @@
 //           }); 
 //     }  
 // }
+
+// fs.collection('Users').doc(data.uid).update({PurchasedStock: data.purchase})
+//       .catch(function(error) {
+//         return res.send(error);
+//       });

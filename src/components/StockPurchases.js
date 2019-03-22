@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { Row, Input, Button, Modal, Col } from 'react-materialize'
-import { deletePurchase } from '../reducers/actions/deletePurchase'
+import { Row, Button, Modal, Col } from 'react-materialize'
+import { deletePurchase } from '../reducers/actions/userActions'
 import PurchaseNewStock from './PurchaseNewStock'
 import styles from '../sass/StockPurchases.module.scss'
 
 class StockPurchases extends Component {
 
     handleSubmit = (id, symbol) => {
-        this.props.deletePurchase(id, symbol, 'DELETE_PURCHASE')
+        this.props.deletePurchase(id, symbol)
     }
     
     render() {
-
         const purchased = this.props.stocksPurchased
         const symbol = this.props.symbol
         const allStocks =  (purchased[symbol] && purchased[symbol].length !== 0) ? (
@@ -52,8 +50,8 @@ class StockPurchases extends Component {
                 ) : ( 
                 <div></div> 
                 )
-        
-        // if (!this.props.auth) return <Redirect to='/' />
+    
+
         return (
             <div>
                  <div className="title blue-text center-align">{ this.props.name }</div>
@@ -69,14 +67,13 @@ class StockPurchases extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    stocksPurchased: state.user.stocksPurchased,
-    auth: state.auth.isAuth
+    stocksPurchased: state.user.stocksPurchased
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
         return {
-            deletePurchase: (id, symbol, type) => {dispatch(deletePurchase(id, symbol, type))}
+            deletePurchase: (id, symbol) => {dispatch(deletePurchase(id, symbol))}
         }
     }
 
