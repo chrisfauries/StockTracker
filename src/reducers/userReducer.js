@@ -46,7 +46,7 @@ const userReducer = (state = initState, action) => {
             stocks: newStocks,
         }
     }
-    if(action.type==='ADD_PURCHASE'){
+    if(action.type==='ADDING_NEW_PURCHASE_TO_USER'){
         let purchase = action.purchase
         if (state.stocksPurchased[purchase.symbol]){
         return {
@@ -80,7 +80,7 @@ const userReducer = (state = initState, action) => {
             }
         }
     }
-    if(action.type==='DELETE_PURCHASE'){
+    if(action.type==='DELETING_PURCHASE_FROM_USER'){
         let { symbol } = action
         let { id } = action
         const updateStocksPurchased = state.stocksPurchased[symbol].filter(item => item.id !== id)

@@ -50,8 +50,31 @@ export const deleteStock = (stock, uid) => {
     }
 }
 
-
-
+export const addPurchase = (purchase, uid) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        dispatch({type: 'ADDING_NEW_PURCHASE_TO_USER', purchase: purchase})
+        dispatch({type: "NEW_PURCHASE_ADDED", purchase: purchase});
+        const fs = getFirestore();
+        const allPurchases = getState().user.stocksPurchased;
+        fs.collection('Users').doc(uid).update({PurchasedStock: allPurchases})
+        .then(res => dispatch({type: 'USER_PURCHASES_UPDATED'}))
+        .catch(err => dispatch({type: "ERROR_ADDING_PURCHASE_FROM_USER", err: err}));   
+    }
+  }    
+        
+  export const deletePurchase = (id, symbol) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        dispatch({type: 'DELETING_PURCHASE_FROM_USER', id:id, symbol:symbol})
+        dispatch({type: 'DELETED_PURCHASE_FROM_USER', id:id, symbol:symbol});
+        const fs = getFirestore();
+        const uid = getState().firebase.auth.uid;
+        const allPurchases = getState().user.stocksPurchased;
+        console.log(allPurchases)
+        fs.collection('Users').doc(uid).update({PurchasedStock: allPurchases})
+        .then(res => dispatch({type: 'USER_PURCHASES_UPDATED'}))
+        .catch(err => dispatch({type: "ERROR_DELETING_PURCHASE_FROM_USER", err: err}));
+    }  
+}
 
 export const deleteAllStockPurchases = (stock, uid) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {

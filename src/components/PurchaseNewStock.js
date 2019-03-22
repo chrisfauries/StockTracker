@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Row, Input, Button, Modal } from 'react-materialize'
-import { newPurchaseStock } from '../reducers/actions/newPurchaseStock'
+import { addPurchase } from '../reducers/actions/userActions'
 
 class PurchaseNewStock extends Component {
 
@@ -23,7 +23,7 @@ class PurchaseNewStock extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.newPurchase(this.state, 'ADD_PURCHASE')
+        this.props.addPurchase(this.state, this.props.authFB.uid)
     }
 
     render() {
@@ -52,11 +52,18 @@ class PurchaseNewStock extends Component {
             </div>
         )
     }
-    }
-    const mapDispatchToProps = (dispatch) => {
-        return {
-            newPurchase: (purchase, type) => {dispatch(newPurchaseStock(purchase, type))}
-        }
-    }
+}
 
-export default connect(null, mapDispatchToProps)(PurchaseNewStock)
+const mapStateToProps = (state) => {
+  return {
+    authFB: state.firebase.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addPurchase: (purchase, uid) => {dispatch(addPurchase(purchase, uid))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PurchaseNewStock)
