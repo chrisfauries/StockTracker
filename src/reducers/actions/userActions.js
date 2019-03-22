@@ -21,7 +21,7 @@ export const getUserData = (uid) => {
 export const addNewStock = (stock, uid) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const fs = getFirestore();
-        dispatch({type: 'ADDING_STOCK_TO_USER_STOCKLIST'})
+        dispatch({stock: stock, type: 'ADDING_STOCK_TO_USER_STOCKLIST'})
         fs.collection('Users').doc(uid).update({  
         stocks: firebase.firestore.FieldValue.arrayUnion(stock)
       })
