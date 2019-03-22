@@ -41,6 +41,7 @@ class Cards extends Component {
               <div className='card-content black-text activator'>
                 <CardHeader stock={ stock } />
                 <CardChart symbol={ stock.symbol } />
+                <p>30 day, today</p>
                 <DeleteStock symbol={ stock.symbol } />
               </div>
               <div className='card-reveal green lighten-5'>

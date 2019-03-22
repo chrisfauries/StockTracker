@@ -6,32 +6,43 @@ class CardChart extends Component {
   
   render() {
 
+    // const { symbol } = this.props
+    // var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
+    // const labels = [];
+    // const priceArray = [];
+    // if(stocks !== undefined) {
+    //   stocks[symbol].forEach(stock => {
+    //       priceArray.push(stock.price)
+    //       labels.push(stock.time)
+    // })
+
     const { symbol } = this.props
-    var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
+    var stocks = this.props.historicalData.find(stock =>  stock[symbol])
     const labels = [];
     const priceArray = [];
     if(stocks !== undefined) {
       stocks[symbol].forEach(stock => {
           priceArray.push(stock.price)
-          labels.push(stock.time)
+          labels.push(stock.date)
     })
+    console.log(priceArray, labels)
     
-    var times = [];
+    // var times = [];
 
-    labels.map(label => {
-      var splitString = label.split(":")
-      if (splitString[0] > 12){
-        times.push((splitString[0]-12) + ":" + splitString[1])
-      }
-      else{
-        times.push(label)
-      }
-    })
+    // labels.map(label => {
+    //   var splitString = label.split(":")
+    //   if (splitString[0] > 12){
+    //     times.push((splitString[0]-12) + ":" + splitString[1])
+    //   }
+    //   else{
+    //     times.push(label)
+    //   }
+    // })
 
     // console.log(labels[50] - 12)
 
     var chartData = {
-      labels: times,
+      labels: labels,
       datasets:[
         {
           label: symbol,
@@ -80,7 +91,8 @@ class CardChart extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    liveChartData: state.data.liveChartData
+    liveChartData: state.data.liveChartData,
+    historicalData: state.data.historicalData
   }
 }
   
