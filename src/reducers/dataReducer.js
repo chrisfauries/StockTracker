@@ -89,6 +89,18 @@ const dataReducer = (state = initState, action) => {
             historicalData: [...state.historicalData, data]
         }
     }
+    if(action.type === 'ERROR_RECEIVING_CHART_DATA'){
+        return {
+            ...state,
+            liveChartData: [...state.liveChartData, {[action.stock] : null}]
+        }
+    }
+    if(action.type === 'ERROR_RECEIVING_HISTORICAL_DATA'){
+        return {
+            ...state,
+            historicalData: [...state.historicalData, {[action.stock] : null}]
+        }
+    }
     return state
 }
 

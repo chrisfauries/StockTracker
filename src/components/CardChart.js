@@ -67,7 +67,7 @@ class CardChart extends Component {
           options={ options }
         />
     ): (
-      <div></div>
+      <div className='center-align black-text' style={{paddingTop: '80px'}}>No Chart Available for this Stock</div>
     )
     
     return (

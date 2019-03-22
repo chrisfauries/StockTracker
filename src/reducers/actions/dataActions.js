@@ -2,7 +2,7 @@ export const loadAvailableStocks = () => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const fs = getFirestore();
         fs.collection('Admin').doc('StockList').get()
-        .then(res => dispatch({type: "LOAD_AVAILABLE_STOCK_LIST", list: res.data().stocks}))
+        .then(res => dispatch({type: "LOAD_AVAILABLE_STOCK_LIST", list: res.data().liveStocks}))
     }
 }
 
@@ -32,7 +32,10 @@ export const getInterdayStockData = (stocks) => {
                 dispatch({type: 'CHART_DATA_UPDATED', payload: arr, stocksymbol: stock})
                 if(stocks.length > 1) {dispatch({type: 'UPDATE_DATA_STATUS_CHART', length: stocks.length})}
             })
-            .catch(err => dispatch({type: "ERROR_RECEIVING_INTERDAY_DATA", err: err}));
+            .catch(err => {
+                dispatch({type: "ERROR_RECEIVING_CHART_DATA", err: err, stock: stock })
+                if(stocks.length > 1) {dispatch({type: 'UPDATE_DATA_STATUS_CHART', length: stocks.length})}
+            });
         })
     }
 }
@@ -49,7 +52,10 @@ export const getHistoricalStockData = (stocks) => {
                 dispatch({type: 'HISTORICAL_DATA_UPDATED', payload: arr, stocksymbol: stock})
                     if(stocks.length > 1) {dispatch({type: 'UPDATE_DATA_STATUS_HISTORICAL', length: stocks.length})}
             })
-            .catch(err => dispatch({type: "ERROR_RECEIVING_HISTORICAL_DATA", err: err}));
+            .catch(err => {
+                dispatch({type: "ERROR_RECEIVING_HISTORICAL_DATA", err: err, stock: stock })
+                if(stocks.length > 1) {dispatch({type: 'UPDATE_DATA_STATUS_HISTORICAL', length: stocks.length})}
+            });
         })
     }
 }
