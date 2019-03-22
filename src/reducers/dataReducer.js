@@ -45,6 +45,13 @@ const dataReducer = (state = initState, action) => {
             liveChartData: [...state.liveChartData, data]
         }
     }
+    if(action.type === 'HISTORICAL_DATA_UPDATED'){
+        let data = {[action.stocksymbol]: action.payload}
+        return {
+            ...state,
+            historicalData: [...state.historicalData, data]
+        }
+    }
     return state
 }
 

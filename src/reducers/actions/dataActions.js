@@ -27,3 +27,19 @@ export const getInterdayStockData = (stocks) => {
         })
     }
 }
+
+
+export const getHistoricalStockData = (stocks) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const fs = getFirestore();
+        stocks.map(stock => { 
+            fs.collection('Historical').doc(stock).get()
+            .then(res =>  {
+                var arr = []
+                Object.keys(res.data()).map(key => arr.push(res.data()[key]));
+                dispatch({type: 'HISTORICAL_DATA_UPDATED', payload: arr, stocksymbol: stock})
+            })
+            .catch(err => dispatch({type: "ERROR_RECEIVING_HISTORICAL_DATA", err: err}));
+        })
+    }
+}

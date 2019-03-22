@@ -1,4 +1,4 @@
-import { getLiveStockData, getInterdayStockData } from './dataActions'
+import { getLiveStockData, getInterdayStockData, getHistoricalStockData } from './dataActions'
 import firebase from 'firebase'
 
 export const getUserData = (uid) => {
@@ -12,6 +12,8 @@ export const getUserData = (uid) => {
                 dispatch(getLiveStockData(res.data().stocks));
                 dispatch({type: 'CHART_DATA_REQUESTED'});
                 dispatch(getInterdayStockData(res.data().stocks));
+                dispatch({type: 'HISTORICAL_DATA_REQUESTED'});
+                dispatch(getHistoricalStockData(res.data().stocks));
                 
         })
         .catch(err => dispatch({type: "ERROR_RECEIVING_USER_DATA", err: err}));
