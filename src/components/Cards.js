@@ -15,6 +15,10 @@ import { getUserData } from '../reducers/actions/userActions'
 
 class Cards extends Component {
 
+  state = {
+     timeFrame: 'today'
+  }
+
   componentDidUpdate() {
     if(this.props.authFB.uid && !this.props.status.requested) {
       this.props.getUserData(this.props.authFB.uid)
@@ -31,6 +35,12 @@ class Cards extends Component {
     );
   }
 
+  handleClick(time) {
+    this.setState({
+      timeFrame: time
+    })
+  }
+
   render() {
     const { stocks } = this.props;
     const stockList = stocks.length ? (
@@ -40,8 +50,9 @@ class Cards extends Component {
             <div className='card medium green lighten-5 hoverable activator'>
               <div className='card-content black-text activator'>
                 <CardHeader stock={ stock } />
-                <CardChart symbol={ stock.symbol } />
-                <p>30 day, today</p>
+                <CardChart symbol={ stock.symbol} timeFrame={ this.state.timeFrame } />
+                <p onClick={ this.handleClick("30")><a href=""  }>30 day, </a><a href=""  onClick={ this.handleClick("today")}>today</a></p>
+                
                 <DeleteStock symbol={ stock.symbol } />
               </div>
               <div className='card-reveal green lighten-5'>

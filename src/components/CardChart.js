@@ -6,8 +6,10 @@ class CardChart extends Component {
   
   render() {
 
-    // const { symbol } = this.props
-    // var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
+    const { timeFrame } = this.props
+    console.log(timeFrame)
+    //const { symbol } = this.props
+    //var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
     // const labels = [];
     // const priceArray = [];
     // if(stocks !== undefined) {
@@ -16,17 +18,6 @@ class CardChart extends Component {
     //       labels.push(stock.time)
     // })
 
-    const { symbol } = this.props
-    var stocks = this.props.historicalData.find(stock =>  stock[symbol])
-    const labels = [];
-    const priceArray = [];
-    if(stocks !== undefined) {
-      stocks[symbol].forEach(stock => {
-          priceArray.push(stock.price)
-          labels.push(stock.date)
-    })
-    console.log(priceArray, labels)
-    
     // var times = [];
 
     // labels.map(label => {
@@ -37,9 +28,26 @@ class CardChart extends Component {
     //   else{
     //     times.push(label)
     //   }
-    // })
+    
 
-    // console.log(labels[50] - 12)
+    
+    const { symbol } = this.props
+    var stocks = this.props.historicalData.find(stock =>  stock[symbol])
+    const labelsAll = [];
+    const priceArrayAll = [];
+    if(stocks !== undefined) {
+      stocks[symbol].forEach(stock => {
+          priceArrayAll.push(stock.price)
+          labelsAll.push(stock.date)
+    })
+    
+    const labels = labelsAll.slice(0, 30)
+    const priceArray = priceArrayAll.slice(0, 30)
+    priceArrayAll.reverse()
+    labelsAll.reverse()
+
+    
+// })
 
     var chartData = {
       labels: labels,
