@@ -67,7 +67,7 @@ class CardChart extends Component {
           options={ options }
         />
     ): (
-      <div>Loading chart...</div>
+      <div></div>
     )
     
     return (

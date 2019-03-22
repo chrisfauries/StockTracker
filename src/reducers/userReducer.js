@@ -39,7 +39,7 @@ const userReducer = (state = initState, action) => {
         return state;
     }
 
-    if(action.type === 'USER_STOCKS_DELETED'){
+    if(action.type === 'DELETED_STOCK_FROM_USER_STOCKLIST'){
         const newStocks = state.stocks.filter(stock => stock !== action.stock)
         return {
             ...state,

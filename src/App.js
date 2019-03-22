@@ -12,7 +12,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { RingLoader } from 'react-spinners'
 import { connect } from 'react-redux'
 
-let status = false;
+let status;
 
 class App extends Component {
 
@@ -21,13 +21,12 @@ class App extends Component {
     (status) ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'visible');
   }
 
-
   render() {
     const { data } = this.props
     status = (!data.isAllStockDataReceived || 
-                 !data.isAllChartDataReceived || 
-                 !data.isAllHistoricalDataReceived) &&
-                 this.props.user.requested
+                 !data.isAllChartDataReceived 
+                // ||  !data.isAllHistoricalDataReceived
+                 ) && this.props.user.requested
     return (
       <BrowserRouter>
         <div className={ styles.app }>

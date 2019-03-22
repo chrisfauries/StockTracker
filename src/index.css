@@ -16,3 +16,7 @@ code {
 }
 
 
+.overlayActive {
+  display: block !important;
+  opacity: .6 !important;
+}
