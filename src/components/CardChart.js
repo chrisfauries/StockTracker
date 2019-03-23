@@ -7,6 +7,7 @@ import CardChartToday from './CardChartToday'
 import CardChart1Year from './CardChart1Year'
 import CardChart3Year from './CardChart3Year'
 import CardChart5Year from './CardChart5Year'
+import styles from '../sass/CardChart.module.scss'
 
 class CardChart extends Component {
   state = {
@@ -48,14 +49,14 @@ class CardChart extends Component {
     const post = (
         <div>
           { charting }
-          <p>
-            <span onClick={ this.handleClick.bind(this) } >30 day</span>
-            <span onClick={ this.handleClick.bind(this) } >90 day</span>
-            <span onClick={ this.handleClick.bind(this) } >Today</span>
-            <span onClick={ this.handleClick.bind(this) } >1 year</span>
-            <span onClick={ this.handleClick.bind(this) } >3 years</span>
-            <span onClick={ this.handleClick.bind(this) } >5 years</span>
-          </p>
+          <div className={styles.itemHeader}>
+                <div onClick={ this.handleClick.bind(this) }>Today</div>
+                <div onClick={ this.handleClick.bind(this) }>30 day</div>
+                <div onClick={ this.handleClick.bind(this) }>90 day</div>
+                <div onClick={ this.handleClick.bind(this) }>1 year</div>
+                <div onClick={ this.handleClick.bind(this) }>3 years</div>
+                <div onClick={ this.handleClick.bind(this) }>5 years</div>
+              </div>
         </div>
 
     )
