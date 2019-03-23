@@ -49,3 +49,15 @@ export const signUp = (data) => {
         .catch(err => dispatch({type: "ERROR_SIGNING_UP_USER", err: err}));
     }
 }
+
+export const changePassword = () => {
+    return (dispatch, getState, { getFirebase }) => {
+        const firebase = getFirebase();
+        dispatch({type: "SENDING_EMAIL_TO_CHANGE_USER_PASSWORD"});
+        const auth = getState().firebase.auth
+        firebase.auth().sendPasswordResetEmail(auth.email).then(() => {
+            dispatch({type: "CHANGE_PASSWORD_EMAIL_SENT"});
+        })
+        .catch(err => dispatch({type: "ERROR_SENDING_PASSWORD_CHANGE_EMAIL", err: err}));
+    }
+}

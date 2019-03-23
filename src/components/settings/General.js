@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Input, Button, Row, Modal } from 'react-materialize'
 import { connect } from 'react-redux'
 import { updateUserSettings } from '../../reducers/actions/settingsActions'
+import { changePassword } from '../../reducers/actions/authActions'
 
 class General extends Component {
     state = {
@@ -25,11 +26,7 @@ class General extends Component {
       }
 
     changePassword = () => {
-        // Auth.sendPasswordResetEmail(Auth.currentUser.email).then(function() {
-        //     console.log('email sent!')
-        //   }).catch(function(error) {
-        //     console.log(error)
-        //   });
+        this.props.changePassword()
     }
 
      updateSettings = () => {
@@ -67,7 +64,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateSettings: (type, data) => {dispatch(updateUserSettings(type, data))}
+        updateSettings: (type, data) => {dispatch(updateUserSettings(type, data))},
+        changePassword: () => {dispatch(changePassword())}
     }
 }
 

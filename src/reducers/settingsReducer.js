@@ -27,6 +27,22 @@ const settingsReducer = (state = initState, action) => {
             general: general
         }
     }
+    if(action.type === 'UPDATING_CHART_SETTINGS'){
+        let chart = action.data
+        return {
+            ...state,
+            chart: {
+                ...state.chart,
+                line: {
+                    ...state.chart.line,
+                    colorFill: chart.colorFill,
+                    colorLine: chart.colorLine,
+                    point: chart.point,
+                    tooltipsEnabled: chart.tooltipsEnabled
+                }
+            }
+        }
+    }
     return state
 }
 

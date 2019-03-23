@@ -10,8 +10,8 @@ class PurchaseNewStock extends Component {
     state = {
         symbol: '',
         date: '',
-        quantity: null,
-        price: null
+        quantity: '',
+        price: ''
     }
 
     handleChange = (e) => {

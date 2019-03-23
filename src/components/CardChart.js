@@ -36,7 +36,10 @@ class CardChart extends Component {
         {
           label: symbol,
           data:[...priceArray],
-          backgroundColor: ['rgba(173, 216, 230, 0.6']
+          backgroundColor: this.props.lineSettings.colorFill,
+          pointRadius: this.props.lineSettings.point,
+          pointHitRadius: 4,
+          borderColor: this.props.lineSettings.colorLine
         }
       ]
     }
@@ -49,7 +52,7 @@ class CardChart extends Component {
     }, 
     tooltips:{ 
       displayColors: false,
-      enabled:true, 
+      enabled: this.props.lineSettings.tooltipsEnabled, 
       bodyFontSize: 24, 
       callbacks:{ 
         title: function(tooltipItems) { return ''; },
@@ -80,7 +83,8 @@ class CardChart extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    liveChartData: state.data.liveChartData
+    liveChartData: state.data.liveChartData,
+    lineSettings: state.settings.chart.line
   }
 }
   
