@@ -35,32 +35,35 @@ class CardChartToday extends Component {
  })
 
     var chartData = {
-      labels: times,
-      datasets:[
-        {
-          label: symbol,
-          data:[...priceArray],
-          backgroundColor: ['rgba(173, 216, 230, 0.6']
-        }
-      ]
-    }
-  }
-
-  const options = {
-    maintainAspectRatio: false,
-    legend:{
-      display: false
-    }, 
-    tooltips:{ 
-      displayColors: false,
-      enabled:true, 
-      bodyFontSize: 24, 
-      callbacks:{ 
-        title: function(tooltipItems) { return ''; },
-        label: function(tooltipItems) { return  '$' + tooltipItems.value; }
+        labels: times,
+        datasets:[
+          {
+            label: symbol,
+            data:[...priceArray],
+            backgroundColor: this.props.lineSettings.colorFill,
+            pointRadius: this.props.lineSettings.point,
+            pointHitRadius: 4,
+            borderColor: this.props.lineSettings.colorLine
+          }
+        ]
       }
     }
-  }
+
+    const options = {
+      maintainAspectRatio: false,
+      legend:{
+        display: false
+      }, 
+      tooltips:{ 
+        displayColors: false,
+        enabled: this.props.lineSettings.tooltipsEnabled, 
+        bodyFontSize: 24, 
+        callbacks:{ 
+          title: function(tooltipItems) { return ''; },
+          label: function(tooltipItems) { return  '$' + tooltipItems.value; }
+        }
+      }
+    }
 
     const post = stocks !== undefined ? (
           <Line
@@ -85,7 +88,8 @@ class CardChartToday extends Component {
 const mapStateToProps = (state) => {
   return {
     liveChartData: state.data.liveChartData,
-    historicalData: state.data.historicalData
+    historicalData: state.data.historicalData,
+    lineSettings: state.settings.chart.line
   }
 }
   
