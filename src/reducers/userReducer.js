@@ -4,6 +4,7 @@ const initState = {
     stocks: [],
     stocksPurchased: {},
     requested: false,
+    isLoaded: false
 }
 
 const userReducer = (state = initState, action) => {
@@ -21,6 +22,7 @@ const userReducer = (state = initState, action) => {
             ...state,
             stocks: action.data.stocks,
             stocksPurchased: action.data.PurchasedStock,
+            isLoaded: true
         } 
     }
     if(action.type === "ADDING_STOCK_TO_USER_STOCKLIST") {

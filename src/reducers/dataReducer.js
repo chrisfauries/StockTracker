@@ -69,10 +69,12 @@ const dataReducer = (state = initState, action) => {
     if(action.type === 'DELETED_STOCK_FROM_USER_STOCKLIST'){
         const newLiveData = state.liveStockData.filter(stock => stock.symbol !== action.stock)
         const liveChartData = state.liveChartData.filter(stock => stock[action.stock] === undefined)
+        const historicalData = state.historicalData.filter(stock => stock[action.stock] === undefined)
         return {
             ...state,
             liveStockData: newLiveData,
-            liveChartData: liveChartData
+            liveChartData: liveChartData,
+            historicalData: historicalData
         }
     }
     if(action.type === 'CHART_DATA_UPDATED'){
@@ -87,6 +89,18 @@ const dataReducer = (state = initState, action) => {
         return {
             ...state,
             historicalData: [...state.historicalData, data]
+        }
+    }
+    if(action.type === 'ERROR_RECEIVING_CHART_DATA'){
+        return {
+            ...state,
+            liveChartData: [...state.liveChartData, {[action.stock] : null}]
+        }
+    }
+    if(action.type === 'ERROR_RECEIVING_HISTORICAL_DATA'){
+        return {
+            ...state,
+            historicalData: [...state.historicalData, {[action.stock] : null}]
         }
     }
     return state

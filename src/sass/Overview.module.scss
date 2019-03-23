@@ -1,0 +1,20 @@
+.itemHeader{
+    width: 100%;
+    display:flex;
+    div:nth-of-type(1) {
+        min-width: 60px;
+        flex-grow: 3;
+    }
+    div:nth-of-type(2) {
+        min-width: 60px;
+        flex-grow: 4;
+    }
+    div:nth-of-type(3) {
+        min-width: 60px;
+        flex-grow: 4;
+    }
+    div:nth-of-type(4) {
+        min-width: 60px;
+        flex-grow: 4;
+    }
+}
