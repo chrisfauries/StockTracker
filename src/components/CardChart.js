@@ -57,6 +57,7 @@ class CardChart extends Component {
             <span onClick={ this.handleClick.bind(this) } >5 years</span>
           </p>
         </div>
+
     )
     
     return (
