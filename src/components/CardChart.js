@@ -1,81 +1,69 @@
 import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2'
 import { connect } from 'react-redux'
+import CardChart30Day from './CardChart30Day'
+import CardChart90Day from './CardChart90Day'
+import CardChartToday from './CardChartToday'
+import CardChart1Year from './CardChart1Year'
+import CardChart3Year from './CardChart3Year'
+import CardChart5Year from './CardChart5Year'
+import styles from '../sass/CardChart.module.scss'
 
 class CardChart extends Component {
-  
+  state = {
+     timeFrame: 'Today'
+  }
+
+  handleClick(e) {
+    e.preventDefault()
+    if (this.state.timeFrame != e.target.innerHTML){
+      this.setState({
+        timeFrame: e.target.innerHTML
+    })
+    }
+  }
+
   render() {
-
-    const { symbol } = this.props
-    var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
-    const labels = [];
-    const priceArray = [];
-    if(stocks !== undefined) {
-      stocks[symbol].forEach(stock => {
-          priceArray.push(stock.price)
-          labels.push(stock.time)
-    })
     
-    var times = [];
-
-    labels.map(label => {
-      var splitString = label.split(":")
-      if (splitString[0] > 12){
-        times.push((splitString[0]-12) + ":" + splitString[1])
-      }
-      else{
-        times.push(label)
-      }
-    })
-
-    // console.log(labels[50] - 12)
-
-    var chartData = {
-      labels: times,
-      datasets:[
-        {
-          label: symbol,
-          data:[...priceArray],
-          backgroundColor: this.props.lineSettings.colorFill,
-          pointRadius: this.props.lineSettings.point,
-          pointHitRadius: 4,
-          borderColor: this.props.lineSettings.colorLine
+    switch(this.state.timeFrame){
+          case 'Today':
+            var charting= (<CardChartToday symbol={this.props.symbol} />)
+            break;
+          case '30 day':
+            var charting = (<CardChart30Day symbol={this.props.symbol} />)
+            break;
+          case '90 day':
+            var charting = (<CardChart90Day symbol={this.props.symbol} />)
+            break;
+          case '1 year':
+            var charting = (<CardChart1Year symbol={this.props.symbol} />)
+            break;
+          case '3 years':
+            var charting = (<CardChart3Year symbol={this.props.symbol} />)
+            break;
+          case '5 years':
+            var charting = (<CardChart5Year symbol={this.props.symbol} />)
+            break;
         }
-      ]
-    }
-  }
 
-  const options = {
-    maintainAspectRatio: false,
-    legend:{
-      display: false
-    }, 
-    tooltips:{ 
-      displayColors: false,
-      enabled: this.props.lineSettings.tooltipsEnabled, 
-      bodyFontSize: 24, 
-      callbacks:{ 
-        title: function(tooltipItems) { return ''; },
-        label: function(tooltipItems) { return  '$' + tooltipItems.value; }
-      }
-    }
-  }
-
-    const post = stocks !== undefined ? (
-      <Line
-          key= { symbol }
-          data={chartData}
-          width={100}
-          height={225}
-          options={ options }
-        />
-    ): (
-      <div className='center-align black-text' style={{paddingTop: '80px'}}>No Chart Available for this Stock</div>
+    const post = (
+        <div>
+          { charting }
+          <div className={styles.itemHeader}>
+                <div onClick={ this.handleClick.bind(this) }>Today</div>
+                <div onClick={ this.handleClick.bind(this) }>30 day</div>
+                <div onClick={ this.handleClick.bind(this) }>90 day</div>
+                <div onClick={ this.handleClick.bind(this) }>1 year</div>
+                <div onClick={ this.handleClick.bind(this) }>3 years</div>
+                <div onClick={ this.handleClick.bind(this) }>5 years</div>
+              </div>
+        </div>
     )
     
     return (
       <div className='activator'>
         { post }
+        
       </div>
     )
   }
@@ -84,7 +72,8 @@ class CardChart extends Component {
 const mapStateToProps = (state) => {
   return {
     liveChartData: state.data.liveChartData,
-    lineSettings: state.settings.chart.line
+    lineSettings: state.settings.chart.line,
+    historicalData: state.data.historicalData
   }
 }
   
