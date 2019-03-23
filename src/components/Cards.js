@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styles from '../sass/Cards.module.scss'
 import CardHeader from './CardHeader'
 import CardChart from './CardChart'
+import CardChart30Day from './CardChart30Day'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
 import { Redirect } from 'react-router-dom'
@@ -14,6 +15,9 @@ import { getUserData } from '../reducers/actions/userActions'
 
 
 class Cards extends Component {
+  state = {
+     timeFrame: 'today'
+  }
 
   componentDidUpdate() {
     if(this.props.authFB.uid && !this.props.status.requested) {
@@ -31,16 +35,22 @@ class Cards extends Component {
     );
   }
 
+  
+
   render() {
     const { stocks } = this.props;
+    
+
+
     const stockList = stocks.length ? (
       stocks.map(stock => {
+
         return (
           <div className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0 activator" key={ shortid.generate() }>
             <div className='card medium green lighten-5 hoverable activator'>
               <div className='card-content black-text activator'>
                 <CardHeader stock={ stock } />
-                <CardChart symbol={ stock.symbol } />
+                <CardChart symbol = {stock.symbol} />
                 <DeleteStock symbol={ stock.symbol } />
               </div>
               <div className='card-reveal green lighten-5'>
