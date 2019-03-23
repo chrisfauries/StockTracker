@@ -6,9 +6,6 @@ class CardChartToday extends Component {
  
   
   render() {
-
-  
-    const { timeFrame } = this.props
     
     const { symbol } = this.props
     var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
@@ -30,9 +27,7 @@ class CardChartToday extends Component {
       else{
         times.push(label)
       }
-    
-    
- })
+     })
 
     var chartData = {
         labels: times,

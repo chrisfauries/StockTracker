@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Button, Row, Modal } from 'react-materialize'
+import { Input, Button } from 'react-materialize'
 import { connect } from 'react-redux'
 import { updateUserSettings } from '../../reducers/actions/settingsActions'
 import { changePassword } from '../../reducers/actions/authActions'

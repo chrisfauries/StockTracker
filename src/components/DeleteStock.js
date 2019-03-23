@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { deleteStock } from '../reducers/actions/userActions'
 import trashcan from '../img/trash.png'
 import styles from '../sass/Cards.module.scss'
-import { Row, Button, Modal } from 'react-materialize'
+import { Button, Modal } from 'react-materialize'
 
 function DeleteStock(props) {
  
