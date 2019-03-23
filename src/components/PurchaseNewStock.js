@@ -5,13 +5,11 @@ import { addPurchase } from '../reducers/actions/userActions'
 
 class PurchaseNewStock extends Component {
 
-    
-
     state = {
         symbol: '',
-        date: '',
-        quantity: null,
-        price: null
+        date: null,
+        quantity: "",
+        price: ""
     }
 
     handleChange = (e) => {
@@ -28,6 +26,9 @@ class PurchaseNewStock extends Component {
 
     render() {
 
+        const { date, quantity, price } = this.state
+        const isDisabled = date === null || isNaN(quantity) || isNaN(price) || !quantity.length || !price.length
+
         return(
             <div>
                 <Modal
@@ -37,16 +38,16 @@ class PurchaseNewStock extends Component {
                         </div>
                     } 
                     actions={
-                        <Button className="modal-close" waves='light' onClick={ this.handleSubmit }>Submit</Button>
+                        <Button disabled={isDisabled} className="modal-close" waves='light' onClick={ this.handleSubmit }>Submit</Button>
                     }
                 >
                     <i style={{cursor: 'pointer'}} className="material-icons right modal-close">close</i>
                     <h4 className='green-text center-align'>Add Stock</h4>
                     <Row className='container center-align'>
                         <h5 id={ this.props.symbol }>{ this.props.name }</h5>
-                        <Input s={5} id='date' label="Date Purchased" placeholder="mm/dd/yyyy" onChange={ this.handleChange } />
-                        <Input s={3} id='price' label="price" placeholder="$price" onChange={ this.handleChange } />
-                        <Input s={2} id='quantity' label="Quantity" onChange={ this.handleChange } />
+                        <Input s={5} id='date' label="Date Purchased" validate placeholder="mm/dd/yyyy" onChange={ this.handleChange } required />
+                        <Input s={3} id='price' label="price" placeholder="price" onChange={ this.handleChange } required />
+                        <Input s={2} id='quantity' label="Quantity" placeholder={"0"}onChange={ this.handleChange } required />
                     </Row>
                 </Modal>
             </div>
