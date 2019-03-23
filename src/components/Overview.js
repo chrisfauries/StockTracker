@@ -34,17 +34,19 @@ class Overview extends Component {
                 <h5 className='center-align'>Overall Gain/Loss: { getGainLossTotal() }</h5>
                 <h5 className='center-align'>Overall % change: { getPctTotal() }</h5>
                 <h5 className='center-align'>Gain/Loss YTD: { getGainLossYTD(this.props) }</h5>
-                <h5 className='center-align'>% change YTD: { getPctYTD() }</h5>
+                <h5 className='center-align'>% change YTD: { getPctYTD(this.props) }</h5>
             </div>
-            <OverviewPie data={this.props} />
-            <OverviewList data={this.props} />
-        </div> 
+            <OverviewPie data={this.props} /> 
+            
+        </div>
+        
     ) : (
         <div></div>      
     )
        return (
          <div>
          { loaded }
+         <OverviewList data={this.props} />
          </div>
         
        )

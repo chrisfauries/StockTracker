@@ -69,10 +69,12 @@ const dataReducer = (state = initState, action) => {
     if(action.type === 'DELETED_STOCK_FROM_USER_STOCKLIST'){
         const newLiveData = state.liveStockData.filter(stock => stock.symbol !== action.stock)
         const liveChartData = state.liveChartData.filter(stock => stock[action.stock] === undefined)
+        const historicalData = state.historicalData.filter(stock => stock[action.stock] === undefined)
         return {
             ...state,
             liveStockData: newLiveData,
-            liveChartData: liveChartData
+            liveChartData: liveChartData,
+            historicalData: historicalData
         }
     }
     if(action.type === 'CHART_DATA_UPDATED'){

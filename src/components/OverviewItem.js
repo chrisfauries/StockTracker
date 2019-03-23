@@ -14,7 +14,7 @@ function OverviewItem(props) {
             let cost = (purchase.price * purchase.quantity).toFixed(2);
             let value = (currentPrice * purchase.quantity).toFixed(2);
             let gainLossDollar = (value - cost) > 0 ? (`+$${(value - cost).toFixed(2)}`) : (`-$${(value - cost).toFixed(2)}`)
-            let gainLossPct = (value - cost) > 0 ? (`+${((value / cost) * 100).toFixed(2)}%`) : (`-${((value / cost) * 100).toFixed(2)}%`)
+            let gainLossPct = (value - cost) > 0 ? (`+${(((value - cost) / cost) * 100).toFixed(2)}%`) : (`${(((value - cost) / cost) * 100).toFixed(2)}%`)
 
             return (
                 <tr key={ shortid.generate() }>
