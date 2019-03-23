@@ -16,8 +16,8 @@ class CardChart30Day extends Component {
           labelsAll.push(stock.date)
     })
     
-    const labels = labelsAll.slice(0, 30)
-    const priceArray = priceArrayAll.slice(0, 30)
+    const labels = labelsAll.slice(0, 22)
+    const priceArray = priceArrayAll.slice(0, 22)
     priceArray.reverse()
     labels.reverse()
 

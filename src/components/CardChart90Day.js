@@ -16,8 +16,8 @@ class CardChart90Day extends Component {
           labelsAll.push(stock.date)
     })
     
-    const labels = labelsAll.slice(0, 90)
-    const priceArray = priceArrayAll.slice(0, 90)
+    const labels = labelsAll.slice(0, 66)
+    const priceArray = priceArrayAll.slice(0, 66)
     priceArray.reverse()
     labels.reverse()
 

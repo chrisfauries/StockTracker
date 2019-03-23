@@ -23,11 +23,15 @@ class AddStock extends Component {
                 alert("you already have this card listed")
             }
             else{
+                this.setState({
+                    newStock: ''
+                })
                 return this.props.addStock(this.state.newStock, this.props.uid)
             }}
         else{
             alert("Sorry, " + this.state.newStock + " is not available at this time.")
         }
+        
     }
 
     render(){
@@ -48,7 +52,7 @@ class AddStock extends Component {
                     <i className={`material-icons right modal-close ${styles.cross}`}>close</i>
                     <div className='container center-align'>
                         <h4 className='green-text'>Add Stock</h4>
-                        <Input className={styles.input} type="text" id="newStock" placeholder="stock symbol" maxLength="5" onChange={ this.handleChange } />
+                        <Input className={styles.input} value = {this.state.newStock} type="text" id="newStock" placeholder="stock symbol" maxLength="5" onChange={ this.handleChange } />
                     </div>
                 </Modal>
         </div>
