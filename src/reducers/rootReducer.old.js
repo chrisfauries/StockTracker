@@ -23,7 +23,6 @@ const initState = {
         layout: settings.layout,
         other: settings.other
     }
-
 }
 
 const rootReducer = (state=initState, action) => {

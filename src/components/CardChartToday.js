@@ -60,7 +60,7 @@ class CardChartToday extends Component {
       }
     }
 
-    const post = stocks !== undefined ? (
+    const post =  (
           <Line
             key= { symbol }
             data={chartData}
@@ -68,8 +68,6 @@ class CardChartToday extends Component {
             height={225}
             options={ options }
           />
-    ): (
-      <div></div>
     )
     
     return (
