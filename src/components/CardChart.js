@@ -4,20 +4,10 @@ import { connect } from 'react-redux'
 
 class CardChart extends Component {
   
-  state = {
-     timeFrame: 'today'
-  }
-
-  handleClick(time) {
-    this.setState({
-      timeFrame: time
-    })
-  }
-
   render() {
 
-    const { timeFrame } = this.props
-    console.log(timeFrame)
+    //const { timeFrame } = this.props
+    
     //const { symbol } = this.props
     //var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
     // const labels = [];
@@ -102,7 +92,6 @@ class CardChart extends Component {
     return (
       <div className='activator'>
         { post }
-        <p><a href="" onClick={ () => this.handleClick("30") }>30 day, </a><a href="" onClick={ () => this.handleClick("today")}>today</a></p>
       </div>
     )
   }

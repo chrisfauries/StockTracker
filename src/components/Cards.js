@@ -37,12 +37,12 @@ class Cards extends Component {
 
   handleClick(e) {
     e.preventDefault()
-    if (this.state.timeFrame != e.target.innerHTML){
-      this.setState({
-        timeFrame: e.target.innerHTML
-    })
-  }
-    console.log(this.state)
+    console.log(this.state.timeFrame)
+  //   if (this.state.timeFrame != e.target.innerHTML){
+  //     this.setState({
+  //       timeFrame: e.target.innerHTML
+  //   })
+  // }
   }
 
   render() {
@@ -54,7 +54,7 @@ class Cards extends Component {
             <div className='card medium green lighten-5 hoverable activator'>
               <div className='card-content black-text activator'>
                 <CardHeader stock={ stock } />
-                <CardChart symbol={ stock.symbol} timeFrame={ this.state.timeFrame } />
+                <CardChart symbol={ stock.symbol} />
                 <p><a href="" onClick={ this.handleClick }>30 day, </a><a href="" onClick={ this.handleClick } >today</a></p>
                 <DeleteStock symbol={ stock.symbol } />
               </div>
