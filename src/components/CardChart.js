@@ -20,13 +20,12 @@ class CardChart extends Component {
 
   render() {
     
-    const { symbol } = this.props
     switch(this.state.timeFrame){
           case 'today':
-            var charting= (<CardChartToday symbol={stock.symbol} />)
+            var charting= (<CardChartToday symbol={this.props.symbol} />)
             break;
           case '30 day':
-            var charting = (<CardChart30Day symbol={stock.symbol} />)
+            var charting = (<CardChart30Day symbol={this.props.symbol} />)
             break;
         }
 
