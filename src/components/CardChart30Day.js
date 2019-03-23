@@ -2,38 +2,27 @@ import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2'
 import { connect } from 'react-redux'
 
-class CardChart extends Component {
+class CardChart30Day extends Component {
   
   render() {
-
-    const { timeFrame } = this.props
     
     const { symbol } = this.props
-    var stocks = this.props.liveChartData.find(stock =>  stock[symbol])
-    const labels = [];
-    const priceArray = [];
+    var stocks = this.props.historicalData.find(stock =>  stock[symbol])
+    const labelsAll = [];
+    const priceArrayAll = [];
     if(stocks !== undefined) {
       stocks[symbol].forEach(stock => {
-          priceArray.push(stock.price)
-          labels.push(stock.time)
+          priceArrayAll.push(stock.price)
+          labelsAll.push(stock.date)
     })
-
-    var times = [];
-
-    labels.map(label => {
-      var splitString = label.split(":")
-      if (splitString[0] > 12){
-        times.push((splitString[0]-12) + ":" + splitString[1])
-      }
-      else{
-        times.push(label)
-      }
     
-    
- })
+    const labels = labelsAll.slice(0, 30)
+    const priceArray = priceArrayAll.slice(0, 30)
+    priceArrayAll.reverse()
+    labelsAll.reverse()
 
     var chartData = {
-      labels: times,
+      labels: labels,
       datasets:[
         {
           label: symbol,
@@ -87,4 +76,4 @@ const mapStateToProps = (state) => {
   }
 }
   
-export default connect(mapStateToProps)(CardChart)
+export default connect(mapStateToProps)(CardChart30Day)

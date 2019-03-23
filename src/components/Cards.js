@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styles from '../sass/Cards.module.scss'
 import CardHeader from './CardHeader'
 import CardChart from './CardChart'
+import CardChart30Day from './CardChart30Day'
 import { connect } from 'react-redux'
 import AddStock from './AddStock'
 import { Redirect } from 'react-router-dom'
@@ -14,7 +15,6 @@ import { getUserData } from '../reducers/actions/userActions'
 
 
 class Cards extends Component {
-
   state = {
      timeFrame: 'today'
   }
@@ -37,25 +37,35 @@ class Cards extends Component {
 
   handleClick(e) {
     e.preventDefault()
-    console.log(this.state.timeFrame)
-  //   if (this.state.timeFrame != e.target.innerHTML){
-  //     this.setState({
-  //       timeFrame: e.target.innerHTML
-  //   })
-  // }
+    if (this.state.timeFrame != e.target.innerHTML){
+      this.setState({
+        timeFrame: e.target.innerHTML
+    })
+    }
   }
 
   render() {
     const { stocks } = this.props;
+    
+
+
     const stockList = stocks.length ? (
       stocks.map(stock => {
+        
+        switch(this.state.timeFrame){
+          case 'today':
+            var charting= (<CardChart symbol={stock.symbol} />)
+            break;
+          case '30 day':
+            var charting = (<CardChart30Day symbol={stock.symbol} />)
+        }
         return (
           <div className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0 activator" key={ shortid.generate() }>
             <div className='card medium green lighten-5 hoverable activator'>
               <div className='card-content black-text activator'>
                 <CardHeader stock={ stock } />
-                <CardChart symbol={ stock.symbol} />
-                <p><a href="" onClick={ this.handleClick }>30 day, </a><a href="" onClick={ this.handleClick } >today</a></p>
+                { charting }
+                <p><span onClick={ this.handleClick.bind(this) }>30 day</span><span onClick={ this.handleClick.bind(this) } >today</span></p>
                 <DeleteStock symbol={ stock.symbol } />
               </div>
               <div className='card-reveal green lighten-5'>
