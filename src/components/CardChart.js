@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2'
 import { connect } from 'react-redux'
 import CardChart30Day from './CardChart30Day'
+import CardChart90Day from './CardChart90Day'
 import CardChartToday from './CardChartToday'
+import CardChart1Year from './CardChart1Year'
+import CardChart3Year from './CardChart3Year'
+import CardChart5Year from './CardChart5Year'
 
 class CardChart extends Component {
   state = {
-     timeFrame: 'today'
+     timeFrame: 'Today'
   }
 
   handleClick(e) {
@@ -21,18 +25,37 @@ class CardChart extends Component {
   render() {
     
     switch(this.state.timeFrame){
-          case 'today':
+          case 'Today':
             var charting= (<CardChartToday symbol={this.props.symbol} />)
             break;
           case '30 day':
             var charting = (<CardChart30Day symbol={this.props.symbol} />)
+            break;
+          case '90 day':
+            var charting = (<CardChart90Day symbol={this.props.symbol} />)
+            break;
+          case '1 year':
+            var charting = (<CardChart1Year symbol={this.props.symbol} />)
+            break;
+          case '3 years':
+            var charting = (<CardChart3Year symbol={this.props.symbol} />)
+            break;
+          case '5 years':
+            var charting = (<CardChart5Year symbol={this.props.symbol} />)
             break;
         }
 
     const post = (
         <div>
           { charting }
-          <p><span onClick={ this.handleClick.bind(this) }>30 day</span><span onClick={ this.handleClick.bind(this) } >today</span></p>
+          <p>
+            <span onClick={ this.handleClick.bind(this) } >30 day</span>
+            <span onClick={ this.handleClick.bind(this) } >90 day</span>
+            <span onClick={ this.handleClick.bind(this) } >Today</span>
+            <span onClick={ this.handleClick.bind(this) } >1 year</span>
+            <span onClick={ this.handleClick.bind(this) } >3 years</span>
+            <span onClick={ this.handleClick.bind(this) } >5 years</span>
+          </p>
         </div>
     )
     

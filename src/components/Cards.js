@@ -50,7 +50,7 @@ class Cards extends Component {
             <div className='card medium green lighten-5 hoverable activator'>
               <div className='card-content black-text activator'>
                 <CardHeader stock={ stock } />
-                <CardChart symbol = {stock.symbol} stock = {stock} />
+                <CardChart symbol = {stock.symbol} />
                 <DeleteStock symbol={ stock.symbol } />
               </div>
               <div className='card-reveal green lighten-5'>

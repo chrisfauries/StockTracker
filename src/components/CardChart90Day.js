@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2'
 import { connect } from 'react-redux'
 
-class CardChart30Day extends Component {
+class CardChart90Day extends Component {
   
   render() {
     
@@ -16,8 +16,8 @@ class CardChart30Day extends Component {
           labelsAll.push(stock.date)
     })
     
-    const labels = labelsAll.slice(0, 30)
-    const priceArray = priceArrayAll.slice(0, 30)
+    const labels = labelsAll.slice(0, 90)
+    const priceArray = priceArrayAll.slice(0, 90)
     priceArray.reverse()
     labels.reverse()
 
@@ -76,4 +76,4 @@ const mapStateToProps = (state) => {
   }
 }
   
-export default connect(mapStateToProps)(CardChart30Day)
+export default connect(mapStateToProps)(CardChart90Day)
