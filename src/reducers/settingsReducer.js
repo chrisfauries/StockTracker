@@ -20,14 +20,11 @@ const settingsReducer = (state = initState, action) => {
             other: action.data.other                
         }
     }
-    if(action.type === 'UPDATE_GENERAL_SETTINGS'){
+    if(action.type === 'UPDATING_GENERAL_SETTINGS'){
         let general = action.data
         return {
             ...state,
-            user:{
-                ...state.user,
-                general: general
-            }
+            general: general
         }
     }
     return state
