@@ -58,7 +58,6 @@ class CardChart extends Component {
                 <div onClick={ this.handleClick.bind(this) }>5 years</div>
               </div>
         </div>
-
     )
     
     return (
@@ -73,6 +72,7 @@ class CardChart extends Component {
 const mapStateToProps = (state) => {
   return {
     liveChartData: state.data.liveChartData,
+    lineSettings: state.settings.chart.line,
     historicalData: state.data.historicalData
   }
 }

@@ -20,13 +20,26 @@ const settingsReducer = (state = initState, action) => {
             other: action.data.other                
         }
     }
-    if(action.type === 'UPDATE_GENERAL_SETTINGS'){
+    if(action.type === 'UPDATING_GENERAL_SETTINGS'){
         let general = action.data
         return {
             ...state,
-            user:{
-                ...state.user,
-                general: general
+            general: general
+        }
+    }
+    if(action.type === 'UPDATING_CHART_SETTINGS'){
+        let chart = action.data
+        return {
+            ...state,
+            chart: {
+                ...state.chart,
+                line: {
+                    ...state.chart.line,
+                    colorFill: chart.colorFill,
+                    colorLine: chart.colorLine,
+                    point: chart.point,
+                    tooltipsEnabled: chart.tooltipsEnabled
+                }
             }
         }
     }

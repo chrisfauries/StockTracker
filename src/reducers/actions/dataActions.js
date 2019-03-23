@@ -8,8 +8,9 @@ export const loadAvailableStocks = () => {
 
 export const getLiveStockData = (stocks) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
-        const fs = getFirestore();
         const length = getState().user.stocks.length;
+        if(!stocks.length) { dispatch({type: 'UPDATE_DATA_STATUS_STOCK', length: length}) }
+        const fs = getFirestore();
         stocks.map(stock => { 
             fs.collection('Live').doc(stock).get()
             .then(res =>  {
@@ -25,6 +26,7 @@ export const getLiveStockData = (stocks) => {
 export const getInterdayStockData = (stocks) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const length = getState().user.stocks.length;
+        if(!stocks.length) { dispatch({type: 'UPDATE_DATA_STATUS_CHART', length: length}) }
         const fs = getFirestore();
         stocks.map(stock => { 
             fs.collection('InterDay').doc(stock).get()
@@ -45,8 +47,9 @@ export const getInterdayStockData = (stocks) => {
 
 export const getHistoricalStockData = (stocks) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
-        const fs = getFirestore();
         const length = getState().user.stocks.length;
+        if(!stocks.length) { dispatch({type: 'UPDATE_DATA_STATUS_HISTORICAL', length: length}) }
+        const fs = getFirestore();
         stocks.map(stock => { 
             fs.collection('Historical').doc(stock).get()
             .then(res =>  {

@@ -3,11 +3,11 @@
   src: url(/assests/brandon-grotesque.otf);
 }
 
-@font-face {
+/* @font-face {
   font-family: BrandonGrotesque;
   src: url(/assests/brandon-grotesque-bold.otf);
   font-weight: bold;
-}
+} */
 
 html, body {
   width: 100%;

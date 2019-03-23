@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Input, Button, Row, Modal } from 'react-materialize'
 import { connect } from 'react-redux'
-import { updateUserSettings } from '../../reducers/actions/updateUserSettings'
+import { updateUserSettings } from '../../reducers/actions/settingsActions'
+import { changePassword } from '../../reducers/actions/authActions'
 
 class General extends Component {
     state = {
@@ -25,15 +26,11 @@ class General extends Component {
       }
 
     changePassword = () => {
-        // Auth.sendPasswordResetEmail(Auth.currentUser.email).then(function() {
-        //     console.log('email sent!')
-        //   }).catch(function(error) {
-        //     console.log(error)
-        //   });
+        this.props.changePassword()
     }
 
-     updateData = () => {
-        this.props.updateData('UPDATE_GENERAL_SETTINGS', this.state)
+     updateSettings = () => {
+        this.props.updateSettings("UPDATING_GENERAL_SETTINGS", this.state)
     }
 
     render() {
@@ -53,7 +50,7 @@ class General extends Component {
                     </Row>
                 </Modal>
                 </li>
-                <li className="collection-item center-align"><Button waves='light' onClick={ this.updateData }>Save</Button></li>
+                <li className="collection-item center-align"><Button waves='light' onClick={ this.updateSettings }>Save</Button></li>
               </ul>
           )
     }
@@ -67,7 +64,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateData: (type, data) => {dispatch(updateUserSettings(type, data))}
+        updateSettings: (type, data) => {dispatch(updateUserSettings(type, data))},
+        changePassword: () => {dispatch(changePassword())}
     }
 }
 
