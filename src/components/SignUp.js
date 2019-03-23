@@ -31,8 +31,9 @@ class SignUp extends Component {
     })
   }
   render() {
-
-    // if (this.props.authFB.uid) return ( <Redirect to='/stocks' /> )
+    const { data } = this.props
+    if (data.isAllStockDataReceived && data.isAllChartDataReceived && data.isAllHistoricalDataReceived) return ( <Redirect to='/stocks' /> )
+    if (this.props.authFB.uid && !this.props.status.requested) return ( <Redirect to='/stocks' /> )
     return (
       <div className={styles.signUp}>
       <div className={`container ${styles.container}`}>
@@ -72,7 +73,9 @@ class SignUp extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    authFB: state.firebase.auth
+    authFB: state.firebase.auth,
+    data: state.data,
+    status: state.user
   }
 }
 
