@@ -153,7 +153,7 @@ class CardChart extends Component {
             key= { symbol }
             data={chartData}
             width={100}
-            height={225}
+            height={215}
             options={ options }
           /> )
       

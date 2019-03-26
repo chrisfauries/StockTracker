@@ -27,7 +27,7 @@ function CardHeader(props) {
         <div className='row' key={ stock.symbol }>
             <div className="col s8 l8">
                 <p className={`truncate teal-text ${styles.title}`} >{ stock.name }</p>
-                <a className={`btn-floating btn-small waves-effect waves-light red activator center ${ styles.button }`} data-tip='Manage stock purchases'><i class="material-icons">add</i></a>
+                <a className={`btn-floating btn-small waves-effect waves-light teal activator center ${ styles.button }`} data-place="top" data-tip='Manage stock purchases'><i class="material-icons">add</i></a>
                 <p className={`${styles.ticker}`}>{ stock.symbol }</p>
             </div>
             <ReactTooltip place='bottom' />
