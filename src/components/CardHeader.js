@@ -25,12 +25,12 @@ function CardHeader(props) {
 
     return (
         <div className='row' key={ stock.symbol }>
-            <div className="col m8 l8">
-                <p className={`truncate activator ${styles.title}`} data-tip='Manage stock purchases'>{ stock.name }</p>
-                <p className={`activator ${styles.ticker}`}>{ stock.symbol }</p>
+            <div className="col s8 l8">
+                <p className={`truncate activator green-text ${styles.title}`} data-tip='Manage stock purchases'>{ stock.name }</p>
+                <p className={`${styles.ticker}`}>{ stock.symbol }</p>
             </div>
             <ReactTooltip place='bottom' />
-            <div className="col m4 l4 right-align">
+            <div className="col s4 l4 right-align">
                 <p className={`${styles.price}`}>${ stock.price }</p>
                 <p className={isDayChangePos ? styles.pos : styles.neg}>{ dayChange }</p>
                 <p className={isPctChangePos ? styles.pos : styles.neg}>{ pctChange }</p>

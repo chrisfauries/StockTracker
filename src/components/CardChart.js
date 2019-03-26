@@ -13,8 +13,11 @@ class CardChart extends Component {
      timeFrame: 'Today'
   }
 
-  handleClick(e) {
-    e.preventDefault()
+  handleClick =(e) => {
+    e.preventDefault();
+    var chartSel = e.target.parentElement.querySelectorAll('div');
+    chartSel.forEach(btn => btn.classList.remove(styles['active']));
+    e.target.classList.add(styles['active']);
     if (this.state.timeFrame !== e.target.innerHTML){
       this.setState({
         timeFrame: e.target.innerHTML
@@ -51,13 +54,13 @@ class CardChart extends Component {
     const post = (
         <div>
           { charting }
-          <div className={styles.itemHeader}>
-                <div onClick={ this.handleClick.bind(this) }>Today</div>
-                <div onClick={ this.handleClick.bind(this) }>30 day</div>
-                <div onClick={ this.handleClick.bind(this) }>90 day</div>
-                <div onClick={ this.handleClick.bind(this) }>1 year</div>
-                <div onClick={ this.handleClick.bind(this) }>3 years</div>
-                <div onClick={ this.handleClick.bind(this) }>5 years</div>
+          <div id='chartSelectors'className={styles.itemHeader}>
+                <div className={ styles.active } onClick={ this.handleClick }>Today</div>
+                <div onClick={ this.handleClick }>30 day</div>
+                <div onClick={ this.handleClick }>90 day</div>
+                <div onClick={ this.handleClick }>1 year</div>
+                <div onClick={ this.handleClick }>3 years</div>
+                <div onClick={ this.handleClick }>5 years</div>
               </div>
         </div>
     )
