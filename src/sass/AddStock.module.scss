@@ -37,3 +37,10 @@
     margin-top: 30px !important;
     margin-bottom:0px !important;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .popUp {
+        width: 90%;
+    }
+}
