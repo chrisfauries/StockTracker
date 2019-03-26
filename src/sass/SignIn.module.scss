@@ -1,9 +1,11 @@
 .signIn {
-    height:1000px;
+    height:1080px;
     background: url('/assests/bg.jpeg') no-repeat;
     background-size: 100%;
-    background-position: top;
-    
+    background-position: center;
+    position: relative;
+    background-size: cover;
+
 
     .container {
         padding-top: 200px;
@@ -42,3 +44,10 @@
     100% { opacity:1; }
 }
 
+@media only screen and (max-width: 768px) {
+    .signIn {
+        .container {
+            width: 90%;
+        }
+    }
+}

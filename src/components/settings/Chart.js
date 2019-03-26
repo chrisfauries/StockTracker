@@ -39,7 +39,7 @@ class Chart extends Component {
       console.log(this.state)
         const { general } = this.props;
         return (
-          <div style={{height: '500px'}}>
+          <div style={{height: '600px'}}>
             <ul className="collection with-header container" style={{height: '1500px'}}>
                 <li className="collection-header center-align"><h4>Chart Settings</h4></li>
                 <li className="collection-item">

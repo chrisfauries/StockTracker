@@ -1,28 +1,19 @@
 .itemHeader{
     width: 100%;
     display:flex;
-    div:nth-of-type(1) {
+    padding-right: 10px;
+
+    div {
+        border-radius: 10px;
         min-width: 40px;
         flex-grow: 3;
-    }
-    div:nth-of-type(2) {
-        min-width: 40px;
-        flex-grow: 4;
-    }
-    div:nth-of-type(3) {
-        min-width: 40px;
-        flex-grow: 4;
-    }
-    div:nth-of-type(4) {
-        min-width: 40px;
-        flex-grow: 4;
-    }
-    div:nth-of-type(5) {
-        min-width: 40px;
-        flex-grow: 4;
-    }
-    div:nth-of-type(6) {
-        min-width: 40px;
-        flex-grow: 4;
-    }
+        text-align: center;
+        &:hover {
+            background-color: #eeeeee;
+        }
+    }    
+}
+
+.active {
+    background-color: #e0e0e0; 
 }

@@ -33,8 +33,7 @@ export const signUp = (data) => {
             fs.collection('Users').doc(cred.user.uid).set({
                 general: {
                     firstName: data.firstName,
-                    lastName: data.lastName,
-                    userName: data.userName
+                    lastName: data.lastName
                 },
                 email: data.email,
                 stocks: [],

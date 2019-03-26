@@ -17,7 +17,7 @@ class StockPurchases extends Component {
         const allStocks =  (purchased[symbol] && purchased[symbol].length !== 0) ? (
             purchased[symbol].map(stock => {
                 return (
-                    <div  key={ stock.id }>
+                    <div style={{fontSize:'16px'}} key={ stock.id }>
                         <Col s={4}>{ stock.date }</Col>
                         <Col s={2}>{`$${Number(stock.price).toFixed(2)}`}</Col>
                         <Col className="center align-center" s={3}>{ stock.quantity }</Col>

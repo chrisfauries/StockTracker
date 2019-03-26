@@ -43,14 +43,14 @@ class Cards extends Component {
       stocks.map(stock => {
 
         return (
-          <div className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0 activator" key={ shortid.generate() }>
-            <div className='card medium green lighten-5 hoverable activator'>
-              <div className='card-content black-text activator'>
+          <div className="card col s12 m6 l4 waves-effect waves-block waves-light z-depth-0" key={ shortid.generate() }>
+            <div className='card medium grey lighten-5 hoverable'>
+              <div className='card-content black-text'>
                 <CardHeader stock={ stock } />
                 <CardChart symbol = {stock.symbol} />
                 <DeleteStock symbol={ stock.symbol } />
               </div>
-              <div className='card-reveal green lighten-5'>
+              <div className='card-reveal grey lighten-5'>
                 <span className='card-title grey-text text-darken-4'>
                   <i className="material-icons right">close</i>
                   <StockPurchases name = { stock.name } symbol={ stock.symbol }/>
