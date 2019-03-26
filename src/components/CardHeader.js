@@ -26,7 +26,7 @@ function CardHeader(props) {
     return (
         <div className='row' key={ stock.symbol }>
             <div className="col s8 l8">
-                <p className={`truncate activator green-text ${styles.title}`} data-tip='Manage stock purchases'>{ stock.name }</p>
+                <p className={`truncate activator teal-text ${styles.title}`} data-tip='Manage stock purchases'>{ stock.name }</p>
                 <p className={`${styles.ticker}`}>{ stock.symbol }</p>
             </div>
             <ReactTooltip place='bottom' />

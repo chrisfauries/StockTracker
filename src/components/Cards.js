@@ -50,7 +50,7 @@ class Cards extends Component {
                 <CardChart symbol = {stock.symbol} />
                 <DeleteStock symbol={ stock.symbol } />
               </div>
-              <div className='card-reveal green lighten-5'>
+              <div className='card-reveal grey lighten-5'>
                 <span className='card-title grey-text text-darken-4'>
                   <i className="material-icons right">close</i>
                   <StockPurchases name = { stock.name } symbol={ stock.symbol }/>

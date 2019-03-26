@@ -57,7 +57,7 @@ function OverviewPie(props) {
     
   return (
       
-      <div className="col s6" style={{paddingTop: '20px'}}>
+      <div className="col s12 m6" style={{paddingTop: '20px'}}>
         <Pie data={data} options= { options }/>
       </div>
   )

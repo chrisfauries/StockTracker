@@ -25,7 +25,6 @@ class App extends Component {
     }
   }
 
-
   render() {
     const { data } = this.props
     status = (!data.isAllStockDataReceived || 

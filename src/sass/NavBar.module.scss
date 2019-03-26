@@ -1,9 +1,68 @@
 .nav {
+    line-height: 64px;
     position: fixed;
     z-index: 100;
+    height: 64px;
+    overflow: hidden;
+    -webkit-transition: height .5s;
+    transition: height .5s;
+}
+
+.nav > div {
+    width: 100%;
 }
 
 .fixedSpacer {
     height: 64px;
+    -webkit-transition: height .5s;
+    transition: height .5s;
+}
+
+.menu {
+    ul {
+        float: right;
+    }
+    i {
+        display:none !important;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .fixedSpacer {
+        height: 64px;
+    }
+    .menu {
+        ul {
+            text-align: center;
+            float: none !important;
+            display: block;
+            background-color: #66bb6a;
+            li {
+                float: none;
+                width: 100%;
+            }
+        }
+        i {
+            padding: 5px 15px;
+            display:inline-block !important;
+            cursor: pointer;
+        }
+    }
+
+    .expand {
+        height: 320px;
+        -webkit-transition: height .5s;
+        transition: height .5s;
+        nav{
+            height: 320px;
+            -webkit-transition: height .5s;
+            transition: height .5s;
+        }
+    }
+
+
+
 
 }
+

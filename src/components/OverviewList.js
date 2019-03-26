@@ -10,11 +10,11 @@ function OverviewList(props) {
     const stockList = props.data.received ? stocks.map(stock =>{
         return (
             <CollapsibleItem header={
-              <div className={styles.itemHeader}>
+              <div className={styles.itemDetails}>
                 <div> { stock }</div>
-                <div>Last 30 days:  { getStockHis(props, stock, 30) } </div>
-                <div>Last 90 days:  { getStockHis(props, stock, 90) } </div>
-                <div>Last 360 days:  { getStockHis(props, stock, 360) } </div>
+                <div>{ getStockHis(props, stock, 30) } </div>
+                <div>{ getStockHis(props, stock, 90) } </div>
+                <div>{ getStockHis(props, stock, 360) } </div>
               </div>
               } icon='attach_money' key={ shortid.generate() } >
                 <OverviewItem data= { props.data } stock= { stock }/>
@@ -23,7 +23,7 @@ function OverviewList(props) {
     }) : (<div></div>)
 
   return (
-    <div className='container' style={{marginTop: '20px'}}>
+    <div className='container'>
       <Collapsible key={ shortid.generate() }>
         { stockList }
       </Collapsible>
