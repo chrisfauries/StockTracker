@@ -23,6 +23,10 @@ class Cards extends Component {
   }
 
   componentDidMount() {
+    if(this.props.authFB.uid && !this.props.status.requested) {
+      this.props.getUserData(this.props.authFB.uid)
+    }
+    
     setTimeout(
       function() {
         if (this.props.authFB.isEmpty) this.props.history.push('/')
