@@ -1,8 +1,10 @@
 .signUp {
-    height:1000px;
+    height:1080px;
     background: url('/assests/bg.jpeg') no-repeat;
     background-size: 100%;
-    background-position: top;
+    background-position: center;
+    position: relative;
+    background-size: cover;
     
 
     .container {
@@ -33,4 +35,13 @@
 @keyframes fadein{
     0% { opacity:0; }
     100% { opacity:1; }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .signUp {
+        .container {
+            width: 90%;
+        }
+    }
 }

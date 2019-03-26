@@ -40,7 +40,6 @@ class General extends Component {
                 <li className="collection-header center-align"><h4>General</h4></li>
                 <li className="collection-item"><Input validate defaultValue={ general.firstName } onChange={ this.handleChange } s={3} label="First Name"  id='firstName' /></li>
                 <li className="collection-item"><Input validate defaultValue={ general.lastName } onChange={ this.handleChange } s={3} label="Last Name" id='lastName' /></li>
-                <li className="collection-item"><Input validate defaultValue={ general.userName } onChange={ this.handleChange } s={3} label="User Name" id='userName' /></li>
                 <li className="collection-item center-align">
                 <Modal trigger={<Button className='red'>Change Password</Button>} actions={ <div><Button className='modal-close' waves='light'>No</Button><Button waves='light' className='modal-close red' onClick={ this.changePassword } >Yes</Button></div> }>
                     <Row>

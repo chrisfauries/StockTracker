@@ -9,7 +9,6 @@ import styles from '../sass/Overview.module.scss'
 class Overview extends Component {
 
   componentDidUpdate() {
-    
     if(this.props.authFB.uid && !this.props.status) {
       this.props.getUserData(this.props.authFB.uid)
     }

@@ -41,14 +41,14 @@ class NavBar extends Component {
       <NavLink to='/stocks' className='brand-logo'>Stock Tracker</NavLink>
       <i onClick={ this.handleHamburgerClick } class={`material-icons`}>menu</i>
       <ul className='right'>
-          <li id='NavSignedInActive'><NavLink to="/stocks">Stocks</NavLink></li>
+          <li className='active'><NavLink to="/stocks">Stocks</NavLink></li>
           <li><NavLink to="/overview">Overview</NavLink></li>
-          <li><NavLink to="/settings">Settings</NavLink></li>
+          <li><NavLink to="/settings/main">Settings</NavLink></li>
           <li><NavLink to="/" onClick= { this.handleSignOut }>Sign Out</NavLink></li>
       </ul>
       </div>
     ) : (
-      <div onClick={ this.handleActive }>
+      <div className={styles.menu} onClick={ this.handleActive }>
         <NavLink to='/' className='brand-logo'>Stock Tracker</NavLink>
         <i onClick={ this.handleHamburgerClick } class={`material-icons`}>menu</i>
         <ul className='right'>
