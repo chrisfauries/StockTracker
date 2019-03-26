@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import CardChart30Day from './CardChart30Day'
-import CardChart90Day from './CardChart90Day'
-import CardChartToday from './CardChartToday'
-import CardChart1Year from './CardChart1Year'
-import CardChart3Year from './CardChart3Year'
-import CardChart5Year from './CardChart5Year'
+import { Line } from 'react-chartjs-2'
 import styles from '../sass/CardChart.module.scss'
 
 class CardChart extends Component {
@@ -26,51 +21,161 @@ class CardChart extends Component {
   }
 
   render() {
-    var charting;
+
+    const { symbol } = this.props
+    var stocks = this.props.historicalData.find(stock =>  stock[symbol])
+    const labelsAll = [];
+    const priceArrayAll = [];
+    if(stocks !== undefined) {
+      stocks[symbol].forEach(stock => {
+          priceArrayAll.push(stock.price)
+          labelsAll.push(stock.date)
+    })
+    var priceArray = []
+    var labels;
+    var labelsYears;
+    var priceArrayYears;
+
     
     switch(this.state.timeFrame){
           case 'Today':
-            charting= (<CardChartToday symbol={this.props.symbol} />)
+            stocks = this.props.liveChartData.find(stock =>  stock[symbol])
+            var times = [];
+            priceArray = [];
+            if(stocks !== undefined) {
+              stocks[symbol].forEach(stock => {
+                  priceArray.push(stock.price)
+                  times.push(stock.time)
+            })
+            }
+            times.map(label => {
+              var splitString = label.split(":")
+              if (splitString[0] > 12){
+                times.push((splitString[0]-12) + ":" + splitString[1])
+              }
+              else{
+                labels.push(times)
+              }
+            })
             break;
           case '30 day':
-            charting = (<CardChart30Day symbol={this.props.symbol} />)
+            labels = labelsAll.slice(0, 22)
+            priceArray = priceArrayAll.slice(0, 22)
+            priceArray.reverse()
+            labels.reverse()
             break;
           case '90 day':
-            charting = (<CardChart90Day symbol={this.props.symbol} />)
+            labels = labelsAll.slice(0, 66)
+            priceArray = priceArrayAll.slice(0, 66)
+            priceArray.reverse()
+            labels.reverse()
             break;
           case '1 year':
-            charting = (<CardChart1Year symbol={this.props.symbol} />)
+            labelsYears = labelsAll.slice(0, 252)
+            priceArrayYears = priceArrayAll.slice(0, 252)
+            priceArrayYears.reverse()
+            labelsYears.reverse()
+        
+            for(let i=0; i<priceArrayYears.length; i+=3){
+                labels.push(labelsYears[i])
+                priceArray.push(priceArrayYears[i])
+            }
             break;
           case '3 years':
-            charting = (<CardChart3Year symbol={this.props.symbol} />)
+            labelsYears = labelsAll.slice(0, 756)
+            priceArrayYears = priceArrayAll.slice(0, 756)
+            priceArrayYears.reverse()
+            labelsYears.reverse()
+        
+            for(let i=0; i<priceArrayYears.length; i+=10){
+                labels.push(labelsYears[i])
+                priceArray.push(priceArrayYears[i])
+            }
             break;
           case '5 years':
-            charting = (<CardChart5Year symbol={this.props.symbol} />)
+            labelsYears = labelsAll.slice(0, 1260)
+            priceArrayYears = priceArrayAll.slice(0, 1260)
+            priceArrayYears.reverse()
+            labelsYears.reverse()
+        
+            for(let i=0; i<priceArrayYears.length; i+=15){
+                labels.push(labelsYears[i])
+                priceArray.push(priceArrayYears[i])
+            }
             break;
-          default:
-            charting= (<CardChartToday symbol={this.props.symbol} />)
         }
 
-    const post = (
-        <div>
-          { charting }
-          <div id='chartSelectors'className={styles.itemHeader}>
-                <div className={ styles.active } onClick={ this.handleClick }>Today</div>
-                <div onClick={ this.handleClick }>30 day</div>
-                <div onClick={ this.handleClick }>90 day</div>
-                <div onClick={ this.handleClick }>1 year</div>
-                <div onClick={ this.handleClick }>3 years</div>
-                <div onClick={ this.handleClick }>5 years</div>
-              </div>
+        var chartData = {
+          labels: labels,
+          datasets:[
+            {
+              label: symbol,
+              data:[...priceArray],
+              backgroundColor: this.props.lineSettings.colorFill,
+              pointRadius: this.props.lineSettings.point,
+              pointHitRadius: 4,
+              borderColor: this.props.lineSettings.colorLine
+            }
+          ]
+        }
+      }
+  
+      const options = {
+        maintainAspectRatio: false,
+        legend:{
+          display: false
+        }, 
+        tooltips:{ 
+          displayColors: false,
+          enabled: this.props.lineSettings.tooltipsEnabled, 
+          bodyFontSize: 24, 
+          callbacks:{ 
+            title: function(tooltipItems) { return ''; },
+            label: function(tooltipItems) { return  '$' + tooltipItems.value; }
+          }
+        }
+      }
+  
+      const post = <Line
+            key= { symbol }
+            data={chartData}
+            width={100}
+            height={225}
+            options={ options }
+          />
+      
+      return (
+        <div className='activator'>
+          { post }
         </div>
-    )
+      )
+
+
+
+
+
+
+
+    // const post = (
+    //     <div>
+    //       { charting }
+    //       <div id='chartSelectors'className={styles.itemHeader}>
+    //             <div className={ styles.active } onClick={ this.handleClick }>Today</div>
+    //             <div onClick={ this.handleClick }>30 day</div>
+    //             <div onClick={ this.handleClick }>90 day</div>
+    //             <div onClick={ this.handleClick }>1 year</div>
+    //             <div onClick={ this.handleClick }>3 years</div>
+    //             <div onClick={ this.handleClick }>5 years</div>
+    //           </div>
+    //     </div>
+    // )
     
-    return (
-      <div className='activator'>
-        { post }
+    // return (
+    //   <div className='activator'>
+    //     { post }
         
-      </div>
-    )
+    //   </div>
+    // )
   }
 }
 
