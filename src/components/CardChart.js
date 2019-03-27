@@ -33,6 +33,7 @@ class CardChart extends Component {
           priceArrayAll.push(stock.price)
           labelsAll.push(stock.date)
     })
+  }
     var priceArray = []
     var labels = [];
     var labelsYears;
@@ -131,7 +132,7 @@ class CardChart extends Component {
             }
           ]
         }
-      }
+      
   
       const options = {
         maintainAspectRatio: false,
@@ -149,13 +150,26 @@ class CardChart extends Component {
         }
       }
   
-      const post = ( <Line
+      const post = labels.length ? ( <Line
             key= { symbol }
             data={chartData}
             width={100}
             height={215}
             options={ options }
-          /> )
+          /> ) : (
+          <div>
+            <div>
+              <Line
+              key= { symbol }
+              data={chartData}
+              width={100}
+              height={215}
+              options={ options }
+            />
+            </div>
+            <p className = { styles.noData }>Daily Data not Currently Available</p>
+          </div>
+          )
       
       return (
         <div>

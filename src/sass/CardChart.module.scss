@@ -17,3 +17,12 @@
 .active {
     background-color: #e0e0e0; 
 }
+
+.noData {
+    position: absolute;
+    font-size: 30px;
+    top: 45%;
+    left: 20%;
+    color: teal;
+    font-weight: bold;
+}
