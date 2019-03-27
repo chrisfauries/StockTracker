@@ -16,7 +16,7 @@ function DeleteStock(props) {
             <Modal className={styles.popUp}
                 trigger={<img className='right' src={ trashcan } alt='trashcan' />}
                 actions={ <div><Button className='red modal-close' waves='light' onClick={ handleClick }>Delete</Button><Button waves='light' className='modal-close'>Cancel</Button></div> }>
-                    <div className={styles.modalContent}><p className='center-align'>Are you sure you want to delete this stock?</p></div>
+                    <div className={styles.modalContent}><p className='center-align'>Are you sure you want to delete this stock? This will also delete all purchases for this stock.</p></div>
             </Modal>
             
         </div>
