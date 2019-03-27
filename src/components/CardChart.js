@@ -126,7 +126,7 @@ class CardChart extends Component {
               data:[...priceArray],
               backgroundColor: this.props.lineSettings.colorFill,
               pointRadius: this.props.lineSettings.point,
-              pointHitRadius: 4,
+              pointHitRadius: 7,
               borderColor: this.props.lineSettings.colorLine
             }
           ]
@@ -143,7 +143,7 @@ class CardChart extends Component {
           enabled: this.props.lineSettings.tooltipsEnabled, 
           bodyFontSize: 24, 
           callbacks:{ 
-            title: function(tooltipItems) { return ''; },
+            title: function (tooltipItem, data) { return data.labels[tooltipItem[0].index]; },
             label: function(tooltipItems) { return  '$' + tooltipItems.value; }
           }
         }
