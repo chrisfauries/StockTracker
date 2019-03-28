@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Input, Button } from 'react-materialize'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { updateUserSettings } from '../../reducers/actions/settingsActions'
 import { changePassword } from '../../reducers/actions/authActions'
 
@@ -34,6 +35,11 @@ class Chart extends Component {
           [e.target.id]: e.target.value
       })
      }
+     if(e.target.id !== 'animation') { this.updateSettings(); }
+    }
+
+    handleSliderChange = (e) => {
+      this.updateSettings();
     }
 
      updateSettings = () => {
@@ -104,11 +110,11 @@ class Chart extends Component {
                 <p>Line Animations</p>
                   <div className="switch">
                     <p className="range-field">
-                      <input type="range" id='animation' value={ this.state.animation } min='0' max='1500' onChange={ this.handleChange } />
+                      <input type="range" id='animation' value={ this.state.animation } min='0' max='1500' onChange={ this.handleChange } onMouseUp= { this.handleSliderChange } />
                     </p>
                   </div>
                 </li>
-                <li className="collection-item center-align"><Button waves='light' onClick={ this.updateSettings }>Save</Button></li>
+                <li className="collection-item center-align"><Button waves='light' onClick={ () => {this.props.history.goBack()} }>Back</Button></li>
               </ul>
               </div>
           )
@@ -128,4 +134,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chart)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Chart))
