@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Line } from 'react-chartjs-2'
+import { Line, defaults } from 'react-chartjs-2'
 import styles from '../sass/CardChart.module.scss'
 
 class CardChart extends Component {
@@ -21,8 +21,6 @@ class CardChart extends Component {
   }
 
   render() {
-
-
     //get data for historical
     const { symbol } = this.props
     var stocksHistorical = this.props.historicalData.find(stock =>  stock[symbol])
@@ -119,6 +117,10 @@ class CardChart extends Component {
             break;
         }
 
+        // Settings for the line chart
+        defaults.global.animation.duration = this.props.lineSettings.animation;
+        defaults.global.elements.line.tension = this.props.lineSettings.lineStyle;
+
         var chartData = {
           labels: labels,
           datasets:[
@@ -132,13 +134,12 @@ class CardChart extends Component {
             }
           ]
         }
-      
-  
+ 
       const options = {
         maintainAspectRatio: false,
         legend:{
           display: false
-        }, 
+        },
         tooltips:{ 
           displayColors: false,
           enabled: this.props.lineSettings.tooltipsEnabled, 

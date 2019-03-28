@@ -11,7 +11,9 @@ export const settings = {
             colorFill: 'rgba(173, 216, 230, 0.6)',
             colorLine: 'rgba(173, 216, 230, 0.6)',
             point: 3,
-            tooltipsEnabled: true
+            tooltipsEnabled: true,
+            lineStyle: 0.4,
+            animation: 700
         }
 
     },

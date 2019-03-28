@@ -38,7 +38,9 @@ const settingsReducer = (state = initState, action) => {
                     colorFill: chart.colorFill,
                     colorLine: chart.colorLine,
                     point: chart.point,
-                    tooltipsEnabled: chart.tooltipsEnabled
+                    tooltipsEnabled: chart.tooltipsEnabled,
+                    lineStyle: chart.lineStyle,
+                    animation: Number(chart.animation)
                 }
             }
         }

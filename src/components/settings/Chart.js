@@ -9,7 +9,9 @@ class Chart extends Component {
       colorFill: '',
       colorLine: '',
       point: null,
-      tooltipsEnabled: true
+      tooltipsEnabled: true,
+      lineStyle: 0.4,
+      animation: 1000
     }
 
     componentWillMount() {
@@ -17,13 +19,16 @@ class Chart extends Component {
         colorFill: this.props.chart.line.colorFill,
         colorLine: this.props.chart.line.colorLine,
         point: this.props.chart.line.point,
-        tooltipsEnabled: this.props.chart.line.tooltipsEnabled
+        tooltipsEnabled: this.props.chart.line.tooltipsEnabled,
+        lineStyle: this.props.chart.line.lineStyle,
+        animation: this.props.chart.line.animation
       })
     }
 
     handleChange = (e) => {
       if(e.target.id === 'point') {this.setState({point: e.target.checked ? 3 : 0})}
       else if(e.target.id === 'tooltipsEnabled') {this.setState({tooltipsEnabled: e.target.checked})}
+      else if(e.target.id === 'lineStyle') {this.setState({lineStyle: e.target.checked ? 0.4 : 0})}
       else {
         this.setState({
           [e.target.id]: e.target.value
@@ -36,10 +41,9 @@ class Chart extends Component {
     }
 
     render() {
-      console.log(this.state)
         const { general } = this.props;
         return (
-          <div style={{height: '600px'}}>
+          <div style={{height: '1000px'}}>
             <ul className="collection with-header container" style={{height: '1500px'}}>
                 <li className="collection-header center-align"><h4>Chart Settings</h4></li>
                 <li className="collection-item">
@@ -83,6 +87,25 @@ class Chart extends Component {
                       <span className="lever"></span>
                       On
                     </label>
+                  </div>
+                </li>
+                <li className="collection-item">
+                <p>Line Style</p>
+                  <div className="switch">
+                    <label>
+                      Striaght
+                      <input type="checkbox" id='lineStyle' checked={ this.state.lineStyle } onChange={ this.handleChange } />
+                      <span className="lever"></span>
+                      Curved
+                    </label>
+                  </div>
+                </li>
+                <li className="collection-item">
+                <p>Line Animations</p>
+                  <div className="switch">
+                    <p className="range-field">
+                      <input type="range" id='animation' value={ this.state.animation } min='0' max='1500' onChange={ this.handleChange } />
+                    </p>
                   </div>
                 </li>
                 <li className="collection-item center-align"><Button waves='light' onClick={ this.updateSettings }>Save</Button></li>
