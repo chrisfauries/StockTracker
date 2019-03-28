@@ -36,6 +36,7 @@ class NavBar extends Component {
   }
 
   render() {
+    console.log(window)
     const links = !this.props.authFB.isEmpty ? (
       <div className={styles.menu} onClick={ this.handleActive }>
       <NavLink to='/stocks' className='brand-logo'>Stock Tracker</NavLink>
