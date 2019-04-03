@@ -32,10 +32,14 @@
             align-items: center;
             justify-content: center;
         }    
-            button {
-                font-size: 18px;
-                margin: 4px;
-            }
+        button {
+            font-size: 18px;
+            margin: 4px;
+        }
+        .testAccount {
+            width: 150px;
+            border: 1px solid black;
+        }
     }
 }
 

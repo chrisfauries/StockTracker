@@ -43,6 +43,11 @@ class SignIn extends Component {
             <div className={styles.btnDiv}>
               <button className='btn red lighten-1 center-align'>Login</button>
             </div>
+            <div className={ styles.testAccount }>
+              <p>Test Account:</p>
+              <p>example@example.com</p>
+              <p>test1234</p>
+            </div>
           </form>
         </div>
       </div>
