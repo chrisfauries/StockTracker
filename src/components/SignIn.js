@@ -46,7 +46,7 @@ class SignIn extends Component {
             <div className={ styles.testAccount }>
               <p>Test Account:</p>
               <p>example@example.com</p>
-              <p>test1234</p>
+              <p>asdf1234</p>
             </div>
           </form>
         </div>
