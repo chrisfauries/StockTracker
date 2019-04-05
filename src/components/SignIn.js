@@ -44,9 +44,7 @@ class SignIn extends Component {
               <button className='btn red lighten-1 center-align'>Login</button>
             </div>
             <div className={ styles.testAccount }>
-              <p>Test Account:</p>
-              <p>example@example.com</p>
-              <p>asdf1234</p>
+              <p>Test Account: example@example.com, Password:asdf1234</p>
             </div>
           </form>
         </div>
