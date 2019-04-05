@@ -4,6 +4,7 @@ import styles from '../sass/SignIn.module.scss'
 import { signIn } from '../reducers/actions/authActions'
 import { Redirect } from 'react-router-dom'
 import { getUserData } from '../reducers/actions/userActions'
+import { relative } from 'path';
 
 class SignIn extends Component {
   state = {
@@ -43,8 +44,8 @@ class SignIn extends Component {
             <div className={styles.btnDiv}>
               <button className='btn red lighten-1 center-align'>Login</button>
             </div>
-            <div className={ styles.testAccount }>
-              <p>Test Account: example@example.com, Password:asdf1234</p>
+            <div className={ styles.testAccount } style= {{position: "relative"}}>
+              <p style={{position: 'absolute', right: 0, left: 0, textAlign: 'center'}}>Test Account: 'example@example.com' Password: 'asdf1234'</p>
             </div>
           </form>
         </div>
